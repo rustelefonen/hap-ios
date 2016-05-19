@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="1" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Automatic">
+    <entity name="Achievement" representedClassName=".Achievement" syncable="YES">
+        <attribute name="category" attributeType="String" defaultValueString="Milestone" syncable="YES"/>
+        <attribute name="info" attributeType="String" syncable="YES"/>
+        <attribute name="pointsRequired" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="HelpInfo" representedClassName=".HelpInfo" syncable="YES">
+        <attribute name="htmlContent" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="title" attributeType="String" minValueString="1" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HelpInfoCategory" inverseName="helpInfo" inverseEntity="HelpInfoCategory" syncable="YES"/>
+    </entity>
+    <entity name="HelpInfoCategory" representedClassName=".HelpInfoCategory" syncable="YES">
+        <attribute name="categoryId" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="order" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" attributeType="String" minValueString="1" defaultValueString="Untitled" syncable="YES"/>
+        <attribute name="versionNumber" attributeType="Integer 32" defaultValueString="1" syncable="YES"/>
+        <relationship name="helpInfo" toMany="YES" deletionRule="Cascade" destinationEntity="HelpInfo" inverseName="category" inverseEntity="HelpInfo" syncable="YES"/>
+    </entity>
+    <entity name="Trigger" representedClassName=".Trigger" syncable="YES">
+        <attribute name="color" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="imageName" attributeType="String" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="resistedUsers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UserTrigger" inverseName="resistedTrigger" inverseEntity="UserTrigger" syncable="YES"/>
+        <relationship name="smokedUsers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UserTrigger" inverseName="smokedTrigger" inverseEntity="UserTrigger" syncable="YES"/>
+    </entity>
+    <entity name="UserInfo" representedClassName=".UserInfo" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="geoState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="moneySpentPerDayOnHash" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondsLastedBeforeLastReset" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <attribute name="startDate" attributeType="Date" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="resistedTriggers" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="UserTrigger" inverseName="resistedUser" inverseEntity="UserTrigger" syncable="YES"/>
+        <relationship name="smokedTriggers" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="UserTrigger" inverseName="smokedUser" inverseEntity="UserTrigger" syncable="YES"/>
+    </entity>
+    <entity name="UserTrigger" representedClassName=".UserTrigger" syncable="YES">
+        <attribute name="count" attributeType="Integer 32" minValueString="1" defaultValueString="1" syncable="YES"/>
+        <attribute name="kind" attributeType="String" syncable="YES"/>
+        <relationship name="resistedTrigger" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trigger" inverseName="resistedUsers" inverseEntity="Trigger" syncable="YES"/>
+        <relationship name="resistedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserInfo" inverseName="resistedTriggers" inverseEntity="UserInfo" syncable="YES"/>
+        <relationship name="smokedTrigger" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trigger" inverseName="smokedUsers" inverseEntity="Trigger" syncable="YES"/>
+        <relationship name="smokedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserInfo" inverseName="smokedTriggers" inverseEntity="UserInfo" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Achievement" positionX="-218" positionY="-261" width="128" height="105"/>
+        <element name="HelpInfo" positionX="-54" positionY="-90" width="128" height="90"/>
+        <element name="HelpInfoCategory" positionX="178" positionY="-108" width="128" height="120"/>
+        <element name="Trigger" positionX="-182" positionY="234" width="128" height="120"/>
+        <element name="UserInfo" positionX="-227" positionY="-90" width="128" height="180"/>
+        <element name="UserTrigger" positionX="-360" positionY="234" width="128" height="135"/>
+    </elements>
+</model>
