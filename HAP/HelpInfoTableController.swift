@@ -85,7 +85,15 @@ class HelpInfoTableController: UITableViewController, UISearchControllerDelegate
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0 { performSegueWithIdentifier("helpInfoCategory", sender: self) }
+        let helpInfoInSelectedCategory = helpInfoCategories[indexPath.row].helpInfo.allObjects
+        if indexPath.section == 0 && helpInfoInSelectedCategory.count == 1 {
+            let singleHelpInfo = helpInfoInSelectedCategory.first as? HelpInfo
+            if singleHelpInfo!.title.lowercaseString == "3d-hjernen" {
+                performSegueWithIdentifier("brainSearch", sender: self)
+            } else {
+                performSegueWithIdentifier("singleHelpInfo", sender: self)
+            }
+        } else if indexPath.section == 0 { performSegueWithIdentifier("helpInfoCategory", sender: self) }
         else if indexPath.row == 0 { return presentCallPromt() }
         else { performSegueWithIdentifier("sendAnonQuestion", sender: nil) }
     }
@@ -105,7 +113,11 @@ class HelpInfoTableController: UITableViewController, UISearchControllerDelegate
         if segue.identifier == "brainSearch" { return }
         
         if let dest = segue.destinationViewController as? HelpInfoDetailController{
-            dest.helpInfo = searchController.selectedHelpInfo
+            if helpInfoCategories[tableView.indexPathForSelectedRow!.row].helpInfo.allObjects.count <= 1 {
+                dest.helpInfo = helpInfoCategories[tableView.indexPathForSelectedRow!.row].helpInfo.allObjects.first as? HelpInfo
+            } else {
+                dest.helpInfo = searchController.selectedHelpInfo
+            }
         }
         else if let dest = segue.destinationViewController as? HelpInfoCategoryController{
             dest.helpInfoCategory = helpInfoCategories[tableView.indexPathForSelectedRow!.row]

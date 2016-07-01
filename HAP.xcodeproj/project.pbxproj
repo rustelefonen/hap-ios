@@ -710,7 +710,7 @@
 				TargetAttributes = {
 					D568864F1C47DE8D0034178D = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 7YM62TSA8L;
+						DevelopmentTeam = L9938G85M7;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1071,7 +1071,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/HAP/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = no.rustelefonen.HAP2;
+				PRODUCT_BUNDLE_IDENTIFIER = no.rustelefonen.HAP;
 				PRODUCT_NAME = HAP;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1090,7 +1090,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/HAP/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = no.rustelefonen.HAP2;
+				PRODUCT_BUNDLE_IDENTIFIER = no.rustelefonen.HAP;
 				PRODUCT_NAME = HAP;
 				PROVISIONING_PROFILE = "";
 			};
