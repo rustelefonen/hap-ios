@@ -85,17 +85,26 @@ class HelpInfoTableController: UITableViewController, UISearchControllerDelegate
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let helpInfoInSelectedCategory = helpInfoCategories[indexPath.row].helpInfo.allObjects
-        if indexPath.section == 0 && helpInfoInSelectedCategory.count == 1 {
-            let singleHelpInfo = helpInfoInSelectedCategory.first as? HelpInfo
-            if singleHelpInfo!.title.lowercaseString == "3d-hjernen" {
-                performSegueWithIdentifier("brainSearch", sender: self)
+        if (indexPath.section == 0) {
+            let helpInfoInSelectedCategory = helpInfoCategories[indexPath.row].helpInfo.allObjects
+            
+            if helpInfoInSelectedCategory.count == 1 {
+                let singleHelpInfo = helpInfoInSelectedCategory.first as? HelpInfo
+                if singleHelpInfo!.title.lowercaseString == "3d-hjernen" {
+                    performSegueWithIdentifier("brainSearch", sender: self)
+                } else {
+                    performSegueWithIdentifier("singleHelpInfo", sender: self)
+                }
             } else {
-                performSegueWithIdentifier("singleHelpInfo", sender: self)
+                performSegueWithIdentifier("helpInfoCategory", sender: self)
             }
-        } else if indexPath.section == 0 { performSegueWithIdentifier("helpInfoCategory", sender: self) }
-        else if indexPath.row == 0 { return presentCallPromt() }
-        else { performSegueWithIdentifier("sendAnonQuestion", sender: nil) }
+        } else if (indexPath.section == 1) {
+            if indexPath.row == 0 {
+                return presentCallPromt()
+            } else if (indexPath.row == 1) {
+                performSegueWithIdentifier("sendAnonQuestion", sender: nil)
+            }
+        }
     }
     
     func presentCallPromt() {
