@@ -122,10 +122,11 @@ class HelpInfoTableController: UITableViewController, UISearchControllerDelegate
         if segue.identifier == "brainSearch" { return }
         
         if let dest = segue.destinationViewController as? HelpInfoDetailController{
-            if helpInfoCategories[tableView.indexPathForSelectedRow!.row].helpInfo.allObjects.count <= 1 {
-                dest.helpInfo = helpInfoCategories[tableView.indexPathForSelectedRow!.row].helpInfo.allObjects.first as? HelpInfo
-            } else {
-                dest.helpInfo = searchController.selectedHelpInfo
+            if segue.identifier == "infoSearch" { dest.helpInfo = searchController.selectedHelpInfo }
+            else if tableView.indexPathForSelectedRow != nil {
+                if helpInfoCategories[tableView.indexPathForSelectedRow!.row].helpInfo.allObjects.count <= 1 {
+                    dest.helpInfo = helpInfoCategories[tableView.indexPathForSelectedRow!.row].helpInfo.allObjects.first as? HelpInfo
+                }
             }
         }
         else if let dest = segue.destinationViewController as? HelpInfoCategoryController{
