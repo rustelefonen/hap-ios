@@ -10,15 +10,15 @@ import UIKit
 
 class UIViewLineDrawer: UIView {
     
-    private func getLinePath(fromPoint: CGPoint, toPoint: CGPoint, lineHeight: CGFloat) -> UIBezierPath{
+    fileprivate func getLinePath(_ fromPoint: CGPoint, toPoint: CGPoint, lineHeight: CGFloat) -> UIBezierPath{
         let path = UIBezierPath()
-        path.moveToPoint(fromPoint)
-        path.addLineToPoint(toPoint)
+        path.move(to: fromPoint)
+        path.addLine(to: toPoint)
         path.lineWidth = lineHeight
         return path
     }
     
-    func drawDashedLine(fromPoint: CGPoint, toPoint: CGPoint, dashHeight: CGFloat, dashWidth: CGFloat, dashSpacing: CGFloat){
+    func drawDashedLine(_ fromPoint: CGPoint, toPoint: CGPoint, dashHeight: CGFloat, dashWidth: CGFloat, dashSpacing: CGFloat){
         let path = getLinePath(fromPoint, toPoint: toPoint, lineHeight: dashHeight)
         
         let dashes: [CGFloat] = [dashWidth, dashSpacing]
@@ -26,11 +26,11 @@ class UIViewLineDrawer: UIView {
         path.stroke()
     }
     
-    func drawLine(fromPoint: CGPoint, toPoint: CGPoint, lineHeight: CGFloat){
+    func drawLine(_ fromPoint: CGPoint, toPoint: CGPoint, lineHeight: CGFloat){
         getLinePath(fromPoint, toPoint: toPoint, lineHeight: lineHeight).stroke()
     }
     
-    func makeCircle(frame: CGRect, strokeColor:UIColor = UIColor(rgba: 0xE6E6E6FF), strokeEnd:CGFloat = 1) -> CAShapeLayer{
+    func makeCircle(_ frame: CGRect, strokeColor:UIColor = UIColor(rgba: 0xE6E6E6FF), strokeEnd:CGFloat = 1) -> CAShapeLayer{
         let rectShape = CAShapeLayer()
         
         CATransaction.begin()
@@ -39,10 +39,10 @@ class UIViewLineDrawer: UIView {
         rectShape.position = CGPoint(x: frame.origin.x, y: frame.origin.y)
         rectShape.cornerRadius = frame.width / 2
         
-        rectShape.path = UIBezierPath(ovalInRect: rectShape.bounds).CGPath
+        rectShape.path = UIBezierPath(ovalIn: rectShape.bounds).cgPath
         rectShape.lineWidth = 3.0
-        rectShape.strokeColor = strokeColor.CGColor
-        rectShape.fillColor = UIColor.clearColor().CGColor
+        rectShape.strokeColor = strokeColor.cgColor
+        rectShape.fillColor = UIColor.clear.cgColor
         rectShape.transform = CATransform3DMakeRotation(4.7, 0.0, 0.0, 1.0);
         rectShape.strokeStart = 0
         rectShape.strokeEnd = strokeEnd

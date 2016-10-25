@@ -11,17 +11,17 @@ import UIKit
 class HelloViewController: IntroContentViewController {
     static let storyboardId = "hello"
     
-    var timer:NSTimer!
+    var timer:Timer!
     
     @IBOutlet weak var swipeImgView: UIImageView!
     @IBOutlet weak var welcomeLabel: UILabel!
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if timer == nil {
             view.layoutIfNeeded()
             addSwipeAnim()
-            timer = NSTimer.scheduledTimerWithTimeInterval(2.01, target: self, selector: #selector(HelloViewController.addSwipeAnim), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 2.01, target: self, selector: #selector(HelloViewController.addSwipeAnim), userInfo: nil, repeats: true)
         }
     }
     
@@ -40,7 +40,7 @@ class HelloViewController: IntroContentViewController {
         fadeAnim.duration = 1
         fadeAnim.beginTime = CACurrentMediaTime() + 1
         
-        swipeImgView.layer.addAnimation(moveAnim, forKey: "position.x")
-        swipeImgView.layer.addAnimation(fadeAnim, forKey: "opacity")
+        swipeImgView.layer.add(moveAnim, forKey: "position.x")
+        swipeImgView.layer.add(fadeAnim, forKey: "opacity")
     }
 }

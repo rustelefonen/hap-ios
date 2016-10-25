@@ -17,7 +17,7 @@ extension UIColor {
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    func makeUIColorLighter(alpha: CGFloat) -> UIColor{
+    func makeUIColorLighter(_ alpha: CGFloat) -> UIColor{
         var r:CGFloat = 0, g:CGFloat = 0, b:CGFloat = 0
         if getRed(&r, green: &g, blue: &b, alpha: nil){
             return UIColor(red: min(r + 0.2, 1.0), green: min(g + 0.2, 1.0), blue: min(b + 0.2, 1.0), alpha: alpha)

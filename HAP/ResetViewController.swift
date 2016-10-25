@@ -11,12 +11,12 @@ import UIKit
 class ResetViewController: UITableViewController {
     static let storyboardId = "Reset"
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let tableSelection = tableView.indexPathForSelectedRow {
-            tableView.deselectRowAtIndexPath(tableSelection, animated: true)
+            tableView.deselectRow(at: tableSelection, animated: true)
         }
         
-        switch indexPath.row {
+        switch (indexPath as NSIndexPath).row {
         case 0: resetClockPromt()
         case 1: resetPositiveTriggersPromt()
         case 2: resetNegativeTirggersPromt()
@@ -25,51 +25,51 @@ class ResetViewController: UITableViewController {
         }
     }
     
-    private func resetClockPromt(){
-        let alert = UIAlertController(title: "Tilbakestill klokken", message: "Denne handlingen kan ikke angres.", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Tilbakestill bare klokken", style: .Destructive, handler: { result in self.resetClock(keepAchievements: true) }))
-        alert.addAction(UIAlertAction(title: "Tilbakestill klokken og prestasjoner", style: .Destructive, handler: { result in self.resetClock(keepAchievements: false) }))
-        alert.addAction(UIAlertAction(title: "Avbryt", style: .Cancel, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+    fileprivate func resetClockPromt(){
+        let alert = UIAlertController(title: "Tilbakestill klokken", message: "Denne handlingen kan ikke angres.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Tilbakestill bare klokken", style: .destructive, handler: { result in self.resetClock(keepAchievements: true) }))
+        alert.addAction(UIAlertAction(title: "Tilbakestill klokken og prestasjoner", style: .destructive, handler: { result in self.resetClock(keepAchievements: false) }))
+        alert.addAction(UIAlertAction(title: "Avbryt", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
-    private func resetPositiveTriggersPromt() {
-        let alert = UIAlertController(title: "Tilbakestill positive triggere", message: "Denne handlingen kan ikke angres.", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Tilbakestill", style: .Destructive, handler: { result in self.resetPositiveTriggers() }))
-        alert.addAction(UIAlertAction(title: "Avbryt", style: .Cancel, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+    fileprivate func resetPositiveTriggersPromt() {
+        let alert = UIAlertController(title: "Tilbakestill positive triggere", message: "Denne handlingen kan ikke angres.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Tilbakestill", style: .destructive, handler: { result in self.resetPositiveTriggers() }))
+        alert.addAction(UIAlertAction(title: "Avbryt", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
-    private func resetNegativeTirggersPromt(){
-        let alert = UIAlertController(title: "Tilbakestill negative triggere", message: "Denne handlingen kan ikke angres.", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Tilbakestill", style: .Destructive, handler: { result in self.resetNegativeTriggers() }))
-        alert.addAction(UIAlertAction(title: "Avbryt", style: .Cancel, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+    fileprivate func resetNegativeTirggersPromt(){
+        let alert = UIAlertController(title: "Tilbakestill negative triggere", message: "Denne handlingen kan ikke angres.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Tilbakestill", style: .destructive, handler: { result in self.resetNegativeTriggers() }))
+        alert.addAction(UIAlertAction(title: "Avbryt", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
-    private func resetAppPromt() {
-        let alert = UIAlertController(title: "Advarsel!", message: "Er du sikker på at du vil nullstille appen? Denne handlingen kan ikke tilbakestilles.", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Tilbakestill nå", style: .Destructive, handler: { result in self.resetApp() }))
-        alert.addAction(UIAlertAction(title: "Avbryt", style: .Cancel, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+    fileprivate func resetAppPromt() {
+        let alert = UIAlertController(title: "Advarsel!", message: "Er du sikker på at du vil nullstille appen? Denne handlingen kan ikke tilbakestilles.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Tilbakestill nå", style: .destructive, handler: { result in self.resetApp() }))
+        alert.addAction(UIAlertAction(title: "Avbryt", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
-    private func resetClock(keepAchievements keepAchievements:Bool) {
+    fileprivate func resetClock(keepAchievements:Bool) {
         let userInfoDao = UserInfoDao()
         let userInfo = AppDelegate.getUserInfo()
         
-        userInfo?.secondsLastedBeforeLastReset = keepAchievements ? userInfo!.timeInSecondsSinceStarted() : 0
-        userInfo?.startDate = NSDate()
+        userInfo?.secondsLastedBeforeLastReset = keepAchievements ? NSNumber(value: userInfo!.timeInSecondsSinceStarted()) : NSNumber(value: 0)
+        userInfo?.startDate = Date()
         userInfoDao.save()
         AppDelegate.initUserInfo()
         
         NotificationHandler.resetBadges()
         NotificationHandler.scheduleAchievementNotifications(userInfo!, force: true)
         SwiftEventBus.post(AchievementsTableController.RELOAD_ACHIEVEMENTS_EVENT)
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
-    private func resetPositiveTriggers(){
+    fileprivate func resetPositiveTriggers(){
         let userInfoDao = UserInfoDao()
         let userInfo = AppDelegate.getUserInfo()
         
@@ -77,10 +77,10 @@ class ResetViewController: UITableViewController {
         userInfoDao.save()
         AppDelegate.initUserInfo()
         
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
-    private func resetNegativeTriggers(){
+    fileprivate func resetNegativeTriggers(){
         let userInfoDao = UserInfoDao()
         let userInfo = AppDelegate.getUserInfo()
         
@@ -88,16 +88,16 @@ class ResetViewController: UITableViewController {
         userInfoDao.save()
         AppDelegate.initUserInfo()
         
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
-    private func resetApp() {
+    fileprivate func resetApp() {
         let userInfoDao = UserInfoDao()
         userInfoDao.delete(AppDelegate.getUserInfo()!)
         userInfoDao.save()
         AppDelegate.initUserInfo()
         //resetting badges happens in intro controller
         
-        presentingViewController?.dismissViewControllerAnimated(false, completion: nil)
+        presentingViewController?.dismiss(animated: false, completion: nil)
     }
 }

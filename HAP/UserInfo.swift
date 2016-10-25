@@ -16,7 +16,7 @@ class UserInfo: NSManagedObject {
     @NSManaged var geoState: String?
     
     @NSManaged var moneySpentPerDayOnHash: NSNumber
-    @NSManaged var startDate: NSDate
+    @NSManaged var startDate: Date
     @NSManaged var resistedTriggers: NSSet
     @NSManaged var smokedTriggers: NSSet
     @NSManaged var secondsLastedBeforeLastReset: NSNumber
@@ -26,8 +26,8 @@ class UserInfo: NSManagedObject {
     }
     
     func daysSinceStarted() -> Int{
-        let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        let theStartDate = cal.dateBySettingHour(4, minute: 0, second: 0, ofDate: startDate, options: [])!
+        let cal = Calendar(identifier: Calendar.Identifier.gregorian)
+        let theStartDate = (cal as NSCalendar).date(bySettingHour: 4, minute: 0, second: 0, of: startDate, options: [])!
         
         return Int(timeInSecondsSinceDate(theStartDate) / 86400)
     }
@@ -52,7 +52,7 @@ class UserInfo: NSManagedObject {
         return smokedTriggers.allObjects as? [UserTrigger] ?? []
     }
     
-    func incrementTriggerCountIfTriggerExists(trigger:Trigger, kind:UserTrigger.Kind) -> Bool {
+    func incrementTriggerCountIfTriggerExists(_ trigger:Trigger, kind:UserTrigger.Kind) -> Bool {
         let userTriggers = kind == .Smoked ? getSmokedTriggersAsArray() : getResistedTriggersAsArray()
         
         for userTrigger in userTriggers {
@@ -64,7 +64,7 @@ class UserInfo: NSManagedObject {
         return false
     }
     
-    private func timeInSecondsSinceDate(date:NSDate) -> Double {
+    fileprivate func timeInSecondsSinceDate(_ date:Date) -> Double {
         let seconds = -Double(date.timeIntervalSinceNow) // minus because .timeIntervalToNow is wanted
         if seconds.isNaN { return 0 }
         

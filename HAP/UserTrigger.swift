@@ -23,7 +23,7 @@ class UserTrigger: NSManagedObject {
     @NSManaged var resistedUser: UserInfo?
     
     
-    func setUser(user:UserInfo?){
+    func setUser(_ user:UserInfo?){
         let kind = Kind(rawValue: self.kind)
         
         switch kind {
@@ -36,7 +36,7 @@ class UserTrigger: NSManagedObject {
         }
     }
     
-    func setTrigger(trigger:Trigger?){
+    func setTrigger(_ trigger:Trigger?){
         let kind = Kind(rawValue: self.kind)
         
         switch kind {
@@ -49,7 +49,7 @@ class UserTrigger: NSManagedObject {
         }
     }
     
-    func setKind(kind:Kind){
+    func setKind(_ kind:Kind){
         self.kind = kind.rawValue
         
         //flipping relationships
@@ -68,7 +68,7 @@ class UserTrigger: NSManagedObject {
     }
     
     func incrementCount(){
-        count = NSNumber(int: count.intValue + 1)
+        count = NSNumber(value: count.int32Value + 1 as Int32)
     }
     
 }

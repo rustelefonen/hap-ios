@@ -24,11 +24,11 @@ class HAPUITests: XCTestCase {
     }
     
     //Helper functions
-    func getRand(count:UInt) -> UInt{
+    func getRand(_ count:UInt) -> UInt{
         return UInt(Int(arc4random_uniform(UInt32(count)) + 1))
     }
     
-    func getSwitchValue(switcher:XCUIElement) -> Bool {
+    func getSwitchValue(_ switcher:XCUIElement) -> Bool {
         return switcher.value as! String == "1"
     }
 }

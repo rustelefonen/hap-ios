@@ -10,13 +10,13 @@ import UIKit
 
 extension UIView {
     func endEditingInFirstResponder() -> UIView?{
-        if isFirstResponder(){
+        if isFirstResponder{
             endEditing(true)
             return self
         }
         
         for subview in subviews {
-            if subview.isFirstResponder() {
+            if subview.isFirstResponder {
                 subview.endEditing(true)
                 return subview
             }

@@ -22,15 +22,15 @@ class RemoteInfoDataSource {
     
     func syncDatabase(){
         let request = makeJsonRequestForUrl("\(RemoteInfoDataSource.SERVER_URL)/api/info/version")
-        NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {data, response, error in self.handleVersionDataFromServer(data)}).resume()
+        URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {data, response, error in self.handleVersionDataFromServer(data)}).resume()
     }
     
-    private func handleVersionDataFromServer(data:NSData?){
+    fileprivate func handleVersionDataFromServer(_ data:Data?){
         if data == nil { return }
         var remoteCategories: [HelpInfoCategory.Summary] = []
         
-        if let json = try? NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) {
-            for remote in json.allObjects as? [[String: Int]] ?? [] {
+        if let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) {
+            for remote in (json as AnyObject).allObjects as? [[String: Int]] ?? [] {
                 remoteCategories.append(HelpInfoCategory.Summary(id: remote["id"]!, versionNumber: remote["versionNumber"]!))
             }
         }
@@ -42,35 +42,35 @@ class RemoteInfoDataSource {
         updateOutdatedCategories(categoriesToUpdate)
     }
     
-    private func deleteCategoriesNotPresentOnRemote(remoteCategories:[HelpInfoCategory.Summary]) {
+    fileprivate func deleteCategoriesNotPresentOnRemote(_ remoteCategories:[HelpInfoCategory.Summary]) {
         let notOnRemote = localCategories.filter({ (locale) in
-            return !remoteCategories.contains({ (remote) in Int(locale.categoryId) == remote.id })
+            return !remoteCategories.contains(where: { (remote) in Int(locale.categoryId) == remote.id })
         })
         infoDao.deleteObjects(notOnRemote)
     }
     
-    private func collectCategoriesToUpdate(remoteCategories:[HelpInfoCategory.Summary]) -> [HelpInfoCategory.Summary]{
+    fileprivate func collectCategoriesToUpdate(_ remoteCategories:[HelpInfoCategory.Summary]) -> [HelpInfoCategory.Summary]{
         return remoteCategories.filter({ (remote) in
             let local = localCategories.filter({(c) in remote.id == Int(c.categoryId)}).first
             return local == nil || Int(local!.versionNumber) < remote.versionNumber
         })
     }
     
-    func updateOutdatedCategories(categoriesToUpdate:[HelpInfoCategory.Summary]){
+    func updateOutdatedCategories(_ categoriesToUpdate:[HelpInfoCategory.Summary]){
         synced(self){ self.requestsDone = categoriesToUpdate.count }
         
         for cat in categoriesToUpdate {
             let request = makeJsonRequestForUrl("\(RemoteInfoDataSource.SERVER_URL)/api/info/categories/\(cat.id)")
-            NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {data, response, error in self.updateRecievedCategory(data)}).resume()
+            URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {data, response, error in self.updateRecievedCategory(data)}).resume()
         }
         
     }
     
-    func updateRecievedCategory(data:NSData?){
+    func updateRecievedCategory(_ data:Data?){
         synced(self){ self.requestsDone -= 1 }
         if data == nil { return }
         
-        if let json = try? NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) {
+        if let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String: Any] {
             let catId = json["id"] as? NSNumber ?? -1
             let currentLocal = infoDao.fetchCategoryById(Int(catId))
             
@@ -108,14 +108,14 @@ class RemoteInfoDataSource {
         }
     }
     
-    private func makeJsonRequestForUrl(url:String) -> NSMutableURLRequest{
-        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        request.HTTPMethod = "GET"
+    fileprivate func makeJsonRequestForUrl(_ url:String) -> NSMutableURLRequest{
+        let request = NSMutableURLRequest(url: URL(string: url)!)
+        request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         return request
     }
     
-    func synced(lock: AnyObject, closure: () -> ()) {
+    func synced(_ lock: AnyObject, closure: () -> ()) {
         objc_sync_enter(lock)
         closure()
         objc_sync_exit(lock)

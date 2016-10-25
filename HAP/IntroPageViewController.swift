@@ -20,21 +20,21 @@ class IntroPageViewController: UIPageViewController, UIPageViewControllerDataSou
     override func viewDidLoad() {
         dataSource = self
         delegate = self
-        setViewControllers([viewControllerAtIndex(currentPage)], direction: .Forward, animated: false, completion: nil)
+        setViewControllers([viewControllerAtIndex(currentPage)], direction: .forward, animated: false, completion: nil)
         initIndicator()
         NotificationHandler.resetBadges()
     }
     
-    func viewControllerAtIndex(index:Int) -> IntroContentViewController {
+    func viewControllerAtIndex(_ index:Int) -> IntroContentViewController {
         if index >= introContentViews.count {
-            let cvc = storyboard?.instantiateViewControllerWithIdentifier(viewControllerIds[index]) as! IntroContentViewController
-            introContentViews.insert(cvc, atIndex: index)
+            let cvc = storyboard?.instantiateViewController(withIdentifier: viewControllerIds[index]) as! IntroContentViewController
+            introContentViews.insert(cvc, at: index)
             introContentViews[index].pageIndex = index
         }
         return introContentViews[index]
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let index = (viewController as! IntroContentViewController).pageIndex
         currentPage = index
         
@@ -45,7 +45,7 @@ class IntroPageViewController: UIPageViewController, UIPageViewControllerDataSou
         return viewControllerAtIndex(index - 1)
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let index = (viewController as! IntroContentViewController).pageIndex
         currentPage = index
         
@@ -56,14 +56,14 @@ class IntroPageViewController: UIPageViewController, UIPageViewControllerDataSou
         return viewControllerAtIndex(index + 1)
     }
     
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool){
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool){
         indicator.currentPage = (viewControllers![0] as! IntroContentViewController).pageIndex
     }
     
-    private func initIndicator(){
+    fileprivate func initIndicator(){
         indicator = UIPageControl(frame: CGRect(x: 0, y: view.frame.size.height - 37, width: view.frame.size.width, height: 37))
-        indicator.backgroundColor = UIColor.clearColor()
-        indicator.pageIndicatorTintColor = UIColor.lightGrayColor()
+        indicator.backgroundColor = UIColor.clear
+        indicator.pageIndicatorTintColor = UIColor.lightGray
         indicator.currentPageIndicatorTintColor = UIColor(red: 0xFF / 255, green: 0x4C / 255, blue: 0x3D / 255, alpha: 1)
         indicator.numberOfPages = viewControllerIds.count
         view.addSubview(indicator)
@@ -73,17 +73,17 @@ class IntroPageViewController: UIPageViewController, UIPageViewControllerDataSou
         saveUserInfo()
         //DBSeeder.SeedDB()
         NotificationHandler.scheduleAchievementNotifications(AppDelegate.getUserInfo()!, force: true)
-        presentingViewController?.dismissViewControllerAnimated(false, completion: nil)
+        presentingViewController?.dismiss(animated: false, completion: nil)
     }
     
-    private func saveUserInfo(){
+    fileprivate func saveUserInfo(){
         let userInfoController = introContentViews[3] as! UserInfoIntroController
         let datePickerController = introContentViews[2] as! DatePickerIntroController
         
         let userInfoDao = UserInfoDao()
         let userInfo = userInfoDao.createNewUserInfo()
         
-        if userInfoController.accepted.on {
+        if userInfoController.accepted.isOn {
             userInfo.age = userInfoController.age.text
             userInfo.gender = userInfoController.gender.text
             userInfo.geoState = userInfoController.state.text
@@ -91,7 +91,7 @@ class IntroPageViewController: UIPageViewController, UIPageViewControllerDataSou
         
         
         let startDate = datePickerController.datePicker.date
-        if startDate.compare(NSDate()) == .OrderedDescending {
+        if startDate.compare(Date()) == .orderedDescending {
             userInfo.startDate = startDate.dateWithTimeAsStartOfDayOf()
         }
         else {

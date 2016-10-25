@@ -15,45 +15,45 @@ class AchievementDao: CoreDataDao {
     
     //Constructor
     required init() {
-        entityName = String(Achievement)
+        entityName = String(describing: Achievement())
         super.init()
     }
     
     //Public operations
     func createNewAchievement() -> Achievement{
-        return NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext) as! Achievement
+        return NSEntityDescription.insertNewObject(forEntityName: entityName, into: managedObjectContext) as! Achievement
     }
     
-    func createNewAchievement(title: String, info: String, pointsRequired: Int, category: Achievement.Category) -> Achievement{
+    func createNewAchievement(_ title: String, info: String, pointsRequired: Int, category: Achievement.Category) -> Achievement{
         let achievement = createNewAchievement()
         achievement.title = title
         achievement.info = info
-        achievement.pointsRequired = pointsRequired
+        achievement.pointsRequired = NSNumber(value: pointsRequired)
         achievement.category = category.rawValue
         return achievement
     }
     
-    func fetchCompletedAchievements(userInfo: UserInfo) -> [Achievement] {
+    func fetchCompletedAchievements(_ userInfo: UserInfo) -> [Achievement] {
         return getAll().filter({$0.timeToCompletionIsCalculateable(userInfo)})
-            .sort({$0.timeToCompletion(userInfo) < $1.timeToCompletion(userInfo)})
+            .sorted(by: {$0.timeToCompletion(userInfo) < $1.timeToCompletion(userInfo)})
             .filter({$0.isComplete(userInfo)})
     }
     
-    func fetchIncompletedAchievements(userInfo: UserInfo) -> [Achievement] {
-        return getAll().sort({$0.timeToCompletion(userInfo) < $1.timeToCompletion(userInfo)})
+    func fetchIncompletedAchievements(_ userInfo: UserInfo) -> [Achievement] {
+        return getAll().sorted(by: {$0.timeToCompletion(userInfo) < $1.timeToCompletion(userInfo)})
             .filter({!$0.isComplete(userInfo)})
     }
     
-    func fetchNextAchievement(userInfo:UserInfo) -> Achievement? {
+    func fetchNextAchievement(_ userInfo:UserInfo) -> Achievement? {
         return getAll().filter({$0.timeToCompletionIsCalculateable(userInfo)})
-            .sort({$0.timeToCompletion(userInfo) < $1.timeToCompletion(userInfo)})
+            .sorted(by: {$0.timeToCompletion(userInfo) < $1.timeToCompletion(userInfo)})
             .filter({!$0.isComplete(userInfo)})
             .first
     }
     
     func getAll() -> [Achievement] {
-        let fetchRequest = NSFetchRequest(entityName: entityName)
-        let achievements = (try? managedObjectContext.executeFetchRequest(fetchRequest)) as? [Achievement]
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        let achievements = (try? managedObjectContext.fetch(fetchRequest)) as? [Achievement]
         
         return achievements ?? []
     }

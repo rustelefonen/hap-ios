@@ -16,23 +16,23 @@ class UserInfoDao: CoreDataDao {
     
     //Constructor
     required init() {
-        entityName = String(UserInfo)
+        entityName = String(describing: UserInfo())
         super.init()
     }
     
     //Operations
     func fetchUserInfo() -> UserInfo? {
-        let fetchRequest = NSFetchRequest(entityName: entityName)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.fetchLimit = 1
-        return (try! managedObjectContext.executeFetchRequest(fetchRequest) as! [UserInfo]).first
+        return (try! managedObjectContext.fetch(fetchRequest) as! [UserInfo]).first
     }
     
-    func addTriggerToUser(user:UserInfo, trigger:Trigger, kind:UserTrigger.Kind){
+    func addTriggerToUser(_ user:UserInfo, trigger:Trigger, kind:UserTrigger.Kind){
         let triggerIncremented = user.incrementTriggerCountIfTriggerExists(trigger, kind: kind)
         if triggerIncremented { return }
         
         //else making new usertrigger
-        let userTrigger = NSEntityDescription.insertNewObjectForEntityForName(String(UserTrigger), inManagedObjectContext: managedObjectContext) as! UserTrigger
+        let userTrigger = NSEntityDescription.insertNewObject(forEntityName: String(describing: UserTrigger()), into: managedObjectContext) as! UserTrigger
         
         userTrigger.setUser(user)
         userTrigger.setTrigger(trigger)
@@ -40,22 +40,22 @@ class UserInfoDao: CoreDataDao {
     }
     
     func createNewUserInfo() -> UserInfo {
-        return NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext) as! UserInfo
+        return NSEntityDescription.insertNewObject(forEntityName: entityName, into: managedObjectContext) as! UserInfo
     }
     
-    func createNewUserInfo(age: String?, gender: String?, state: String?, moneySpentPerDayOnHash: Float, startDate: NSDate) -> UserInfo{
+    func createNewUserInfo(_ age: String?, gender: String?, state: String?, moneySpentPerDayOnHash: Float, startDate: Date) -> UserInfo{
         let userInfo = createNewUserInfo()
         userInfo.age = age
         userInfo.gender = gender
         userInfo.geoState = state
-        userInfo.moneySpentPerDayOnHash = moneySpentPerDayOnHash
+        userInfo.moneySpentPerDayOnHash = NSNumber(value: moneySpentPerDayOnHash)
         userInfo.startDate = startDate
         return userInfo
     }
     
     func deleteAll(){
-        let fetchRequest = NSFetchRequest(entityName: entityName)
-        let userInfos = (try? managedObjectContext.executeFetchRequest(fetchRequest)) as? [UserInfo] ?? []
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        let userInfos = (try? managedObjectContext.fetch(fetchRequest)) as? [UserInfo] ?? []
         
         deleteObjects(userInfos)
     }

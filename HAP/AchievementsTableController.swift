@@ -21,46 +21,46 @@ class AchievementsTableController: UITableViewController {
     var achievements: [Achievement]!
     var nextUpcoming: Achievement?
     var achievementDAO: AchievementDao!
-    var timer: NSTimer!
+    var timer: Timer!
     var achievementGotUnlocked = false
     
     //Lifecycle operations
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadAchievementsTable()
-        SwiftEventBus.onMainThread(eventBusTarget, name: AchievementsTableController.RELOAD_ACHIEVEMENTS_EVENT) {[weak self] _ in self?.reloadAchievementsTable() }
-        SwiftEventBus.onMainThread(eventBusTarget, name: AchievementsTableController.ACHIEVEMENT_UNLOCKED_EVENT) {[weak self] _ in self?.handleNewAchievementUnlocked() }
+        SwiftEventBus.onMainThread(eventBusTarget as AnyObject, name: AchievementsTableController.RELOAD_ACHIEVEMENTS_EVENT) {[weak self] _ in self?.reloadAchievementsTable() }
+        SwiftEventBus.onMainThread(eventBusTarget as AnyObject, name: AchievementsTableController.ACHIEVEMENT_UNLOCKED_EVENT) {[weak self] _ in self?.handleNewAchievementUnlocked() }
     }
     
     deinit{
-        SwiftEventBus.unregister(eventBusTarget)
+        SwiftEventBus.unregister(eventBusTarget as AnyObject)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(updateProgress), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgress), userInfo: nil, repeats: true)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if achievementGotUnlocked { showAchievementUnlockedAlert() }
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         timer.invalidate()
     }
     
     //Tableview operations
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? nextUpcoming != nil ? 1 : 0 : achievements.count
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let v = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         v.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1)
         
@@ -71,18 +71,18 @@ class AchievementsTableController: UITableViewController {
         return v
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0 && indexPath.section == 0 {
-            performSegueWithIdentifier("allCategories", sender: nil)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath as NSIndexPath).row == 0 && (indexPath as NSIndexPath).section == 0 {
+            performSegue(withIdentifier: "allCategories", sender: nil)
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! AchievementCell
-        cell.accessoryType = indexPath.section == 0 ? .DisclosureIndicator : .None
-        cell.backgroundColor = indexPath.section == 0 ? UIColor.clearColor() : UIColor.whiteColor()
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AchievementCell
+        cell.accessoryType = (indexPath as NSIndexPath).section == 0 ? .disclosureIndicator : .none
+        cell.backgroundColor = (indexPath as NSIndexPath).section == 0 ? UIColor.clear : UIColor.white
         
-        let achievement = indexPath.section == 0 ? nextUpcoming! : achievements[indexPath.row]
+        let achievement = (indexPath as NSIndexPath).section == 0 ? nextUpcoming! : achievements[(indexPath as NSIndexPath).row]
         
         cell.imageViewContent.image = achievement.getIcon(AppDelegate.getUserInfo()!)
         cell.titleLabel.text = achievement.title
@@ -92,7 +92,7 @@ class AchievementsTableController: UITableViewController {
         return cell
     }
     
-    private func setProgressOf(cell: AchievementCell, achievement: Achievement, animated:Bool = false){
+    fileprivate func setProgressOf(_ cell: AchievementCell, achievement: Achievement, animated:Bool = false){
         let progress = achievement.getProgress(AppDelegate.getUserInfo()!)
         cell.progressView.setProgress(Float(progress), animated: animated)
     }
@@ -100,34 +100,34 @@ class AchievementsTableController: UITableViewController {
     func updateProgress(){
         if nextUpcoming == nil { return } //first row might be out of sight == nil
         
-        if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 0, inSection: 0)) as? AchievementCell{
+        if let cell = tableView.cellForRow(at: IndexPath(item: 0, section: 0)) as? AchievementCell{
             setProgressOf(cell, achievement: nextUpcoming!, animated: true)
             if nextUpcoming!.isComplete(AppDelegate.getUserInfo()!) { reloadAchievementsTable() }
         }
     }
     
-    private func reloadAchievementsTable(){
+    fileprivate func reloadAchievementsTable(){
         if(achievementDAO == nil) { achievementDAO = AchievementDao() }
         
         nextUpcoming = achievementDAO.fetchNextAchievement(AppDelegate.getUserInfo()!)
-        achievements = achievementDAO.fetchCompletedAchievements(AppDelegate.getUserInfo()!).reverse()
+        achievements = achievementDAO.fetchCompletedAchievements(AppDelegate.getUserInfo()!).reversed()
         tableView.reloadData()
     }
     
-    @IBAction func settingsAction(sender: UIBarButtonItem) {
+    @IBAction func settingsAction(_ sender: UIBarButtonItem) {
         (tabBarController as? MainTabBarController)?.displayOptionsMenu(sender)
     }
     
-    private func handleNewAchievementUnlocked() {
+    fileprivate func handleNewAchievementUnlocked() {
         reloadAchievementsTable()
         achievementGotUnlocked = true
     }
     
-    private func showAchievementUnlockedAlert(){
+    fileprivate func showAchievementUnlockedAlert(){
         if let unlocked = achievements.first{
-            let alert = UIAlertController(title: unlocked.title, message: unlocked.info, preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: unlocked.title, message: unlocked.info, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
             achievementGotUnlocked = false
         }
     }

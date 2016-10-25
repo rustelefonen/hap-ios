@@ -20,11 +20,11 @@ class Achievement: NSManagedObject {
     @NSManaged var pointsRequired: NSNumber
     @NSManaged var category: String
     
-    func isInCategory(category: Category) -> Bool {
+    func isInCategory(_ category: Category) -> Bool {
         return self.category == category.rawValue
     }
     
-    func getProgress(userInfo: UserInfo) -> Double{
+    func getProgress(_ userInfo: UserInfo) -> Double{
         let catAsEnum = Category(rawValue: category)
         
         switch catAsEnum {
@@ -43,11 +43,11 @@ class Achievement: NSManagedObject {
         }
     }
     
-    func isComplete(userInfo: UserInfo) -> Bool {
+    func isComplete(_ userInfo: UserInfo) -> Bool {
         return getProgress(userInfo) >= 1
     }
     
-    func timeToCompletion(userInfo: UserInfo) -> Double {
+    func timeToCompletion(_ userInfo: UserInfo) -> Double {
         let catAsEnum = Category(rawValue: category)
         
         switch catAsEnum {
@@ -69,14 +69,14 @@ class Achievement: NSManagedObject {
         }
     }
     
-    func getIcon(userInfo: UserInfo) -> UIImage{
+    func getIcon(_ userInfo: UserInfo) -> UIImage{
         var imgName = category
         
         if !isComplete(userInfo) { imgName += "White" }
         return UIImage(named: imgName)!
     }
     
-    func timeToCompletionIsCalculateable(userInfo:UserInfo) ->Bool{
+    func timeToCompletionIsCalculateable(_ userInfo:UserInfo) ->Bool{
         let catAsEnum = Category(rawValue: category)
         
         switch catAsEnum{

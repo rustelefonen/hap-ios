@@ -24,8 +24,8 @@ class HomeController: UIViewController {
     @IBOutlet weak var header: UILabel!
     @IBOutlet weak var moneySavedLabel: UILabel!
     
-    let formatter = NSNumberFormatter()
-    var updateTimer:NSTimer!
+    let formatter = NumberFormatter()
+    var updateTimer:Timer!
     
     override func viewDidLoad() {
         userInfo = AppDelegate.getUserInfo()
@@ -34,14 +34,14 @@ class HomeController: UIViewController {
         moneySavedLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showCalculator)))
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         update()
-        updateTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
-        NSRunLoop.mainRunLoop().addTimer(updateTimer, forMode: NSRunLoopCommonModes)
+        updateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        RunLoop.main.add(updateTimer, forMode: RunLoopMode.commonModes)
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         updateTimer.invalidate()
     }
@@ -52,13 +52,13 @@ class HomeController: UIViewController {
         updateDailySubject()
     }
     
-    private func updateClockTimer(){
+    fileprivate func updateClockTimer(){
         let counter = userInfo.timeInSecondsSinceStarted()
         clockView.updateClock(abs(counter))
         header.updateText(counter < 0 ? beforeStartClock : afterStartClock)
     }
     
-    private func updateCalculator(){
+    fileprivate func updateCalculator(){
         if userInfo.totalMoneySaved() > 0.0 { moneySavedLabel.updateText("\(calculatorLabel) \(getFormattedCurrencyString()) kr.") }
         else { moneySavedLabel.updateText(startCalculator) }
     }
@@ -72,20 +72,20 @@ class HomeController: UIViewController {
         else {contentTextView.updateText("Wow, ingen daglige temaer tilgjengelige") }
     }
     
-    @IBAction func settingsAction(sender: UIBarButtonItem) {
+    @IBAction func settingsAction(_ sender: UIBarButtonItem) {
         (tabBarController as? MainTabBarController)?.displayOptionsMenu(sender)
     }
     
     func showCalculator(){
-        performSegueWithIdentifier("calculatorSegue", sender: self)
+        performSegue(withIdentifier: "calculatorSegue", sender: self)
     }
     
-    private func getFormattedCurrencyString() -> String{
-        return formatter.stringFromNumber(userInfo.totalMoneySaved()) ?? "0"
+    fileprivate func getFormattedCurrencyString() -> String{
+        return formatter.string(from: NSNumber(value: userInfo.totalMoneySaved())) ?? "0"
     }
     
-    private func initFormatter(){
-        formatter.numberStyle = .DecimalStyle
+    fileprivate func initFormatter(){
+        formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
         formatter.decimalSeparator = ","

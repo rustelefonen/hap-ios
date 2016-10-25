@@ -22,11 +22,11 @@ class CoreDataDao {
         return result == nil ? false : true
     }
     
-    func delete(object:NSManagedObject){
-        managedObjectContext.deleteObject(object)
+    func delete(_ object:NSManagedObject){
+        managedObjectContext.delete(object)
     }
     
-    func deleteObjects(objects:[NSManagedObject]){
+    func deleteObjects(_ objects:[NSManagedObject]){
         for o in objects{
             delete(o)
         }

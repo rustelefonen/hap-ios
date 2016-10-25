@@ -26,7 +26,7 @@ class ProgramController: UIViewController, ChartViewDelegate {
     var sections: [UIGraphView.Section]!
     
     var userInfo: UserInfo!
-    var timer: NSTimer!
+    var timer: Timer!
     
     var overlay:UIOverlay!
     var smokedOverlayGesture:UIGestureRecognizer!
@@ -38,8 +38,8 @@ class ProgramController: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         userInfo = AppDelegate.getUserInfo()
-        SwiftEventBus.onMainThread(eventBusTarget, name: ProgramController.SCROLL_TO_BOTTOM, handler: {[weak self] _ in
-            self?.performSelector(#selector(self?.scrollToBottom), withObject: self, afterDelay: 0.6)
+        SwiftEventBus.onMainThread(eventBusTarget as AnyObject, name: ProgramController.SCROLL_TO_BOTTOM, handler: {[weak self] _ in
+            self?.perform(#selector(self?.scrollToBottom), with: self, afterDelay: 0.6)
         })
         
         let thc = GraphData(data: [100, 97, 90, 75, 50, 45, 40, 25, 20, 15, 10, 0])
@@ -86,20 +86,20 @@ class ProgramController: UIViewController, ChartViewDelegate {
     }
     
     deinit {
-        SwiftEventBus.unregister(eventBusTarget)
+        SwiftEventBus.unregister(eventBusTarget as AnyObject)
     }
     
     func scrollToBottom(){
-        scrollView.scrollRectToVisible(CGRectMake(0, scrollView.contentSize.height - 1, 1, 1), animated: true)
+        scrollView.scrollRectToVisible(CGRect(x: 0, y: scrollView.contentSize.height - 1, width: 1, height: 1), animated: true)
     }
     
-    func graphClickListener(sender: UIGestureRecognizer){
+    func graphClickListener(_ sender: UIGestureRecognizer){
         graph.bounceUserSpot()
-        let sectionIndex = graph.sectionIndexAtPoint(sender.locationInView(graph))
+        let sectionIndex = graph.sectionIndexAtPoint(sender.location(in: graph))
         if sectionIndex < 0 { return }
         
         if let helpInfo = HelpInfoDao().fetchHelpInfoByName(String(sections[sectionIndex].label) + "*"){
-            if let vs = storyboard?.instantiateViewControllerWithIdentifier(HelpInfoDetailController.storyboardId) as? HelpInfoDetailController {
+            if let vs = storyboard?.instantiateViewController(withIdentifier: HelpInfoDetailController.storyboardId) as? HelpInfoDetailController {
                 vs.helpInfo = helpInfo
                 navigationController?.pushViewController(vs, animated: true)
             }
@@ -115,36 +115,36 @@ class ProgramController: UIViewController, ChartViewDelegate {
         overlay = UIOverlay.spawnDefault()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         overlay?.despawn()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         userInfo = AppDelegate.getUserInfo()
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         timer.invalidate()
         overlay?.despawn()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateUserSpot()
         graph.bounceUserSpot()
-        timer = NSTimer.scheduledTimerWithTimeInterval(15.0, target: self, selector: #selector(updateUserSpot), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 15.0, target: self, selector: #selector(updateUserSpot), userInfo: nil, repeats: true)
         
         initPieChartCard(pieChartPos, noDataView: noDataResisted, cardHeightConstraint: resistedCardHeightConstraint, data: userInfo.getResistedTriggersAsArray())
         initPieChartCard(pieChartNeg, noDataView: noDataSmoked, cardHeightConstraint: smokedCardHeightConstraint, data: userInfo.getSmokedTriggersAsArray())
     }
     
-    func initPieChartCard(pieChart:PieChartView, noDataView:UIView, cardHeightConstraint:NSLayoutConstraint, data:[UserTrigger]){
+    func initPieChartCard(_ pieChart:PieChartView, noDataView:UIView, cardHeightConstraint:NSLayoutConstraint, data:[UserTrigger]){
         noDataView.superview?.gestureRecognizers = nil
         let hasData = data.count > 0
         
-        noDataView.hidden = hasData
+        noDataView.isHidden = hasData
         pieChart.hidden = !hasData
         cardHeightConstraint.constant = hasData ? cardExpandedHeight : cardCollapsedHeight
         
@@ -154,7 +154,7 @@ class ProgramController: UIViewController, ChartViewDelegate {
     }
     
     
-    func initPieChartData(pieChart:PieChartView, userTriggers:[UserTrigger]){
+    func initPieChartData(_ pieChart:PieChartView, userTriggers:[UserTrigger]){
         var dataEntries = [ChartDataEntry]()
         var labels = [String]()
         var colors = [UIColor]()
@@ -163,13 +163,13 @@ class ProgramController: UIViewController, ChartViewDelegate {
         var totalTriggerCount = 0.0
         userTriggers.forEach({totalTriggerCount += Double($0.count)})
         
-        for (i, userTrigger) in userTriggers.enumerate() {
+        for (i, userTrigger) in userTriggers.enumerated() {
             let trigger = userTrigger.getTrigger()
             let percentage = Double(userTrigger.count) / totalTriggerCount * 100.0
             
             dataEntries.append(ChartDataEntry(value: percentage, xIndex: i))
             labels.append(trigger?.title ?? "no title")
-            colors.append(UIColor(rgba: trigger?.color.longLongValue ?? 0))
+            colors.append(UIColor(rgba: trigger?.color.int64Value ?? 0))
             
             if percentage > dataEntries[highestEntryIndex].value { highestEntryIndex = i }
         }
@@ -187,7 +187,7 @@ class ProgramController: UIViewController, ChartViewDelegate {
         pieChart.highlightValue(highlight: ChartHighlight(xIndex: highestEntryIndex, dataSetIndex: 0), callDelegate: true)
     }
     
-    func initPieChart(pieChart:PieChartView) {
+    func initPieChart(_ pieChart:PieChartView) {
         pieChart.descriptionText = ""
         pieChart.rotationEnabled = false
         pieChart.delegate = self
@@ -197,41 +197,41 @@ class ProgramController: UIViewController, ChartViewDelegate {
         legend.enabled = false
     }
     
-    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight){
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight){
         if let pieChart = chartView as? PieChartView {
             let percentage = Int(round(entry.value))
             pieChart.centerText = "\(pieChart.data!.xVals[highlight.xIndex]!) \n \(percentage)%"
         }
     }
     
-    func chartValueNothingSelected(chartView: ChartViewBase) {
+    func chartValueNothingSelected(_ chartView: ChartViewBase) {
         if let pieChart = chartView as? PieChartView {
            pieChart.centerText = "Velg sektor"
         }
     }
     
-    @IBAction func alternativeButton(sender: UIBarButtonItem) {
+    @IBAction func alternativeButton(_ sender: UIBarButtonItem) {
         (tabBarController as? MainTabBarController)?.displayOptionsMenu(sender)
     }
     
-    @IBAction func graphInfo(sender: UIButton) {
-        let content = "Grafen viser forholdet mellom THC-nivået i kroppen din og hva du kan forvente av emosjonell turbulens.\n\n Den røde nålen viser hvor du befinner deg i programmet."
-        let alert = UIAlertController(title: "Abstinensoversikt", message: content, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+    @IBAction func graphInfo(_ sender: UIButton) {
+        let content = "Den ene grafen viser THC-nivået i kroppen din, og tiden som det kan ta før THC skilles ut av kroppen. Den andre grafen viser hva du kan forvente av humørsvingninger.\n\n Den røde nålen viser hvor du befinner deg i programmet."
+        let alert = UIAlertController(title: "Abstinensoversikt", message: content, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func resistedInfo(sender: UIButton) {
+    @IBAction func resistedInfo(_ sender: UIButton) {
         let content = "Dersom du motstår å ruse deg kan du registrere det i triggerdagboken.\n\n Over tid vil dette vinduet gi deg en god oversikt over hva som hjelper best, når suget melder seg."
-        let alert = UIAlertController(title: "Positive triggere", message: content, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Positive triggere", message: content, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func smokedInfo(sender: UIButton) {
+    @IBAction func smokedInfo(_ sender: UIButton) {
         let content = "Dersom du ruser deg kan du registrere det i triggerdagboken.\n\n Over tid vil dette vinduet gi deg en god oversikt over hvilke situasjoner du bør passe deg for."
-        let alert = UIAlertController(title: "Negative triggere", message: content, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Negative triggere", message: content, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }

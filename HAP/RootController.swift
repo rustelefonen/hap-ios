@@ -13,13 +13,13 @@ class RootController: UIViewController{
     //no animation of first appearance
     var firstAppearance = true
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         let user = AppDelegate.getUserInfo()
         
-        if let vc = storyboard?.instantiateViewControllerWithIdentifier(user != nil ? MainTabBarController.storyboardId : IntroPageViewController.storyboardId){
-            presentViewController(vc, animated: !firstAppearance, completion: nil)
+        if let vc = storyboard?.instantiateViewController(withIdentifier: user != nil ? MainTabBarController.storyboardId : IntroPageViewController.storyboardId){
+            present(vc, animated: !firstAppearance, completion: nil)
             firstAppearance = false
         }
     }

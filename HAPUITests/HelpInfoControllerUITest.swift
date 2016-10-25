@@ -10,8 +10,8 @@ import XCTest
 
 class HelpInfoControllerUITest: HAPUITests {
     
-    private let INFORMATION_TAB = "Informasjon"
-    private let ADVICE_CATEGORY = "Råd og Tips"
+    fileprivate let INFORMATION_TAB = "Informasjon"
+    fileprivate let ADVICE_CATEGORY = "Råd og Tips"
     
     func testAccessHelpInfo() {
         app.tabBars.buttons[INFORMATION_TAB].tap()
@@ -20,11 +20,11 @@ class HelpInfoControllerUITest: HAPUITests {
         
         var index = getRand(tablesQuery.cells.count - 2)
         if index == 5 {index = 4}   //Avoid brain
-        tablesQuery.cells.elementBoundByIndex(index - 1).tap()   //Due to call and question cells.
+        tablesQuery.cells.element(boundBy: index - 1).tap()   //Due to call and question cells.
         
         tablesQuery = app.tables
         index = getRand(tablesQuery.cells.count)
-        tablesQuery.cells.elementBoundByIndex(index - 1).tap()
+        tablesQuery.cells.element(boundBy: index - 1).tap()
         
         //Needs to assert content of webview
         XCTFail()

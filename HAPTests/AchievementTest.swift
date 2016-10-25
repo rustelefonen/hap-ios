@@ -39,7 +39,7 @@ class AchievementTest: XCTestCase {
     
     func testGetProgress() {
         userInfo.moneySpentPerDayOnHash = 100
-        userInfo.startDate = NSDate().dateByAddingTimeInterval(-86400) //Minus one day
+        userInfo.startDate = Date().dateByAddingTimeInterval(-86400) //Minus one day
         
         let economicAchievement = achievementDao.createNewAchievement("1000 kr Spart!", info: "Du har spart 1000 kr!", pointsRequired: 1000, category: .Economic)
         let minorMilestoneAchievement = achievementDao.createNewAchievement("Første dagen uten!", info: "Du har klart din første dag uten cannabis!", pointsRequired: 86400, category: .MinorMilestone)
@@ -52,7 +52,7 @@ class AchievementTest: XCTestCase {
     
     func testIsComplete() {
         userInfo.moneySpentPerDayOnHash = 100
-        userInfo.startDate = NSDate().dateByAddingTimeInterval(-86400) //Minus one day
+        userInfo.startDate = Date().dateByAddingTimeInterval(-86400) //Minus one day
         
         achievement.category = Achievement.Category.Economic.rawValue
         achievement.pointsRequired = 90
@@ -64,7 +64,7 @@ class AchievementTest: XCTestCase {
     
     func testTimeToCompletion() {
         userInfo.moneySpentPerDayOnHash = 100
-        userInfo.startDate = NSDate().dateByAddingTimeInterval(-86400) //Minus one day
+        userInfo.startDate = Date().dateByAddingTimeInterval(-86400) //Minus one day
         
         let economicAchievement = achievementDao.createNewAchievement("1000 kr Spart!", info: "Du har spart 1000 kr!", pointsRequired: 1000, category: .Economic)
         let minorMilestoneAchievement = achievementDao.createNewAchievement("Første dagen uten!", info: "Du har klart din første dag uten cannabis!", pointsRequired: 172800, category: .MinorMilestone)
@@ -77,7 +77,7 @@ class AchievementTest: XCTestCase {
     
     func testGetIcon() {
         userInfo.moneySpentPerDayOnHash = 100
-        userInfo.startDate = NSDate().dateByAddingTimeInterval(-86400) //Minus one day
+        userInfo.startDate = Date().dateByAddingTimeInterval(-86400) //Minus one day
         achievement.category = Achievement.Category.Economic.rawValue
         achievement.pointsRequired = 110
         XCTAssertEqual(UIImagePNGRepresentation(achievement.getIcon(userInfo)), UIImagePNGRepresentation(UIImage(named: "EconomicWhite")!))

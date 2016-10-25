@@ -32,7 +32,7 @@ class UserInfoDaoIT: TestBase {
     }
     
     func testCreateNewUserInfoWithParams() {
-        userInfo = userInfoDao.createNewUserInfo("18", gender: "Kvinne", state: "Finnmark", moneySpentPerDayOnHash: 150.0, startDate: NSDate().dateByAddingTimeInterval(-86400))
+        userInfo = userInfoDao.createNewUserInfo("18", gender: "Kvinne", state: "Finnmark", moneySpentPerDayOnHash: 150.0, startDate: Date().dateByAddingTimeInterval(-86400))
         XCTAssertNotNil(userInfo)
     }
     

@@ -9,14 +9,14 @@
 import UIKit
 
 class CalculatorController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
-    private let pricePerGramKey = "pricePerGramKey"
-    private let gramsKey = "gramsKey"
-    private let gramsDecimalKey = "gramsDecimalKey"
-    private let gramsTimeUnitKey = "gramsTimeUnitKey"
+    fileprivate let pricePerGramKey = "pricePerGramKey"
+    fileprivate let gramsKey = "gramsKey"
+    fileprivate let gramsDecimalKey = "gramsDecimalKey"
+    fileprivate let gramsTimeUnitKey = "gramsTimeUnitKey"
     
-    private let gramComponent = 0
-    private let gramDecimalComponent = 1
-    private let gramTimeUnitComponent = 2
+    fileprivate let gramComponent = 0
+    fileprivate let gramDecimalComponent = 1
+    fileprivate let gramTimeUnitComponent = 2
 
     @IBOutlet weak var infoTextView: UITextView!
     @IBOutlet weak var priceInputView: UITextField!
@@ -25,7 +25,7 @@ class CalculatorController: UIViewController, UIPickerViewDataSource, UIPickerVi
     
     var componentsValues = [[String](), [String](), ResourceList.gramType]
     
-    let preferences = NSUserDefaults.standardUserDefaults()
+    let preferences = UserDefaults.standard
     
     override func viewDidLoad() {
         initPickerValues()
@@ -35,22 +35,22 @@ class CalculatorController: UIViewController, UIPickerViewDataSource, UIPickerVi
         priceInputView.delegate = self
     }
     
-    private func initPicker(picker: UIPickerView){
+    fileprivate func initPicker(_ picker: UIPickerView){
         picker.delegate = self
         picker.dataSource = self
     }
     
-    private func initPreviousValues(){
+    fileprivate func initPreviousValues(){
         priceInputView.text = loadPricePerGram()
         pickerView.selectRow(loadGramComponent(), inComponent: gramComponent, animated: false)
         pickerView.selectRow(loadGramDecimalComponent(), inComponent: gramDecimalComponent, animated: false)
         pickerView.selectRow(loadTimeUnitComponent(), inComponent: gramTimeUnitComponent, animated: false)
     }
     
-    private func addDismissibleKeyboardButton(){
-        let leftButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        let rightButton = UIBarButtonItem(title: "Ferdig", style: .Done, target: priceInputView, action: #selector(UIView.endEditingInFirstResponder))
+    fileprivate func addDismissibleKeyboardButton(){
+        let leftButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let rightButton = UIBarButtonItem(title: "Ferdig", style: .done, target: priceInputView, action: #selector(UIView.endEditingInFirstResponder))
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         toolbar.items = [leftButton, spaceButton, rightButton]
@@ -58,23 +58,23 @@ class CalculatorController: UIViewController, UIPickerViewDataSource, UIPickerVi
         priceInputView.inputAccessoryView = toolbar;
     }
     
-    private func initPickerValues() {
+    fileprivate func initPickerValues() {
         for i in 0..<10 {
             componentsValues[gramComponent].append(String(i))
             componentsValues[gramDecimalComponent].append(String(i))
         }
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         if component == gramTimeUnitComponent { return componentsValues[component].count }
         return 99999 // infinite repeating wheel wanted
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
         let i = row % componentsValues[component].count
         if component == gramDecimalComponent {
             return ",\(componentsValues[component][i])0g"
@@ -82,23 +82,23 @@ class CalculatorController: UIViewController, UIPickerViewDataSource, UIPickerVi
         return componentsValues[component][i]
     }
     
-    func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         let width = view.frame.width
         if component == gramComponent { return width / 10 }
         else if component == gramDecimalComponent { return width / 8 }
         else { return width / 3.5 }
     }
     
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var label = view as? UILabel
         if (label == nil){
             let width = self.pickerView(pickerView, widthForComponent: component)
-            label = UILabel(frame: CGRectMake(0,0, width, 44))
+            label = UILabel(frame: CGRect(x: 0,y: 0, width: width, height: 44))
             
             let alignment:NSTextAlignment
-            if component ==  gramComponent { alignment = .Right }
-            else if component == gramDecimalComponent { alignment = .Left }
-            else { alignment = .Center }
+            if component ==  gramComponent { alignment = .right }
+            else if component == gramDecimalComponent { alignment = .left }
+            else { alignment = .center }
             
             label!.textAlignment = alignment
         }
@@ -106,13 +106,13 @@ class CalculatorController: UIViewController, UIPickerViewDataSource, UIPickerVi
         return label!
     }
     
-    @IBAction func saveToUserInfo(sender: UIBarButtonItem) {
+    @IBAction func saveToUserInfo(_ sender: UIBarButtonItem) {
         let pricePerGram = Int(priceInputView.text!) ?? -1
         if pricePerGram  < 1 { return displayInvalidDataAlert() }
         
-        let gramIndex = pickerView.selectedRowInComponent(gramComponent) % componentsValues[gramComponent].count
-        let gramDecimalIndex = pickerView.selectedRowInComponent(gramDecimalComponent) % componentsValues[gramDecimalComponent].count
-        let timeUnitIndex = pickerView.selectedRowInComponent(gramTimeUnitComponent)
+        let gramIndex = pickerView.selectedRow(inComponent: gramComponent) % componentsValues[gramComponent].count
+        let gramDecimalIndex = pickerView.selectedRow(inComponent: gramDecimalComponent) % componentsValues[gramDecimalComponent].count
+        let timeUnitIndex = pickerView.selectedRow(inComponent: gramTimeUnitComponent)
         let s = componentsValues[gramComponent][gramIndex] + "." + componentsValues[gramDecimalComponent][gramDecimalIndex]
         
         var gramsPerDay = Double(s) ?? 1
@@ -122,69 +122,69 @@ class CalculatorController: UIViewController, UIPickerViewDataSource, UIPickerVi
         else if timeUnitIndex == 2 { gramsPerDay /= 30 } //per month
         
         saveSelectedValues()
-        AppDelegate.getUserInfo()!.moneySpentPerDayOnHash = Double(pricePerGram) * gramsPerDay
+        AppDelegate.getUserInfo()!.moneySpentPerDayOnHash = NSNumber(value: Double(pricePerGram) * gramsPerDay)
         UserInfoDao().save()
         AppDelegate.initUserInfo()
         
         NotificationHandler.scheduleAchievementNotifications(AppDelegate.getUserInfo()!, force: true)
         SwiftEventBus.post(AchievementsTableController.RELOAD_ACHIEVEMENTS_EVENT)
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
-    private func saveSelectedValues(){
-        preferences.setObject(priceInputView.text, forKey: pricePerGramKey)
-        preferences.setObject(pickerView.selectedRowInComponent(gramComponent), forKey: gramsKey)
-        preferences.setObject(pickerView.selectedRowInComponent(gramDecimalComponent), forKey: gramsDecimalKey)
-        preferences.setObject(pickerView.selectedRowInComponent(gramTimeUnitComponent), forKey: gramsTimeUnitKey)
+    fileprivate func saveSelectedValues(){
+        preferences.set(priceInputView.text, forKey: pricePerGramKey)
+        preferences.set(pickerView.selectedRow(inComponent: gramComponent), forKey: gramsKey)
+        preferences.set(pickerView.selectedRow(inComponent: gramDecimalComponent), forKey: gramsDecimalKey)
+        preferences.set(pickerView.selectedRow(inComponent: gramTimeUnitComponent), forKey: gramsTimeUnitKey)
     }
     
-    private func displayInvalidDataAlert(usageIsZero:Bool = false){
+    fileprivate func displayInvalidDataAlert(_ usageIsZero:Bool = false){
         let content = usageIsZero ? "Forbruket kan ikke være null" : "Du må angi pris per gram før du kan lagre. \nPrisen kan ikke være null"
         let title = usageIsZero ? "Ingen forbruk" : "Angi pris per gram"
-        let alert = UIAlertController(title: title, message: content, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: title, message: content, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func dismissCalc(sender: UIBarButtonItem) {
-        if noChangesMade() { navigationController?.popViewControllerAnimated(true) }
+    @IBAction func dismissCalc(_ sender: UIBarButtonItem) {
+        if noChangesMade() { navigationController?.popViewController(animated: true) }
         else { showUnSavedChangesNotSavedAlert() }
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
         
         let length = text.utf16.count + string.utf16.count - range.length
         return length <= 3 // Bool
     }
     
-    private func showUnSavedChangesNotSavedAlert() {
-        let alert = UIAlertController(title: "Ikke lagret!", message: "Du har ikke lagret endringene", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Forkast", style: .Destructive, handler: { alert in self.navigationController?.popViewControllerAnimated(true) }))
-        alert.addAction(UIAlertAction(title: "Avbryt", style: .Cancel, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+    fileprivate func showUnSavedChangesNotSavedAlert() {
+        let alert = UIAlertController(title: "Ikke lagret!", message: "Du har ikke lagret endringene", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Forkast", style: .destructive, handler: { alert in self.navigationController?.popViewController(animated: true) }))
+        alert.addAction(UIAlertAction(title: "Avbryt", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
-    private func noChangesMade() -> Bool {
+    fileprivate func noChangesMade() -> Bool {
         return priceInputView.text == loadPricePerGram() &&
-            pickerView.selectedRowInComponent(gramComponent) == loadGramComponent() &&
-            pickerView.selectedRowInComponent(gramDecimalComponent) == loadGramDecimalComponent() &&
-            pickerView.selectedRowInComponent(gramTimeUnitComponent) == loadTimeUnitComponent()
+            pickerView.selectedRow(inComponent: gramComponent) == loadGramComponent() &&
+            pickerView.selectedRow(inComponent: gramDecimalComponent) == loadGramDecimalComponent() &&
+            pickerView.selectedRow(inComponent: gramTimeUnitComponent) == loadTimeUnitComponent()
     }
     
-    private func loadPricePerGram() -> String {
-        return preferences.stringForKey(pricePerGramKey) ?? "150"
+    fileprivate func loadPricePerGram() -> String {
+        return preferences.string(forKey: pricePerGramKey) ?? "150"
     }
     
-    private func loadGramComponent() -> Int {
-        return Int(preferences.stringForKey(gramsKey) ?? "50000")!
+    fileprivate func loadGramComponent() -> Int {
+        return Int(preferences.string(forKey: gramsKey) ?? "50000")!
     }
     
-    private func loadGramDecimalComponent() -> Int {
-        return Int(preferences.stringForKey(gramsDecimalKey) ?? "50001")!
+    fileprivate func loadGramDecimalComponent() -> Int {
+        return Int(preferences.string(forKey: gramsDecimalKey) ?? "50001")!
     }
     
-    private func loadTimeUnitComponent() -> Int {
-        return Int(preferences.stringForKey(gramsTimeUnitKey) ?? "1")!
+    fileprivate func loadTimeUnitComponent() -> Int {
+        return Int(preferences.string(forKey: gramsTimeUnitKey) ?? "1")!
     }
 }

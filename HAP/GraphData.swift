@@ -15,7 +15,7 @@ class GraphData {
     var gradientFillBottomColor: UIColor?
     
     convenience init(data: [CGFloat]){
-        self.init(data: data, lineColor: UIColor.whiteColor(), gradientFillTopColor: nil, gradientFillBottomColor: nil)
+        self.init(data: data, lineColor: UIColor.white, gradientFillTopColor: nil, gradientFillBottomColor: nil)
     }
     
     init(data: [CGFloat], lineColor: UIColor, gradientFillTopColor: UIColor?, gradientFillBottomColor: UIColor?){

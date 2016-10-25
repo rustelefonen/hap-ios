@@ -26,18 +26,18 @@ class UserInfoTest: TestBase {
     }
     
     func testTimeInSecondsSinceStarted() {
-        userInfo.startDate = NSDate().dateByAddingTimeInterval(-60) //Minus one minute
+        userInfo.startDate = Date().dateByAddingTimeInterval(-60) //Minus one minute
         XCTAssertEqualWithAccuracy(userInfo.timeInSecondsSinceStarted(), 60.0, accuracy: 0.001)
     }
     
     func testDaysSinceStarted() {
-        userInfo.startDate = NSDate().dateByAddingTimeInterval(-110000) //Minus one day and four hours, because day turns at 4 am
+        userInfo.startDate = Date().dateByAddingTimeInterval(-110000) //Minus one day and four hours, because day turns at 4 am
         XCTAssertEqual(userInfo.daysSinceStarted(), 1)
     }
     
     func testTotalMoneySaved() {
         userInfo.moneySpentPerDayOnHash = 100
-        userInfo.startDate = NSDate().dateByAddingTimeInterval(-86400)
+        userInfo.startDate = Date().dateByAddingTimeInterval(-86400)
         XCTAssertEqualWithAccuracy(userInfo.totalMoneySaved(), 100.0, accuracy: 0.0001)
     }
     

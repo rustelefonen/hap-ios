@@ -13,7 +13,7 @@ class ProgramControllerUITest: HAPUITests {
     func testAddPositiveTrigger() {
         app.tabBars.buttons["Oversikt"].tap()
         
-        var element = app.scrollViews.otherElements.containingType(.StaticText, identifier:"Triggere som fører til bruk").childrenMatchingType(.Other).elementBoundByIndex(0)
+        var element = app.scrollViews.otherElements.containing(.staticText, identifier:"Triggere som fører til bruk").children(matching: .other).element(boundBy: 0)
         
         //XCTAssertTrue(element..boolValue)
         
@@ -22,9 +22,9 @@ class ProgramControllerUITest: HAPUITests {
         app.collectionViews.images["Drinking"].tap()
         app.navigationBars["Triggerdagbok"].buttons["Lagre"].tap()
         
-        element = app.scrollViews.otherElements.containingType(.StaticText, identifier:"Triggere som fører til bruk").childrenMatchingType(.Other).elementBoundByIndex(0)
+        element = app.scrollViews.otherElements.containing(.staticText, identifier:"Triggere som fører til bruk").children(matching: .other).element(boundBy: 0)
         
-        XCTAssertFalse(element.accessibilityElementsHidden.boolValue)
+        XCTAssertFalse(element.accessibilityElementsHidden)
         
         
         
@@ -47,9 +47,9 @@ class ProgramControllerUITest: HAPUITests {
     
     func testOverlayWithArrowAppears() {
         app.tabBars.buttons["Oversikt"].tap()
-        app.scrollViews.otherElements.containingType(.StaticText, identifier:"Aktiviteter som hjelper mot suget").staticTexts["for å legge til data"].tap()
+        app.scrollViews.otherElements.containing(.staticText, identifier:"Aktiviteter som hjelper mot suget").staticTexts["for å legge til data"].tap()
         
-        let overlayElement = app.otherElements.containingType(.Image, identifier:"TriggerdagbokTutorial").element
+        let overlayElement = app.otherElements.containing(.image, identifier:"TriggerdagbokTutorial").element
         XCTAssertTrue(overlayElement.exists)
         overlayElement.tap()
         XCTAssertFalse(overlayElement.exists)
@@ -58,7 +58,7 @@ class ProgramControllerUITest: HAPUITests {
     func testPositiveTriggerDialog() {
         let content = "Dersom du motstår å ruse deg kan du registrere det i triggerdagboken.\n\n Over tid vil dette vinduet gi deg en god oversikt over hva som hjelper best, når suget melder seg."
         app.tabBars.buttons["Oversikt"].tap()
-        app.scrollViews.otherElements.containingType(.StaticText, identifier:"Aktiviteter som hjelper mot suget").buttons["Mer info"].tap()
+        app.scrollViews.otherElements.containing(.staticText, identifier:"Aktiviteter som hjelper mot suget").buttons["Mer info"].tap()
         
         XCTAssertTrue(app.staticTexts["Aktiviteter mot suget"].exists)
         XCTAssertTrue(app.staticTexts[content].exists)
@@ -72,7 +72,7 @@ class ProgramControllerUITest: HAPUITests {
     func testNegativeTriggerDialog() {
         let content = "Dersom du ruser deg kan du registrere det i triggerdagboken.\n\n Over tid vil dette vinduet gi deg en god oversikt over hvilke situasjoner du bør passe deg for."
         app.tabBars.buttons["Oversikt"].tap()
-        app.scrollViews.otherElements.containingType(.StaticText, identifier:"Triggere som fører til bruk").buttons["Mer info"].tap()
+        app.scrollViews.otherElements.containing(.staticText, identifier:"Triggere som fører til bruk").buttons["Mer info"].tap()
         
         XCTAssertTrue(app.staticTexts["Farlige triggere"].exists)
         XCTAssertTrue(app.staticTexts[content].exists)

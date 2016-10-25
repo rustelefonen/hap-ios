@@ -11,17 +11,17 @@ import UIKit
 class UIOverlay: UIView {
 
     class func spawnDefault() -> UIOverlay{
-        let overlay = UIOverlay(frame: CGRectMake(0, 64, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height))
-        overlay.backgroundColor = UIColor.blackColor()
-        overlay.userInteractionEnabled = true
+        let overlay = UIOverlay(frame: CGRect(x: 0, y: 64, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
+        overlay.backgroundColor = UIColor.black
+        overlay.isUserInteractionEnabled = true
         overlay.alpha = 0.5
         
         let arrow = UIImageView(frame: CGRect(x: overlay.frame.width - 160, y: 10, width: 150, height: 150))
         arrow.image = UIImage(named: "TriggerdagbokTutorial")
-        arrow.contentMode = UIViewContentMode.ScaleAspectFit
+        arrow.contentMode = UIViewContentMode.scaleAspectFit
         overlay.addSubview(arrow)
         
-        UIApplication.sharedApplication().keyWindow!.addSubview(overlay)
+        UIApplication.shared.keyWindow!.addSubview(overlay)
         overlay.addGestureRecognizer(UITapGestureRecognizer(target: overlay, action: #selector(despawn)))
         
         return overlay
@@ -34,7 +34,7 @@ class UIOverlay: UIView {
     }
     
     class func despawnAllOverlays(){
-        for subview in UIApplication.sharedApplication().keyWindow?.subviews ?? [] {
+        for subview in UIApplication.shared.keyWindow?.subviews ?? [] {
             if subview is UIOverlay { subview.removeFromSuperview() }
         }
     }

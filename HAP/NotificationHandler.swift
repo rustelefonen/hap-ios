@@ -11,8 +11,8 @@ import UIKit
 class NotificationHandler {
     static var notificationListeners = NSMutableSet()
 
-    class func scheduleAchievementNotifications(userInfo:UserInfo, force:Bool = false) {
-        let scheduledNotifications = UIApplication.sharedApplication().scheduledLocalNotifications ?? []
+    class func scheduleAchievementNotifications(_ userInfo:UserInfo, force:Bool = false) {
+        let scheduledNotifications = UIApplication.shared.scheduledLocalNotifications ?? []
         if !force && scheduledNotifications.count >= 64 { return }
         
         //fetching achievements ready for schedulazion
@@ -22,17 +22,17 @@ class NotificationHandler {
         if !force && scheduledNotifications.first?.applicationIconBadgeNumber == 1 { return }
         
         //(re)scheduling the notifications
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-        var badgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber
+        UIApplication.shared.cancelAllLocalNotifications()
+        var badgeNumber = UIApplication.shared.applicationIconBadgeNumber
         
         for achievement in achievements.prefix(64) {
             let timeToCompletion = Double(achievement.timeToCompletion(userInfo))
             badgeNumber += 1
-            scheduleNotification(NSDate(timeIntervalSinceNow: timeToCompletion), alertBody: "Du har oppnådd en ny milepæl!", badgeNumber: badgeNumber)
+            scheduleNotification(Date(timeIntervalSinceNow: timeToCompletion), alertBody: "Du har oppnådd en ny milepæl!", badgeNumber: badgeNumber)
         }
     }
     
-    class func scheduleNotification(fireDate:NSDate, alertBody:String, badgeNumber: Int) {
+    class func scheduleNotification(_ fireDate:Date, alertBody:String, badgeNumber: Int) {
         //It’s important to note that you’re limited to scheduling 64 local notifications. If you schedule more, the system will keep the 64 soonest firing notifications and automatically discard the rest.
         
         let notification = UILocalNotification()
@@ -40,18 +40,18 @@ class NotificationHandler {
         notification.alertAction = "Ja"
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.alertBody = alertBody
-        notification.timeZone = NSTimeZone.defaultTimeZone()
+        notification.timeZone = TimeZone.current
         notification.applicationIconBadgeNumber = badgeNumber
         
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
     
-    class func addNotificationRecievedListener(listener:NotificationRecievedListener) {
-        notificationListeners.addObject(listener)
+    class func addNotificationRecievedListener(_ listener:NotificationRecievedListener) {
+        notificationListeners.add(listener)
     }
     
-    class func removeNotificationRecievedListener(listener:NotificationRecievedListener){
-        notificationListeners.removeObject(listener)
+    class func removeNotificationRecievedListener(_ listener:NotificationRecievedListener){
+        notificationListeners.remove(listener)
     }
     
     class func syncListenerBadges(){
@@ -66,12 +66,12 @@ class NotificationHandler {
         }
     }
     
-    private class func fetchUpcomingAchievementNotifications(userInfo:UserInfo) -> [Achievement]{
-        let preferences = NSUserDefaults.standardUserDefaults()
-        let minorMilestones = preferences.objectForKey(SettingsViewController.minorMilestoneSettingKey) as? Bool ?? true
-        let milestones = preferences.objectForKey(SettingsViewController.milestoneSettingKey) as? Bool ?? true
-        let economic = preferences.objectForKey(SettingsViewController.economicMilestoneSettingKey) as? Bool ?? true
-        let health = preferences.objectForKey(SettingsViewController.healthSettingKey) as? Bool ?? true
+    fileprivate class func fetchUpcomingAchievementNotifications(_ userInfo:UserInfo) -> [Achievement]{
+        let preferences = UserDefaults.standard
+        let minorMilestones = preferences.object(forKey: SettingsViewController.minorMilestoneSettingKey) as? Bool ?? true
+        let milestones = preferences.object(forKey: SettingsViewController.milestoneSettingKey) as? Bool ?? true
+        let economic = preferences.object(forKey: SettingsViewController.economicMilestoneSettingKey) as? Bool ?? true
+        let health = preferences.object(forKey: SettingsViewController.healthSettingKey) as? Bool ?? true
         
         
         var achievements = AchievementDao().getAll()
@@ -84,11 +84,11 @@ class NotificationHandler {
         if !health { achievements = achievements.filter({ !$0.isInCategory(.Health) }) }
             
             
-        return achievements.sort({ $0.timeToCompletion(userInfo) <= $1.timeToCompletion(userInfo) })
+        return achievements.sorted(by: { $0.timeToCompletion(userInfo) <= $1.timeToCompletion(userInfo) })
     }
     
     class func resetBadges(){
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        UIApplication.shared.applicationIconBadgeNumber = 0
         syncListenerBadges()
     }
 }

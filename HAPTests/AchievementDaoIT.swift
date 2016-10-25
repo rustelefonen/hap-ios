@@ -42,17 +42,17 @@ class AchievementDaoIT: TestBase {
     }
     
     func testFetchCompletedAchievements() {
-        userInfo.startDate = NSDate().dateByAddingTimeInterval(-90000) // first step and first day
+        userInfo.startDate = Date().dateByAddingTimeInterval(-90000) // first step and first day
         XCTAssertEqual(achievementDao.fetchCompletedAchievements(userInfo).count, 2)
     }
     
     func testFetchIncompletedAchievements() {
-        userInfo.startDate = NSDate().dateByAddingTimeInterval(-8400) //first step completed
+        userInfo.startDate = Date().dateByAddingTimeInterval(-8400) //first step completed
         XCTAssertEqual(achievementDao.fetchIncompletedAchievements(userInfo).count, 29)
     }
     
     func testFetchNextAchievement() {
-        userInfo.startDate = NSDate().dateByAddingTimeInterval(-86000)
+        userInfo.startDate = Date().dateByAddingTimeInterval(-86000)
         XCTAssertEqual(achievementDao.fetchNextAchievement(userInfo)?.title, "Første dagen uten!")
     }
     

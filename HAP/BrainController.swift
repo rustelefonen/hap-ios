@@ -38,7 +38,7 @@ class BrainController: UIViewController {
         brainSceneView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
     }
     
-    private func makeBrainScene() ->SCNScene {
+    fileprivate func makeBrainScene() ->SCNScene {
         let brainScene = SCNScene()
         
         cameraNode = SCNNode()
@@ -56,15 +56,15 @@ class BrainController: UIViewController {
         let amygdalaScene = SCNScene(named: "brain.scnassets/amygdala.dae")
         let brainBacksideScene = SCNScene(named: "brain.scnassets/brainbackside.dae")
         
-        rewardPathNode = rewardPathScene!.rootNode.childNodeWithName("RewardPath", recursively: true)!
-        prefrontalCortexNode = prefrontalCortexScene!.rootNode.childNodeWithName("PrefrontalCortex", recursively: true)!
-        prefrontalCortex2Node = prefrontalCortex2Scene!.rootNode.childNodeWithName("PrefrontalCortex2", recursively: true)!
-        hippocampusNode = hippocampusScene!.rootNode.childNodeWithName("Hippocampus", recursively: true)!
-        hippocampus2Node = hippocampus2Scene!.rootNode.childNodeWithName("Hippocampus2", recursively: true)!
-        brainStemNode = brainStemScene!.rootNode.childNodeWithName("BrainStem", recursively: true)!
-        littleBrainNode = littleBrainScene!.rootNode.childNodeWithName("LittleBrain", recursively: true)!
-        amygdalaNode = amygdalaScene!.rootNode.childNodeWithName("Amygdala", recursively: true)!
-        brainBacksideNode = brainBacksideScene!.rootNode.childNodeWithName("BrainBackside", recursively: true)!
+        rewardPathNode = rewardPathScene!.rootNode.childNode(withName: "RewardPath", recursively: true)!
+        prefrontalCortexNode = prefrontalCortexScene!.rootNode.childNode(withName: "PrefrontalCortex", recursively: true)!
+        prefrontalCortex2Node = prefrontalCortex2Scene!.rootNode.childNode(withName: "PrefrontalCortex2", recursively: true)!
+        hippocampusNode = hippocampusScene!.rootNode.childNode(withName: "Hippocampus", recursively: true)!
+        hippocampus2Node = hippocampus2Scene!.rootNode.childNode(withName: "Hippocampus2", recursively: true)!
+        brainStemNode = brainStemScene!.rootNode.childNode(withName: "BrainStem", recursively: true)!
+        littleBrainNode = littleBrainScene!.rootNode.childNode(withName: "LittleBrain", recursively: true)!
+        amygdalaNode = amygdalaScene!.rootNode.childNode(withName: "Amygdala", recursively: true)!
+        brainBacksideNode = brainBacksideScene!.rootNode.childNode(withName: "BrainBackside", recursively: true)!
         
         
         let frontMaterial = UIImage(named: "frontBrain")
@@ -94,8 +94,8 @@ class BrainController: UIViewController {
         return brainScene
     }
     
-    func onTap(sender: UITapGestureRecognizer){
-        let location = sender.locationInView(brainSceneView)
+    func onTap(_ sender: UITapGestureRecognizer){
+        let location = sender.location(in: brainSceneView)
         let hits = brainSceneView.hitTest(location, options: nil)
         
         if let tappedNode = hits.first?.node {
@@ -129,14 +129,14 @@ class BrainController: UIViewController {
         }
     }
     
-    private func makeAllNodesVisible(){
+    fileprivate func makeAllNodesVisible(){
         lastTappedNode = nil
         for node in brainSceneView.scene!.rootNode.childNodes {
             node.opacity = 1
         }
     }
     
-    private func makeAllNodesTranslucentButSelected(tappedNode:SCNNode){
+    fileprivate func makeAllNodesTranslucentButSelected(_ tappedNode:SCNNode){
         lastTappedNode = tappedNode
         for node in brainSceneView.scene!.rootNode.childNodes {
             if node == tappedNode { node.opacity = 1 }

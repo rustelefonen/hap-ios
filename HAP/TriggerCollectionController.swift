@@ -29,27 +29,27 @@ class TriggerCollectionController: UIViewController, UICollectionViewDelegate,UI
         let triggers = TriggerDao().getAllTriggers()
         checkableTriggers = triggers.map({CheckableTrigger(trigger: $0, isChecked: false)})
         
-        topConstraint.constant = (UIScreen.mainScreen().bounds.height / 2) - (resultsView.frame.height * 1.2)
+        topConstraint.constant = (UIScreen.main.bounds.height / 2) - (resultsView.frame.height * 1.2)
         triggersView.alpha = 0
         triggersViewHeight.constant = view.frame.height - 64
         resistedImage.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(resultImageSelected(_:))))
         smokedImage.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(resultImageSelected(_:))))
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsetsMake(15.0, 0, 15.0, 0)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return -10.0
     }
     
-    func resultImageSelected(sender: UIGestureRecognizer) {
+    func resultImageSelected(_ sender: UIGestureRecognizer) {
         let selectedImage = sender.view!
         let opositeImage = selectedImage == resistedImage ? smokedImage : resistedImage
         headerLabel.text = selectedImage == resistedImage ? "Hva hjalp deg?" : "Hva trigget deg?"
         
-        removeCheckmarkFromView(opositeImage)
+        removeCheckmarkFromView(opositeImage!)
         invertSelectionOf(selectedImage)
         
         if topConstraint.constant > 0 { animateToFinalPosition() }
@@ -59,7 +59,7 @@ class TriggerCollectionController: UIViewController, UICollectionViewDelegate,UI
         let distance = topConstraint.constant
         self.view.layoutIfNeeded()
         
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.view.layoutIfNeeded()
             self.resultsView.frame.origin.y -= distance
             self.triggersView.frame.origin.y -= distance
@@ -73,44 +73,44 @@ class TriggerCollectionController: UIViewController, UICollectionViewDelegate,UI
         })
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return checkableTriggers.count
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.size.width / 4)
         return CGSize(width: width, height: width+10)
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TriggerCell
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! TriggerCell
         invertSelectionOf(cell.imageView)
-        checkableTriggers![indexPath.row].isChecked = !checkableTriggers![indexPath.row].isChecked
+        checkableTriggers![(indexPath as NSIndexPath).row].isChecked = !checkableTriggers![(indexPath as NSIndexPath).row].isChecked
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! TriggerCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TriggerCell
         
-        if let image = UIImage(named: checkableTriggers![indexPath.row].trigger.imageName) {
+        if let image = UIImage(named: checkableTriggers![(indexPath as NSIndexPath).row].trigger.imageName) {
             cell.imageView.image = image
             
-            if checkableTriggers![indexPath.row].isChecked { addCheckmarkToView(cell.imageView) }
+            if checkableTriggers![(indexPath as NSIndexPath).row].isChecked { addCheckmarkToView(cell.imageView) }
             else { removeCheckmarkFromView(cell.imageView) }
         }
-        cell.detailLabel.text = checkableTriggers![indexPath.row].trigger.title
+        cell.detailLabel.text = checkableTriggers![(indexPath as NSIndexPath).row].trigger.title
         return cell
     }
     
-    func invertSelectionOf(view:UIView) {
+    func invertSelectionOf(_ view:UIView) {
         if hasCheckmark(view) { removeCheckmarkFromView(view) }
         else { addCheckmarkToView(view) }
     }
     
-    private func hasCheckmark(view:UIView) -> Bool{
+    fileprivate func hasCheckmark(_ view:UIView) -> Bool{
         return view.subviews.count > 0
     }
     
-    private func addCheckmarkToView(view:UIView) {
+    fileprivate func addCheckmarkToView(_ view:UIView) {
         let checkmarkImageView = UIImageView(image: UIImage(named: "checkmark"))
         let checkmarkSize:CGFloat = 23.0
         let checkmarkMargin:CGFloat = 3.0
@@ -119,17 +119,17 @@ class TriggerCollectionController: UIViewController, UICollectionViewDelegate,UI
         view.addSubview(checkmarkImageView)
     }
     
-    private func removeCheckmarkFromView(view:UIView) {
+    fileprivate func removeCheckmarkFromView(_ view:UIView) {
         view.subviews.forEach({ $0.removeFromSuperview() })
     }
     
-    private func displayMissingDataAlert(){
-        let alert = UIAlertController(title: "Legg til triggere", message: "Du har ikke valgt noen triggere å legge til", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+    fileprivate func displayMissingDataAlert(){
+        let alert = UIAlertController(title: "Legg til triggere", message: "Du har ikke valgt noen triggere å legge til", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func saveTriggerDiary(sender: AnyObject) {
+    @IBAction func saveTriggerDiary(_ sender: AnyObject) {
         if noTriggersSelected() { return displayMissingDataAlert() }
         
         if hasCheckmark(smokedImage) { addCheckedTriggersToUserInfo(.Smoked) }
@@ -138,10 +138,10 @@ class TriggerCollectionController: UIViewController, UICollectionViewDelegate,UI
         
         SwiftEventBus.post(MainTabBarController.GO_TO_PAGE_EVENT, sender: MainTabBarController.OVERVIEW_TAB_INDEX)
         SwiftEventBus.post(ProgramController.SCROLL_TO_BOTTOM)
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
-    private func addCheckedTriggersToUserInfo(type:UserTrigger.Kind) {
+    fileprivate func addCheckedTriggersToUserInfo(_ type:UserTrigger.Kind) {
         let userInfoDao = UserInfoDao()
         for checkableTrigger in checkableTriggers! {
             if !checkableTrigger.isChecked { continue }
@@ -152,20 +152,20 @@ class TriggerCollectionController: UIViewController, UICollectionViewDelegate,UI
         AppDelegate.initUserInfo()
     }
     
-    @IBAction func cancel(sender: AnyObject) {
-        if noTriggersSelected() { navigationController?.popViewControllerAnimated(true) }
+    @IBAction func cancel(_ sender: AnyObject) {
+        if noTriggersSelected() { navigationController?.popViewController(animated: true) }
         else { showUnSavedChangesNotSavedAlert() }
     }
     
-    private func noTriggersSelected() -> Bool{
+    fileprivate func noTriggersSelected() -> Bool{
         return checkableTriggers.filter({ $0.isChecked }).isEmpty
     }
     
-    private func showUnSavedChangesNotSavedAlert() {
-        let alert = UIAlertController(title: "Ikke lagret!", message: "Du har ikke lagret endringene", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Forkast", style: .Destructive, handler: { result in self.navigationController?.popViewControllerAnimated(true) }))
-        alert.addAction(UIAlertAction(title: "Avbryt", style: .Cancel, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+    fileprivate func showUnSavedChangesNotSavedAlert() {
+        let alert = UIAlertController(title: "Ikke lagret!", message: "Du har ikke lagret endringene", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Forkast", style: .destructive, handler: { result in self.navigationController?.popViewController(animated: true) }))
+        alert.addAction(UIAlertAction(title: "Avbryt", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     struct CheckableTrigger {

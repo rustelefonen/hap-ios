@@ -7,6 +7,17 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class FormController: UITableViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     @IBOutlet weak var genderInputField: UITextField!
@@ -26,14 +37,14 @@ class FormController: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         initTextField(genderInputField)
         initTextField(ageInputField)
         initTextField(countyInputField)
-        titleInputField.returnKeyType = .Done
+        titleInputField.returnKeyType = .done
     }
     
-    private func initAgeStrings(){
+    fileprivate func initAgeStrings(){
         for i in 13 ..< 90 { components[0].append(String(i)) }
     }
     
-    func initTextField(textField:UITextField){
+    func initTextField(_ textField:UITextField){
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -46,22 +57,22 @@ class FormController: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "Velg", style: .Plain, target: tableView, action: #selector(UIView.endEditingInFirstResponder))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Velg", style: .plain, target: tableView, action: #selector(UIView.endEditingInFirstResponder))
         
         toolBar.items = [spaceButton, doneButton]
         return toolBar
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1;
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         return componentForPickerView(pickerView).count
     }
     
-    func componentForPickerView(pickerView:UIPickerView) -> [String]{
+    func componentForPickerView(_ pickerView:UIPickerView) -> [String]{
         switch pickerView {
         case ageInputField.inputView!: return components[0]
         case genderInputField.inputView!: return components[1]
@@ -69,11 +80,11 @@ class FormController: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         }
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
         return componentForPickerView(pickerView)[row]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         switch pickerView {
         case ageInputField.inputView!: ageInputField.text = components[0][row]
         case genderInputField.inputView!: genderInputField.text = components[1][row]
@@ -81,25 +92,25 @@ class FormController: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let tableSelection = tableView.indexPathForSelectedRow {
-            tableView.deselectRowAtIndexPath(tableSelection, animated: true)
+            tableView.deselectRow(at: tableSelection, animated: true)
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         return false
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         //such hack?
         activeTextField = textField
-        performSelector(#selector(scrollToMakeVisible), withObject: self, afterDelay: 0.1)
+        perform(#selector(scrollToMakeVisible), with: self, afterDelay: 0.1)
         
         if let picker = textField.inputView as? UIPickerView {
-            pickerView(picker, didSelectRow: picker.selectedRowInComponent(0), inComponent: 0)
+            pickerView(picker, didSelectRow: picker.selectedRow(inComponent: 0), inComponent: 0)
         }
     }
     
@@ -111,39 +122,39 @@ class FormController: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         tableView.scrollRectToVisible(centeredRect, animated: true)
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if (indexPath.section, indexPath.row) != (3, 0) { return }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if ((indexPath as NSIndexPath).section, (indexPath as NSIndexPath).row) != (3, 0) { return }
+        tableView.deselectRow(at: indexPath, animated: true)
         
-        if genderInputField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).characters.count < 1 {
+        if genderInputField.text?.trimmingCharacters(in: CharacterSet.whitespaces).characters.count < 1 {
             presentValidationAlert("Kjønn mangler", content: "Du må anngi kjønn for å sende inn spørsmålet.")
-        } else if ageInputField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).characters.count < 1 {
+        } else if ageInputField.text?.trimmingCharacters(in: CharacterSet.whitespaces).characters.count < 1 {
             presentValidationAlert("Alder mangler", content: "Du må anngi alder for å sende inn spørsmålet.")
-        } else if countyInputField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).characters.count < 1 {
+        } else if countyInputField.text?.trimmingCharacters(in: CharacterSet.whitespaces).characters.count < 1 {
             presentValidationAlert("Fylke mangler", content: "Du må anngi fylke for å sende inn spørsmålet.")
-        } else if titleInputField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).characters.count < 1 {
+        } else if titleInputField.text?.trimmingCharacters(in: CharacterSet.whitespaces).characters.count < 1 {
             presentValidationAlert("Spørsmålstittel mangler", content: "Du må anngi spørsmålstittel for å sende inn spørsmålet.")
-        } else if questionLabel.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).characters.count < 1 {
+        } else if questionLabel.text?.trimmingCharacters(in: CharacterSet.whitespaces).characters.count < 1 {
             presentValidationAlert("Spørsmålsinnhold mangler", content: "Du må anngi spørsmålsinnhold for å sende inn spørsmålet.")
         } else {
             postDataToServer()
         }
     }
     
-    private func presentValidationAlert(title:String, content:String) {
-        let alert = UIAlertController(title: title, message: content, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+    fileprivate func presentValidationAlert(_ title:String, content:String) {
+        let alert = UIAlertController(title: title, message: content, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? QuestionController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? QuestionController {
             vc.questionLabel = questionLabel
         }
         activeTextField?.endEditingInFirstResponder()
     }
     
-    private func postDataToServer() {
+    fileprivate func postDataToServer() {
         let params = [
             ("user-submitted-sex", genderInputField.text!),
             ("user-submitted-age", ageInputField.text!),
@@ -155,59 +166,59 @@ class FormController: UITableViewController, UITextFieldDelegate, UIPickerViewDa
             ("user-submitted-post", "Send inn ditt spørsmål!")
         ]
         
-        let request = NSMutableURLRequest(URL: NSURL(string: "http://www.rustelefonen.no/still-sporsmal")!)
-        request.HTTPMethod =  "POST"
+        let request = NSMutableURLRequest(url: URL(string: "http://www.rustelefonen.no/still-sporsmal")!)
+        request.httpMethod =  "POST"
         request.addValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
         
-        request.HTTPBody = parseParams(params).dataUsingEncoding(NSUTF8StringEncoding)
+        request.httpBody = parseParams(params).data(using: String.Encoding.utf8)
         let loadingDialog = showLoadingDialog()
-        NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {data, response, error in self.onResponse(data, loadingDialog: loadingDialog)}).resume()
+        URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {data, response, error in self.onResponse(data, loadingDialog: loadingDialog)}).resume()
     }
     
-    private func parseParams(params:[(String, String)]) -> String{
+    fileprivate func parseParams(_ params:[(String, String)]) -> String{
         var paramBody = ""
         for p in params { paramBody += "\(p.0)=\(p.1)&" }
         
-        return String(paramBody.characters.dropLast()).stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()) ?? ""
+        return String(paramBody.characters.dropLast()).addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
     }
     
-    private func showLoadingDialog() -> UIAlertController{
-        let alert = UIAlertController(title: "Sender spørsmål...", message: nil, preferredStyle: .Alert)
-        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    fileprivate func showLoadingDialog() -> UIAlertController{
+        let alert = UIAlertController(title: "Sender spørsmål...", message: nil, preferredStyle: .alert)
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         indicator.startAnimating()
         
         let cvc = UIViewController()
         cvc.view.addSubview(indicator)
-        cvc.view!.addConstraint(NSLayoutConstraint(item: indicator, attribute: .CenterX, relatedBy: .Equal, toItem: cvc.view!, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
-        cvc.view!.addConstraint(NSLayoutConstraint(item: indicator, attribute: .CenterY, relatedBy: .Equal, toItem: cvc.view!, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
-        alert.view.addConstraint(NSLayoutConstraint(item: alert.view, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 105))
+        cvc.view!.addConstraint(NSLayoutConstraint(item: indicator, attribute: .centerX, relatedBy: .equal, toItem: cvc.view!, attribute: .centerX, multiplier: 1.0, constant: 0.0))
+        cvc.view!.addConstraint(NSLayoutConstraint(item: indicator, attribute: .centerY, relatedBy: .equal, toItem: cvc.view!, attribute: .centerY, multiplier: 1.0, constant: 0.0))
+        alert.view.addConstraint(NSLayoutConstraint(item: alert.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 105))
         alert.setValue(cvc, forKey: "contentViewController")
         
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
         return alert
     }
     
-    private func onResponse(data:NSData?, loadingDialog:UIAlertController){
-        loadingDialog.dismissViewControllerAnimated(true, completion: nil)
+    fileprivate func onResponse(_ data:Data?, loadingDialog:UIAlertController){
+        loadingDialog.dismiss(animated: true, completion: nil)
         if data == nil { return showErrorOccouredDialog() }
         showConfirmationDialog()
     }
     
-    private func showConfirmationDialog() {
+    fileprivate func showConfirmationDialog() {
         let content = "Svaret vil bli publisert på www.rustelefonen.no i løpet av 7 dager."
-        let alert = UIAlertController(title: "Spørsmålet er sendt!", message: content, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in self.navigationController?.popViewControllerAnimated(true)}))
-        presentViewController(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Spørsmålet er sendt!", message: content, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in self.navigationController?.popViewController(animated: true)}))
+        present(alert, animated: true, completion: nil)
     }
             
-    private func showErrorOccouredDialog() {
+    fileprivate func showErrorOccouredDialog() {
         let content = "En feil oppstod\n\n Sjekk din nettverkstilkobling."
-        let alert = UIAlertController(title: "Feil!", message: content, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Feil!", message: content, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func navigateToQuestionForm(sender: UIButton) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.rustelefonen.no/besvarte-sporsmal-og-svar/")!)
+    @IBAction func navigateToQuestionForm(_ sender: UIButton) {
+        UIApplication.shared.openURL(URL(string: "http://www.rustelefonen.no/besvarte-sporsmal-og-svar/")!)
     }
 }

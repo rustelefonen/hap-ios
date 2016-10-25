@@ -10,7 +10,7 @@ import UIKit
 
 extension UILabel{
     
-    func updateText(text:String?) {
+    func updateText(_ text:String?) {
         if self.text == text { return }
         self.text = text
     }
@@ -18,7 +18,7 @@ extension UILabel{
 
 extension UITextView{
     
-    func updateText(text:String?) {
+    func updateText(_ text:String?) {
         if self.text == text { return }
         self.text = text
     }

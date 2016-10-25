@@ -13,15 +13,15 @@ class DisclaimerIntroController: IntroContentViewController {
     static let storyboardId = "disclaimer"
     @IBOutlet weak var textField: UITextView!
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         textField.scrollRangeToVisible(NSMakeRange(0, 0))
     }
 
-    @IBAction func navigateToRusTlf(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.rustelefonen.no")!)
+    @IBAction func navigateToRusTlf(_ sender: AnyObject) {
+        UIApplication.shared.openURL(URL(string: "http://www.rustelefonen.no")!)
         
     }
-    @IBAction func navigateToUtesek(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://uteseksjonen.no")!)
+    @IBAction func navigateToUtesek(_ sender: AnyObject) {
+        UIApplication.shared.openURL(URL(string: "http://uteseksjonen.no")!)
     }
 }

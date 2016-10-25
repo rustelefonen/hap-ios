@@ -15,19 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var userInfo: UserInfo?
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setDefaultAppearances()
         AppDelegate.initUserInfo()
         applicationWillEnterForeground(application)
         
         //Allow notifications
-        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge], categories: nil))
+        UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge], categories: nil))
         
         if(userInfo != nil) { NotificationHandler.scheduleAchievementNotifications(userInfo!) }
         return true
     }
     
-    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         NotificationHandler.notifyNotificationRecieved()
     }
     
@@ -38,25 +38,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = UINavigationBar.appearance().tintColor
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         NotificationHandler.syncListenerBadges()
         RemoteInfoDataSource().syncDatabase()
     }
     
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         saveContext()
     }
 
     // MARK: - Core Data stack
     
-    lazy var applicationDocumentsDirectory: NSURL = {
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+    lazy var applicationDocumentsDirectory: URL = {
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count-1]
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
-        let modelURL = NSBundle.mainBundle().URLForResource("HAP", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
+        let modelURL = Bundle.main.url(forResource: "HAP", withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
@@ -64,16 +64,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.initPrePopulatedDb(dbName)
         
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let storePath = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(dbName).sqlite")
+        let storePath = self.applicationDocumentsDirectory.appendingPathComponent("\(dbName).sqlite")
         print(storePath)
         
         let failureReason = "There was an error creating or loading the application's saved data."
         do {
-            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storePath, options: nil)
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storePath, options: nil)
         } catch {
             var dict = [String: AnyObject]()
-            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
-            dict[NSLocalizedFailureReasonErrorKey] = failureReason
+            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject?
+            dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject?
             dict[NSUnderlyingErrorKey] = error as NSError
             let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
             NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var managedObjectContext: NSManagedObjectContext = {
         let coordinator = self.persistentStoreCoordinator
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()
@@ -104,18 +104,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    private func initPrePopulatedDb(dbName:String){
-        let fileManager = NSFileManager.defaultManager()
-        let documentFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
+    fileprivate func initPrePopulatedDb(_ dbName:String){
+        let fileManager = FileManager.default
+        let documentFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         
-        if !fileManager.fileExistsAtPath(documentFolder + "/\(dbName).sqlite") {
-            let sqlite = NSBundle.mainBundle().pathForResource("db/\(dbName)", ofType: "sqlite")
-            let sqliteshm = NSBundle.mainBundle().pathForResource("db/\(dbName)", ofType: "sqlite-shm")
-            let sqlitewal = NSBundle.mainBundle().pathForResource("db/\(dbName)", ofType: "sqlite-wal")
+        if !fileManager.fileExists(atPath: documentFolder + "/\(dbName).sqlite") {
+            let sqlite = Bundle.main.path(forResource: "db/\(dbName)", ofType: "sqlite")
+            let sqliteshm = Bundle.main.path(forResource: "db/\(dbName)", ofType: "sqlite-shm")
+            let sqlitewal = Bundle.main.path(forResource: "db/\(dbName)", ofType: "sqlite-wal")
             
-            try! fileManager.copyItemAtPath(sqlite!, toPath: documentFolder + "/\(dbName).sqlite")
-            try! fileManager.copyItemAtPath(sqliteshm!, toPath: documentFolder + "/\(dbName).sqlite-shm")
-            try! fileManager.copyItemAtPath(sqlitewal!, toPath: documentFolder + "/\(dbName).sqlite-wal")
+            try! fileManager.copyItem(atPath: sqlite!, toPath: documentFolder + "/\(dbName).sqlite")
+            try! fileManager.copyItem(atPath: sqliteshm!, toPath: documentFolder + "/\(dbName).sqlite-shm")
+            try! fileManager.copyItem(atPath: sqlitewal!, toPath: documentFolder + "/\(dbName).sqlite-wal")
         }
     }
     
@@ -132,6 +132,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     class func getAppDelegate() -> AppDelegate {
-        return UIApplication.sharedApplication().delegate as! AppDelegate
+        return UIApplication.shared.delegate as! AppDelegate
     }
 }

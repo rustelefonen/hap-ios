@@ -16,7 +16,7 @@ class InfoSearchController: UISearchController, UITableViewDelegate, UITableView
     var selectedHelpInfo:HelpInfo?
     
     init() {
-        let resultsController = UITableViewController(style: .Grouped)
+        let resultsController = UITableViewController(style: .grouped)
         super.init(searchResultsController: resultsController)
         
         resultsController.tableView.dataSource = self
@@ -29,7 +29,7 @@ class InfoSearchController: UISearchController, UITableViewDelegate, UITableView
         //searchBar.setValue("Avbryt", forKey:"_cancelButtonText")
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -37,34 +37,34 @@ class InfoSearchController: UISearchController, UITableViewDelegate, UITableView
         super.init(coder: aDecoder)
     }
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         results = dao.searchHelpInfosTitle(searchController.searchBar.text ?? "")
         (searchResultsController as? UITableViewController)?.tableView.reloadData()
     }
     
     //Tableview operations
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell =  tableView.dequeueReusableCellWithIdentifier("cell")
-        if (cell == nil) { cell = UITableViewCell(style: .Default, reuseIdentifier: "cell") }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell =  tableView.dequeueReusableCell(withIdentifier: "cell")
+        if (cell == nil) { cell = UITableViewCell(style: .default, reuseIdentifier: "cell") }
         
-        cell!.textLabel?.text = results[indexPath.row].title
+        cell!.textLabel?.text = results[(indexPath as NSIndexPath).row].title
         return cell!
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return results.count
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Søkeresultat"
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 46 : 30
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedHelpInfo = results[indexPath.row]
-        active = false
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedHelpInfo = results[(indexPath as NSIndexPath).row]
+        isActive = false
     }
 }

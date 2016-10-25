@@ -23,14 +23,14 @@ class QuestionController: UIViewController, UITextViewDelegate {
         else { setPlaceholderText() }
     }
     
-    private func setPlaceholderText(){
+    fileprivate func setPlaceholderText(){
         textView.text = placeHolderText
-        textView.textColor = UIColor.lightGrayColor()
+        textView.textColor = UIColor.lightGray
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text! == placeHolderText {
-            performSelector(#selector(moveCaretToStart), withObject: self, afterDelay: 0.01)
+            perform(#selector(moveCaretToStart), with: self, afterDelay: 0.01)
         }
         textView.contentInset = UIEdgeInsetsMake(0, 0, 130, 0)
     }
@@ -39,30 +39,30 @@ class QuestionController: UIViewController, UITextViewDelegate {
         textView.selectedRange = NSMakeRange(0, 0)
     }
     
-    func textViewDidChangeSelection(textView: UITextView) {
+    func textViewDidChangeSelection(_ textView: UITextView) {
         if textView.text! == placeHolderText { moveCaretToStart() }
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         if (textView.text! == "") { setPlaceholderText() }
         textView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         removePlaceholderTextIfPresent()
         return !insertedPlaceholderTextIfEmpty(textView, shouldChangeTextInRange: range, replacementText: text)
     }
     
-    private func removePlaceholderTextIfPresent(){
+    fileprivate func removePlaceholderTextIfPresent(){
         if textView.text! == placeHolderText {
             textView.text = ""
             textView.textColor = defaultTextColor
         }
     }
     
-    private func insertedPlaceholderTextIfEmpty(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    fileprivate func insertedPlaceholderTextIfEmpty(_ textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if text == "" {
-            let theText = NSString(string: textView.text).stringByReplacingCharactersInRange(range, withString: "")
+            let theText = NSString(string: textView.text).replacingCharacters(in: range, with: "")
             if theText.characters.count == 0 {
                 textView.text = ""
                 textViewDidEndEditing(textView)
@@ -72,14 +72,14 @@ class QuestionController: UIViewController, UITextViewDelegate {
         return false
     }
     
-    @IBAction func finishedAction(sender: AnyObject) {
-        if textView.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != "Skriv ditt spørsmål her.." {
+    @IBAction func finishedAction(_ sender: AnyObject) {
+        if textView.text.trimmingCharacters(in: CharacterSet.whitespaces) != "Skriv ditt spørsmål her.." {
             questionLabel.text = textView.text
         }
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func cancel(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
+    @IBAction func cancel(_ sender: AnyObject) {
+        navigationController?.popViewController(animated: true)
     }
 }

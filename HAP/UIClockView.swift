@@ -18,7 +18,7 @@ class UIClockView: UIViewLineDrawer {
     @IBOutlet weak var hoursNumberLabel: UILabel?
     @IBOutlet weak var minutesNumberLabel: UILabel?
     
-    @IBInspectable var progressBarColor:UIColor = UIColor.redColor()
+    @IBInspectable var progressBarColor:UIColor = UIColor.red
     
     @IBInspectable var daySingularText:String?
     @IBInspectable var hourSingularText:String?
@@ -40,21 +40,21 @@ class UIClockView: UIViewLineDrawer {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentMode = .Redraw
+        contentMode = .redraw
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        contentMode = .Redraw
+        contentMode = .redraw
     }
     
-    override func drawRect(rect: CGRect){
+    override func draw(_ rect: CGRect){
         removePreviousCircles()
         drawCircles()
         positionLabels()
     }
     
-    private func drawCircles(){
+    fileprivate func drawCircles(){
         circleDiameter = frame.height
         while circleDiameter * 3 + 25 > frame.width { circleDiameter -= 1} // to better fit iphone 4 and 5
         
@@ -70,9 +70,9 @@ class UIClockView: UIViewLineDrawer {
         middleGreyCircle = makeCircle(middleCircleRect)
         rightGreyCircle = makeCircle(rightCircleRect)
             
-        layer.insertSublayer(leftGreyCircle!, atIndex: 1)
-        layer.insertSublayer(middleGreyCircle!, atIndex: 1)
-        layer.insertSublayer(rightGreyCircle!, atIndex: 1)
+        layer.insertSublayer(leftGreyCircle!, at: 1)
+        layer.insertSublayer(middleGreyCircle!, at: 1)
+        layer.insertSublayer(rightGreyCircle!, at: 1)
         
         leftProgressCircle = makeCircle(leftCircleRect, strokeColor: progressBarColor, strokeEnd: 0)
         middleProgressCircle = makeCircle(middleCircleRect, strokeColor: progressBarColor, strokeEnd: 0)
@@ -83,7 +83,7 @@ class UIClockView: UIViewLineDrawer {
         layer.insertSublayer(rightProgressCircle!, above: rightGreyCircle)
     }
     
-    private func removePreviousCircles(){
+    fileprivate func removePreviousCircles(){
         leftGreyCircle?.removeFromSuperlayer()
         middleGreyCircle?.removeFromSuperlayer()
         rightGreyCircle?.removeFromSuperlayer()
@@ -92,7 +92,7 @@ class UIClockView: UIViewLineDrawer {
         rightProgressCircle?.removeFromSuperlayer()
     }
     
-    private func positionLabels() {
+    fileprivate func positionLabels() {
         let offset:CGFloat = 7.5
         
         let labelWidth = (circleDiameter + 1) - offset*2
@@ -114,21 +114,21 @@ class UIClockView: UIViewLineDrawer {
         prepare(&minutesNumberLabel, text: nil, xPos: rightLabelX, yPos: numberLabelsYPos-7, width: labelWidth, height: 35)
     }
     
-    private func prepare(inout label: UILabel?, text: String?, xPos: CGFloat, yPos: CGFloat, width: CGFloat, height: CGFloat){
+    fileprivate func prepare(_ label: inout UILabel?, text: String?, xPos: CGFloat, yPos: CGFloat, width: CGFloat, height: CGFloat){
         if label == nil {
             label = UILabel()
             label!.text = text
             addSubview(label!)
         }
         
-        label!.textAlignment = .Center
+        label!.textAlignment = .center
         label!.frame = CGRect(x: xPos, y: yPos, width: width, height: height)
     }
     
-    func updateClock(counter:Double) {
+    func updateClock(_ counter:Double) {
         let days = Int(counter / 86400)
-        let hours = Int((counter / 3600) % 24)
-        let minutes = Int((counter / 60) % 60)
+        let hours = Int((counter / 3600).truncatingRemainder(dividingBy: 24))
+        let minutes = Int((counter / 60).truncatingRemainder(dividingBy: 60))
         
         daysNumberLabel?.updateText("\(days)")
         hoursNumberLabel?.updateText("\(hours)")
@@ -138,7 +138,7 @@ class UIClockView: UIViewLineDrawer {
         updateClockCircularProgressBar(counter)
     }
     
-    private func updateClockLabels(days:Int, hours:Int, minutes:Int){
+    fileprivate func updateClockLabels(_ days:Int, hours:Int, minutes:Int){
         if days == 1 { daysLabel?.updateText(daySingularText) }
         else { daysLabel?.updateText(daysPluralText) }
         
@@ -149,10 +149,10 @@ class UIClockView: UIViewLineDrawer {
         else { minutesLabel?.updateText(minutesPluralText) }
     }
     
-    private func updateClockCircularProgressBar(counter:Double){
-        let dayPercentage = CGFloat(((counter / 3600) % 24) / 24)
-        let hourPercentage = CGFloat(((counter / 60) % 60) / 60)
-        let minutePercentage = CGFloat((counter % 60.0) / 60.0)
+    fileprivate func updateClockCircularProgressBar(_ counter:Double){
+        let dayPercentage = CGFloat(((counter / 3600).truncatingRemainder(dividingBy: 24)) / 24)
+        let hourPercentage = CGFloat(((counter / 60).truncatingRemainder(dividingBy: 60)) / 60)
+        let minutePercentage = CGFloat((counter.truncatingRemainder(dividingBy: 60.0)) / 60.0)
         
         if !leftProgressCircle!.strokeEnd.isEqualTo(dayPercentage, decimalsToCompare: 3) {
             leftProgressCircle!.strokeEnd = dayPercentage

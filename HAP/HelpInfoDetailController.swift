@@ -16,26 +16,26 @@ class HelpInfoDetailController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        webView.backgroundColor = UIColor.clearColor()
+        webView.backgroundColor = UIColor.clear
         webView.delegate = self
         
         let htmlString = "<!doctype html><html><head><link rel=\"stylesheet\" href=\"helpinfo/template.css\" type=\"text/css\"></head><body>\(helpInfo.htmlContent)</body></html>"
-        webView.loadHTMLString(htmlString, baseURL: NSBundle.mainBundle().bundleURL)
+        webView.loadHTMLString(htmlString, baseURL: Bundle.main.bundleURL)
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if navigationType != .LinkClicked {return true}
-        if request.URL?.scheme == "file" { spawnNewInfo(NSString(string: (request.URL?.lastPathComponent)!)) }
-        else if request.URL != nil { UIApplication.sharedApplication().openURL(request.URL!) }
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if navigationType != .linkClicked {return true}
+        if request.url?.scheme == "file" { spawnNewInfo(NSString(string: (request.url?.lastPathComponent)!)) }
+        else if request.url != nil { UIApplication.shared.openURL(request.url!) }
         return false
     }
     
-    func spawnNewInfo(helpInfoName:NSString?) {
+    func spawnNewInfo(_ helpInfoName:NSString?) {
         if helpInfoName == nil { return }
         let helpInfoDao = HelpInfoDao()
         
-        if let newHelpInfo = helpInfoDao.fetchHelpInfoByName(String(UTF8String: helpInfoName!.stringByDeletingPathExtension)!) {
-            let newViewController = storyboard?.instantiateViewControllerWithIdentifier(HelpInfoDetailController.storyboardId) as! HelpInfoDetailController
+        if let newHelpInfo = helpInfoDao.fetchHelpInfoByName(String(validatingUTF8: helpInfoName!.deletingPathExtension)!) {
+            let newViewController = storyboard?.instantiateViewController(withIdentifier: HelpInfoDetailController.storyboardId) as! HelpInfoDetailController
             newViewController.helpInfo = newHelpInfo
             navigationController?.pushViewController(newViewController, animated: true)
         }

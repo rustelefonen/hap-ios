@@ -16,20 +16,20 @@ class AboutViewController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        webView.backgroundColor = UIColor.clearColor()
+        webView.backgroundColor = UIColor.clear
         webView.delegate = self
         
-        if let path = NSBundle.mainBundle().pathForResource("about/\(nameOfResource)", ofType: "html"){
-            if let data: NSData = NSData(contentsOfFile:path){
-                let html = String(data: data, encoding: NSUTF8StringEncoding) ?? "En feil har oppstått."
-                webView.loadHTMLString(html, baseURL: NSBundle.mainBundle().bundleURL)
+        if let path = Bundle.main.path(forResource: "about/\(nameOfResource)", ofType: "html"){
+            if let data: Data = try? Data(contentsOf: URL(fileURLWithPath: path)){
+                let html = String(data: data, encoding: String.Encoding.utf8) ?? "En feil har oppstått."
+                webView.loadHTMLString(html, baseURL: Bundle.main.bundleURL)
             }
         }
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if navigationType == .LinkClicked {
-            UIApplication.sharedApplication().openURL(request.URL!)
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if navigationType == .linkClicked {
+            UIApplication.shared.openURL(request.url!)
             return false
         }
         return true

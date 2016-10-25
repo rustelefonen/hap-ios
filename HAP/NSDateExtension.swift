@@ -8,16 +8,17 @@
 
 import UIKit
 
-extension NSDate {
-    func dateWithTimeAsOfNowOf() -> NSDate{
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Hour, .Minute, .Second], fromDate: NSDate())
-        return calendar.dateBySettingHour(components.hour, minute: components.minute, second: components.second, ofDate: self, options: [])!
+extension Date {
+    func dateWithTimeAsOfNowOf() -> Date{
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.hour, .minute, .second], from: Date())
+        return (calendar as NSCalendar).date(bySettingHour: components.hour!, minute: components.minute!, second: components.second!, of: self, options: [])!
     }
     
-    func dateWithTimeAsStartOfDayOf() -> NSDate{
-        NSTimeZone.setDefaultTimeZone(NSTimeZone.init(name: "CET")!)
-        let calendar = NSCalendar.currentCalendar()
-        return calendar.startOfDayForDate(self)
+    func dateWithTimeAsStartOfDayOf() -> Date{
+        //NSTimeZone.setDefaultTimeZone(TimeZone.init(identifier: "CET")!)
+        NSTimeZone.default = TimeZone(abbreviation: "CET")!
+        let calendar = Calendar.current
+        return calendar.startOfDay(for: self)
     }
 }

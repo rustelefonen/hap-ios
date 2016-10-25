@@ -10,7 +10,7 @@ import XCTest
 
 class SettingsMenuUITest: HAPUITests {
     
-    private let HOME = "Hjem"
+    fileprivate let HOME = "Hjem"
         
     func testResetPosTriggers() {
         app.navigationBars[HOME].buttons["settings"].tap()
@@ -34,7 +34,7 @@ class SettingsMenuUITest: HAPUITests {
         
         sleep(2)
         
-        checkIfClockWasReset(app.scrollViews.otherElements.containingType(.StaticText, identifier:"Tid siden du startet programmet").childrenMatchingType(.Other).element)
+        checkIfClockWasReset(app.scrollViews.otherElements.containing(.staticText, identifier:"Tid siden du startet programmet").children(matching: .other).element)
     }
     
     func testResetClockAndAchievements() {
@@ -45,7 +45,7 @@ class SettingsMenuUITest: HAPUITests {
         
         sleep(2)
         
-        checkIfClockWasReset(app.scrollViews.otherElements.containingType(.StaticText, identifier:"Tid siden du startet programmet").childrenMatchingType(.Other).element)
+        checkIfClockWasReset(app.scrollViews.otherElements.containing(.staticText, identifier:"Tid siden du startet programmet").children(matching: .other).element)
         
         app.tabBars.buttons["Prestasjoner"].tap()
         XCTAssertTrue(app.tables.cells.count == 2)
@@ -104,9 +104,9 @@ class SettingsMenuUITest: HAPUITests {
         XCTAssertEqual(getSwitchValue(tablesQuery.switches["Helseprestasjoner"]), health)
     }
     
-    func checkIfClockWasReset(element:XCUIElement) {
-        XCTAssertTrue(element.childrenMatchingType(.StaticText).matchingIdentifier("0").elementBoundByIndex(0).exists)
-        XCTAssertTrue(element.childrenMatchingType(.StaticText).matchingIdentifier("0").elementBoundByIndex(1).exists)
-        XCTAssertTrue(element.childrenMatchingType(.StaticText).matchingIdentifier("0").elementBoundByIndex(2).exists)
+    func checkIfClockWasReset(_ element:XCUIElement) {
+        XCTAssertTrue(element.children(matching: .staticText).matching(identifier: "0").element(boundBy: 0).exists)
+        XCTAssertTrue(element.children(matching: .staticText).matching(identifier: "0").element(boundBy: 1).exists)
+        XCTAssertTrue(element.children(matching: .staticText).matching(identifier: "0").element(boundBy: 2).exists)
     }
 }

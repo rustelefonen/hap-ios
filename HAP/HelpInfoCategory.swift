@@ -24,6 +24,6 @@ class HelpInfoCategory: NSManagedObject {
     
     func helpInfoSorted() -> [HelpInfo]{
         let helpInfoList = helpInfo.allObjects as! [HelpInfo]
-        return helpInfoList.sort({$0.title < $1.title})
+        return helpInfoList.sorted(by: {$0.title < $1.title})
     }
 }

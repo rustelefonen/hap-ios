@@ -9,7 +9,7 @@
 import UIKit
 
 extension CGFloat {
-    func isEqualTo(other:CGFloat, decimalsToCompare:Int) -> Bool{
+    func isEqualTo(_ other:CGFloat, decimalsToCompare:Int) -> Bool{
         let powerOfTen = pow(10, CGFloat(decimalsToCompare))
         return Int(self * powerOfTen) == Int(other * powerOfTen)
     }
