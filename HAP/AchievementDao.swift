@@ -15,7 +15,7 @@ class AchievementDao: CoreDataDao {
     
     //Constructor
     required init() {
-        entityName = String(describing: Achievement())
+        entityName = String(describing: Achievement.self)
         super.init()
     }
     

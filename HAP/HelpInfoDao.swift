@@ -17,8 +17,8 @@ class HelpInfoDao: CoreDataDao {
     
     //Constructor
     required init() {
-        helpInfoEntity = String(describing: HelpInfo())
-        helpInfoCategoryEntity = String(describing: HelpInfoCategory())
+        helpInfoEntity = String(describing: HelpInfo.self)
+        helpInfoCategoryEntity = String(describing: HelpInfoCategory.self)
         super.init()
     }
     

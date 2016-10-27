@@ -100,27 +100,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D51DBA2F1DBEC80400C4EABD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D51DBA291DBEC80400C4EABD /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06165F241D8110E600722320;
-			remoteInfo = Charts;
-		};
-		D51DBA311DBEC80400C4EABD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D51DBA291DBEC80400C4EABD /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06B120D51D811E6200D14B02;
-			remoteInfo = ChartsRealm;
-		};
-		D51DBA331DBEC80400C4EABD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D51DBA291DBEC80400C4EABD /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06165F2E1D8110E600722320;
-			remoteInfo = ChartsTests;
-		};
 		FE8EC1621CA6F2AC004ABB8D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D56886481C47DE8D0034178D /* Project object */;
@@ -137,9 +116,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D51DBA3E1DBEF2B100C4EABD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D51316251CA03C870093FFAF /* about */ = {isa = PBXFileReference; lastKnownFileType = folder; path = about; sourceTree = "<group>"; };
-		D51DBA291DBEC80400C4EABD /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = SOURCE_ROOT; };
 		D524774E1CB3E7B40056B59F /* UIOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOverlay.swift; sourceTree = "<group>"; };
 		D52746E81CDBE738008D4E19 /* TriggerDaoIT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerDaoIT.swift; sourceTree = "<group>"; };
 		D52746F41CDBED5F008D4E19 /* AppDelegateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateTest.swift; sourceTree = "<group>"; };
@@ -265,22 +256,11 @@
 		0AB099DA1C6B8A9F00A01683 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D51DBA291DBEC80400C4EABD /* Charts.xcodeproj */,
 				FE90137D1CBA77FD006DA270 /* SceneKit.framework */,
 				FE1D42731CB576C300104B9C /* SwiftEventBus.swift */,
 			);
 			name = Frameworks;
 			path = HAP;
-			sourceTree = "<group>";
-		};
-		D51DBA2A1DBEC80400C4EABD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D51DBA301DBEC80400C4EABD /* Charts.framework */,
-				D51DBA321DBEC80400C4EABD /* ChartsRealm.framework */,
-				D51DBA341DBEC80400C4EABD /* ChartsTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		D52746ED1CDBEC27008D4E19 /* customviews */ = {
@@ -618,6 +598,7 @@
 				D568864D1C47DE8D0034178D /* Frameworks */,
 				D568864E1C47DE8D0034178D /* Resources */,
 				0A40FB7F1C6BA6F0000B31D1 /* ShellScript */,
+				D51DBA3E1DBEF2B100C4EABD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -671,7 +652,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Rustelefonen;
 				TargetAttributes = {
 					D568864F1C47DE8D0034178D = {
@@ -708,12 +689,6 @@
 			mainGroup = D56886471C47DE8D0034178D;
 			productRefGroup = D56886511C47DE8E0034178D /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = D51DBA2A1DBEC80400C4EABD /* Products */;
-					ProjectRef = D51DBA291DBEC80400C4EABD /* Charts.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				D568864F1C47DE8D0034178D /* HAP */,
@@ -722,30 +697,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		D51DBA301DBEC80400C4EABD /* Charts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Charts.framework;
-			remoteRef = D51DBA2F1DBEC80400C4EABD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D51DBA321DBEC80400C4EABD /* ChartsRealm.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ChartsRealm.framework;
-			remoteRef = D51DBA311DBEC80400C4EABD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D51DBA341DBEC80400C4EABD /* ChartsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ChartsTests.xctest;
-			remoteRef = D51DBA331DBEC80400C4EABD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D568864E1C47DE8D0034178D /* Resources */ = {
@@ -946,8 +897,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -991,8 +944,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1011,6 +966,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1019,11 +975,11 @@
 		D568867C1C47DE8E0034178D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = "$(SRCROOT)/HAP/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1039,11 +995,11 @@
 		D568867D1C47DE8E0034178D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = "$(SRCROOT)/HAP/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

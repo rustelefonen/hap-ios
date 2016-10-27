@@ -16,7 +16,8 @@ class UserInfoDao: CoreDataDao {
     
     //Constructor
     required init() {
-        entityName = String(describing: UserInfo())
+        entityName = String(describing: UserInfo.self)
+        
         super.init()
     }
     
@@ -32,7 +33,7 @@ class UserInfoDao: CoreDataDao {
         if triggerIncremented { return }
         
         //else making new usertrigger
-        let userTrigger = NSEntityDescription.insertNewObject(forEntityName: String(describing: UserTrigger()), into: managedObjectContext) as! UserTrigger
+        let userTrigger = NSEntityDescription.insertNewObject(forEntityName: String(describing: UserTrigger.self), into: managedObjectContext) as! UserTrigger
         
         userTrigger.setUser(user)
         userTrigger.setTrigger(trigger)

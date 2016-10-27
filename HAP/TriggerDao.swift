@@ -14,7 +14,7 @@ class TriggerDao: CoreDataDao {
     
     //Constructor
     required init() {
-        triggerEntity = String(describing: Trigger())
+        triggerEntity = String(describing: Trigger.self)
         super.init()
     }
     

@@ -136,7 +136,7 @@ class TriggerCollectionController: UIViewController, UICollectionViewDelegate,UI
         else if hasCheckmark(resistedImage) { addCheckedTriggersToUserInfo(.Resisted) }
         else { return displayMissingDataAlert() }
         
-        SwiftEventBus.post(MainTabBarController.GO_TO_PAGE_EVENT, sender: MainTabBarController.OVERVIEW_TAB_INDEX)
+        SwiftEventBus.post(MainTabBarController.GO_TO_PAGE_EVENT, sender: MainTabBarController.OVERVIEW_TAB_INDEX as AnyObject)
         SwiftEventBus.post(ProgramController.SCROLL_TO_BOTTOM)
         navigationController?.popViewController(animated: true)
     }
