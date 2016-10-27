@@ -212,7 +212,7 @@ class ProgramController: UIViewController, ChartViewDelegate {
         }
     }
     
-    @IBAction func alternativeButton(sender: UIBarButtonItem) {
+    @IBAction func alternativeButton(_ sender: UIBarButtonItem) {
         (tabBarController as? MainTabBarController)?.displayOptionsMenu(sender)
     }
     
