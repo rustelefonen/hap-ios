@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D5024B151DC246AF00ED2BAB /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5024B101DC2469900ED2BAB /* Charts.framework */; };
+		D5024B161DC246AF00ED2BAB /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D5024B101DC2469900ED2BAB /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D51316261CA03C870093FFAF /* about in Resources */ = {isa = PBXBuildFile; fileRef = D51316251CA03C870093FFAF /* about */; };
 		D524774F1CB3E7B40056B59F /* UIOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D524774E1CB3E7B40056B59F /* UIOverlay.swift */; };
 		D52746E91CDBE738008D4E19 /* TriggerDaoIT.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52746E81CDBE738008D4E19 /* TriggerDaoIT.swift */; };
@@ -100,6 +102,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D5024B0F1DC2469900ED2BAB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5024B091DC2469900ED2BAB /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06165F241D8110E600722320;
+			remoteInfo = Charts;
+		};
+		D5024B111DC2469900ED2BAB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5024B091DC2469900ED2BAB /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06B120D51D811E6200D14B02;
+			remoteInfo = ChartsRealm;
+		};
+		D5024B131DC2469900ED2BAB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5024B091DC2469900ED2BAB /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06165F2E1D8110E600722320;
+			remoteInfo = ChartsTests;
+		};
+		D5024B171DC246AF00ED2BAB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5024B091DC2469900ED2BAB /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06165F231D8110E600722320;
+			remoteInfo = Charts;
+		};
 		FE8EC1621CA6F2AC004ABB8D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D56886481C47DE8D0034178D /* Project object */;
@@ -123,6 +153,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D5024B161DC246AF00ED2BAB /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,6 +161,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D5024B091DC2469900ED2BAB /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = SOURCE_ROOT; };
 		D51316251CA03C870093FFAF /* about */ = {isa = PBXFileReference; lastKnownFileType = folder; path = about; sourceTree = "<group>"; };
 		D524774E1CB3E7B40056B59F /* UIOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOverlay.swift; sourceTree = "<group>"; };
 		D52746E81CDBE738008D4E19 /* TriggerDaoIT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerDaoIT.swift; sourceTree = "<group>"; };
@@ -233,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE90137E1CBA77FD006DA270 /* SceneKit.framework in Frameworks */,
+				D5024B151DC246AF00ED2BAB /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,11 +289,22 @@
 		0AB099DA1C6B8A9F00A01683 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D5024B091DC2469900ED2BAB /* Charts.xcodeproj */,
 				FE90137D1CBA77FD006DA270 /* SceneKit.framework */,
 				FE1D42731CB576C300104B9C /* SwiftEventBus.swift */,
 			);
 			name = Frameworks;
 			path = HAP;
+			sourceTree = "<group>";
+		};
+		D5024B0A1DC2469900ED2BAB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5024B101DC2469900ED2BAB /* Charts.framework */,
+				D5024B121DC2469900ED2BAB /* ChartsRealm.framework */,
+				D5024B141DC2469900ED2BAB /* ChartsTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		D52746ED1CDBEC27008D4E19 /* customviews */ = {
@@ -603,6 +647,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D5024B181DC246AF00ED2BAB /* PBXTargetDependency */,
 			);
 			name = HAP;
 			productName = "Ut Av Tåka";
@@ -689,6 +734,12 @@
 			mainGroup = D56886471C47DE8D0034178D;
 			productRefGroup = D56886511C47DE8E0034178D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D5024B0A1DC2469900ED2BAB /* Products */;
+					ProjectRef = D5024B091DC2469900ED2BAB /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D568864F1C47DE8D0034178D /* HAP */,
@@ -697,6 +748,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D5024B101DC2469900ED2BAB /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = D5024B0F1DC2469900ED2BAB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D5024B121DC2469900ED2BAB /* ChartsRealm.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ChartsRealm.framework;
+			remoteRef = D5024B111DC2469900ED2BAB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D5024B141DC2469900ED2BAB /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = D5024B131DC2469900ED2BAB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D568864E1C47DE8D0034178D /* Resources */ = {
@@ -852,6 +927,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D5024B181DC246AF00ED2BAB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = D5024B171DC246AF00ED2BAB /* PBXContainerItemProxy */;
+		};
 		FE8EC1631CA6F2AC004ABB8D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D568864F1C47DE8D0034178D /* HAP */;

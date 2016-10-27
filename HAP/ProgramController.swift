@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 class ProgramController: UIViewController, ChartViewDelegate {
     static let SCROLL_TO_BOTTOM = "scroll_to_bottom"
@@ -155,7 +156,6 @@ class ProgramController: UIViewController, ChartViewDelegate {
     
     func initPieChartData(pieChart:PieChartView, userTriggers:[UserTrigger]){
         var dataEntries = [ChartDataEntry]()
-        var labels = [String]()
         var colors = [UIColor]()
         
         var highestEntryIndex = 0;
@@ -166,8 +166,7 @@ class ProgramController: UIViewController, ChartViewDelegate {
             let trigger = userTrigger.getTrigger()
             let percentage = Double(userTrigger.count) / totalTriggerCount * 100.0
             
-            dataEntries.append(ChartDataEntry(x: Double(i), y: percentage))
-            labels.append(trigger?.title ?? "no title")
+            dataEntries.append(ChartDataEntry(x: Double(i), y: percentage, data: trigger?.title as AnyObject?? ?? "no title" as AnyObject?))
             colors.append(UIColor(rgba: trigger?.color.int64Value ?? 0))
             
             if percentage > dataEntries[highestEntryIndex].y { highestEntryIndex = i }
@@ -178,19 +177,18 @@ class ProgramController: UIViewController, ChartViewDelegate {
         pieChartDataSet.selectionShift = 10
         pieChartDataSet.colors = colors
         
-        let pieChartData = PieChartData(dataSet: pieChartDataSet)
         
-        //let pieChartData = PieChartData(xVals: labels, dataSet: pieChartDataSet)
+        
+        let pieChartData = PieChartData(dataSet: pieChartDataSet)
         pieChartData.setValueTextColor(UIColor.clear)
         pieChart.data = pieChartData
         
         pieChart.animate(yAxisDuration: 1.4, easingOption: .easeInOutQuad)
         pieChart.highlightValue(x: Double(highestEntryIndex), dataSetIndex: 0, callDelegate: true)
-        //pieChart.highlightValue(highlight: ChartHighlight(xIndex: highestEntryIndex, dataSetIndex: 0), callDelegate: true)
     }
     
     func initPieChart(pieChart:PieChartView) {
-        pieChart.descriptionText = ""
+        pieChart.chartDescription?.text = ""
         pieChart.rotationEnabled = false
         pieChart.delegate = self
         
@@ -199,18 +197,12 @@ class ProgramController: UIViewController, ChartViewDelegate {
         legend.enabled = false
     }
     
-    /*func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight){
-        if let pieChart = chartView as? PieChartView {
-            let percentage = Int(round(entry.value))
-            pieChart.centerText = "\(pieChart.data!.xVals[highlight.xIndex]!) \n \(percentage)%"
-        }
-    }*/
-    
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         if let pieChart = chartView as? PieChartView {
             let percentage = Int(round(entry.y))
-            //print(pieChart.dataSetIndexForIndex(highlight.y))
-            //pieChart.centerText = "\(pieChart.data!.xVals[highlight.xIndex]!) \n \(percentage)%"
+            if entry.data != nil {
+                pieChart.centerText = "\(entry.data!) \n \(percentage)%"
+            }
         }
     }
     
