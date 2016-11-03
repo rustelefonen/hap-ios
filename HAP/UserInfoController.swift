@@ -93,13 +93,19 @@ class UserInfoIntroController: IntroContentViewController, UIPickerViewDataSourc
     }
     
     @IBAction func startProgram(_ sender: AnyObject) {
-        if accepted.isOn {
-            let genderIndex = ResourceList.genders.index(of: gender.text!)
-            let genderText = genderIndex != nil ? ResourceList.genderValues[genderIndex!] : ""
-            RemoteUserInfo.postDataToServer(age.text, gender: genderText, county: state.text)
-        }
-        
-        (parent as? IntroPageViewController)?.finishIntro()
+        let content = "For å optimalisere appen ber vi om at du oppgir alder, kjønn og fylke. Denne informasjonen er frivillig å oppgi, og vil sendes til en lukket server hos RUStelefonen. Du vil ikke kunne identifiseres. All øvrig informasjon du legger til i appen vil kun registreres på din telefon og blir kryptert. Dette gjelder alle versjoner i iOS og versjoner fra og med 5.0 (lollipop) i Android. Kildekoden til appen og datainnsendingen ligger åpen på Github under brukeren rustelefonen: https://github.com/rustelefonen."
+        let alert = UIAlertController(title: "Personvernerklæring", message: content, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Aksepterer", style: .default, handler: {
+            alert in
+            if self.accepted.isOn {
+                let genderIndex = ResourceList.genders.index(of: self.gender.text!)
+                let genderText = genderIndex != nil ? ResourceList.genderValues[genderIndex!] : ""
+                RemoteUserInfo.postDataToServer(self.age.text, gender: genderText, county: self.state.text)
+            }
+            (self.parent as? IntroPageViewController)?.finishIntro()
+        }))
+        alert.addAction(UIAlertAction(title: "Avbryt", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int{

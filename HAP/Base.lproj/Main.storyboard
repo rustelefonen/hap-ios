@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fyr-Vo-EIj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fyr-Vo-EIj">
+    <device id="ipad12_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -18,30 +21,30 @@
                         <viewControllerLayoutGuide type="bottom" id="rQp-MQ-eti"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LJa-iR-ggJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hva skjer?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQj-MR-308">
-                                <frame key="frameInset" minX="20" minY="-21" width="560" height="29"/>
+                                <rect key="frame" x="20" y="-21" width="560" height="29"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CW0-CC-Ht6" userLabel="results">
-                                <frame key="frameInset" minY="64" width="600" height="115"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="115"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n7O-YP-p7m" userLabel="resisted">
-                                        <frame key="frameInset" minY="10" width="300" height="100"/>
+                                        <rect key="frame" x="0.0" y="10" width="300" height="100"/>
                                         <subviews>
                                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Resisted" translatesAutoresizingMaskIntoConstraints="NO" id="ano-ka-yS2">
-                                                <frame key="frameInset" minX="110" width="80" height="80"/>
+                                                <rect key="frame" x="110" y="0.0" width="80" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="VNG-XG-Gsc"/>
                                                     <constraint firstAttribute="width" secondItem="ano-ka-yS2" secondAttribute="height" multiplier="1:1" id="WAM-KJ-1Xn"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Jeg motstod rus" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nvk-cF-tgP">
-                                                <frame key="frameInset" minY="85" width="300" height="15"/>
+                                                <rect key="frame" x="0.0" y="85" width="300" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -58,17 +61,17 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jyz-3S-QQg" userLabel="smoked">
-                                        <frame key="frameInset" minX="300" minY="10" width="300" height="100"/>
+                                        <rect key="frame" x="300" y="10" width="300" height="100"/>
                                         <subviews>
                                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="HaveSmoked" translatesAutoresizingMaskIntoConstraints="NO" id="j0t-Dj-WB9">
-                                                <frame key="frameInset" minX="110" width="80" height="80"/>
+                                                <rect key="frame" x="110" y="0.0" width="80" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="j0t-Dj-WB9" secondAttribute="height" multiplier="1:1" id="fEy-MU-HGr"/>
                                                     <constraint firstAttribute="width" constant="80" id="lRg-0E-YBV"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Jeg ruset meg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCx-cp-72k">
-                                                <frame key="frameInset" minY="85" width="300" height="15"/>
+                                                <rect key="frame" x="0.0" y="85" width="300" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -97,10 +100,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HRu-bL-PA0" userLabel="triggers">
-                                <frame key="frameInset" minY="179" width="600" height="400"/>
+                                <rect key="frame" x="0.0" y="179" width="600" height="400"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hva trigget deg?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frl-6y-9vo">
-                                        <frame key="frameInset" width="600" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
                                         <color key="backgroundColor" red="0.7022666335105896" green="0.7022666335105896" blue="0.7022666335105896" alpha="0.13" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Iyi-Pz-OFw"/>
@@ -110,7 +113,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="of0-PB-Qpf">
-                                        <frame key="frameInset" minY="30" width="600" height="370"/>
+                                        <rect key="frame" x="0.0" y="30" width="600" height="370"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4Ul-vu-kss">
                                             <size key="itemSize" width="81" height="90"/>
@@ -127,12 +130,14 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jSK-Cn-q5X">
+                                                            <rect key="frame" x="10" y="0.0" width="61" height="61"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="jSK-Cn-q5X" secondAttribute="height" multiplier="1:1" id="Bnk-Li-34f"/>
                                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="CNM-gd-Tzi"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvL-a3-wCI">
+                                                            <rect key="frame" x="0.0" y="65" width="81" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="15" id="J4d-8Q-w1g"/>
                                                             </constraints>
@@ -224,20 +229,20 @@
                         <viewControllerLayoutGuide type="bottom" id="tc6-BL-Oya"/>
                     </layoutGuides>
                     <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="yDf-Uq-Ylf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1317"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wa-oo-HdV">
-                                <frame key="frameInset" minY="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zFb-E4-d0P" userLabel="Clock Card">
                                         <rect key="frame" x="0.0" y="8" width="600" height="167"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="saK-mn-iI6" customClass="UIClockView" customModule="HAP" customModuleProvider="target">
-                                                <frame key="frameInset" minX="8" minY="48" width="584" height="103"/>
+                                                <rect key="frame" x="8" y="48" width="584" height="103"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="dager" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0y-dg-srX">
-                                                        <frame key="frameInset" minX="33" minY="68" width="175" height="24"/>
+                                                        <rect key="frame" x="33" y="68" width="175" height="24"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" selected="YES" staticText="YES"/>
@@ -247,35 +252,35 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDc-zp-7F3">
-                                                        <frame key="frameInset" minX="216" minY="68" width="169" height="24"/>
+                                                        <rect key="frame" x="216" y="68" width="169" height="24"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="OCG-fm-obt">
-                                                        <frame key="frameInset" minX="216" minY="22" width="169" height="42"/>
+                                                        <rect key="frame" x="216" y="22" width="169" height="42"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
                                                         <color key="textColor" red="1" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="h2r-vD-Gj9">
-                                                        <frame key="frameInset" minX="400" minY="22" width="151" height="42"/>
+                                                        <rect key="frame" x="400" y="22" width="151" height="42"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
                                                         <color key="textColor" red="1" green="0.29803921568627451" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="minutter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ZN-W6-ZpJ">
-                                                        <frame key="frameInset" minX="400" minY="68" width="151" height="24"/>
+                                                        <rect key="frame" x="400" y="68" width="151" height="24"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Rj7-fk-DSz">
-                                                        <frame key="frameInset" minX="33" minY="22" width="175" height="33"/>
+                                                        <rect key="frame" x="33" y="22" width="175" height="33"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
                                                         <color key="textColor" red="1" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -307,7 +312,7 @@
                                                 </connections>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tid siden du startet programmet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ut-QY-Mhl">
-                                                <frame key="frameInset" minX="20" minY="16" width="560" height="16"/>
+                                                <rect key="frame" x="20" y="16" width="560" height="16"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -328,7 +333,7 @@
                                         <rect key="frame" x="0.0" y="183" width="600" height="35"/>
                                         <subviews>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Start Sparekalkulator" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1v-v7-ZSu">
-                                                <frame key="frameInset" minX="8" width="584" height="35"/>
+                                                <rect key="frame" x="8" y="0.0" width="584" height="35"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -347,13 +352,13 @@
                                         <rect key="frame" x="0.0" y="226" width="600" height="127"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Dagens tema" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugx-w0-AAB">
-                                                <frame key="frameInset" minX="24" minY="16" width="560" height="36"/>
+                                                <rect key="frame" x="24" y="16" width="560" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                                                 <color key="textColor" red="1" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor " translatesAutoresizingMaskIntoConstraints="NO" id="c37-jl-3kr">
-                                                <frame key="frameInset" minX="20" minY="52" width="560" height="55"/>
+                                                <rect key="frame" x="20" y="52" width="560" height="55"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -445,20 +450,21 @@
             <objects>
                 <tableViewController storyboardIdentifier="settings" hidesBottomBarWhenPushed="YES" id="rtm-W1-p4R" customClass="SettingsViewController" customModule="HAP" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="GMh-4c-md3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Prestasjonsvarslinger" id="v57-GM-PrY">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="50" id="OXN-Wt-huf">
-                                        <rect key="frame" x="0.0" y="119.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="56" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OXN-Wt-huf" id="dgq-bq-qAW">
-                                            <frame key="frameInset" width="414" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MinorMilestone" translatesAutoresizingMaskIntoConstraints="NO" id="d4S-ip-LXc">
+                                                    <rect key="frame" x="8" y="10" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="Xdz-TX-M1E"/>
                                                         <constraint firstAttribute="width" constant="30" id="dBb-a6-KiS"/>
@@ -466,13 +472,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Små milepæler" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaV-1t-Fg0">
-                                                    <frame key="frameInset" minX="46" minY="15" width="473" height="21"/>
+                                                    <rect key="frame" x="46" y="15" width="473" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5FF-Wd-NoP">
-                                                    <frame key="frameInset" minX="535" minY="10" width="51" height="31"/>
+                                                    <rect key="frame" x="535" y="10" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -490,13 +496,14 @@
                                         <inset key="separatorInset" minX="47" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="50" id="dRu-e0-lom">
-                                        <rect key="frame" x="0.0" y="169.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="106" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dRu-e0-lom" id="Tsb-QK-46h">
-                                            <frame key="frameInset" width="414" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Milestone" translatesAutoresizingMaskIntoConstraints="NO" id="dYI-dI-aTH">
+                                                    <rect key="frame" x="8" y="10" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="dYI-dI-aTH" secondAttribute="height" multiplier="1:1" id="LQa-uj-8aA"/>
                                                         <constraint firstAttribute="height" constant="30" id="ZdP-t2-JZC"/>
@@ -504,13 +511,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Store milepæler" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vcz-RX-7AF">
-                                                    <frame key="frameInset" minX="46" minY="15" width="473" height="21"/>
+                                                    <rect key="frame" x="46" y="15" width="473" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Du-91-fYA">
-                                                    <frame key="frameInset" minX="535" minY="10" width="51" height="31"/>
+                                                    <rect key="frame" x="535" y="10" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -528,13 +535,14 @@
                                         <inset key="separatorInset" minX="47" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="50" id="gFg-dB-UVy">
-                                        <rect key="frame" x="0.0" y="219.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="156" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gFg-dB-UVy" id="vTf-t4-3RS">
-                                            <frame key="frameInset" width="414" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Economic" translatesAutoresizingMaskIntoConstraints="NO" id="qRr-V2-wNR">
+                                                    <rect key="frame" x="8" y="10" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="6Xs-L5-BOn"/>
                                                         <constraint firstAttribute="height" constant="30" id="grK-rj-kJp"/>
@@ -542,13 +550,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Økonomiske prestasjoner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moP-Wg-8Zb">
-                                                    <frame key="frameInset" minX="46" minY="15" width="473" height="21"/>
+                                                    <rect key="frame" x="46" y="15" width="473" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GR6-Gn-msw">
-                                                    <frame key="frameInset" minX="535" minY="10" width="51" height="31"/>
+                                                    <rect key="frame" x="535" y="10" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -566,13 +574,14 @@
                                         <inset key="separatorInset" minX="47" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="50" id="Xa1-zE-1tK">
-                                        <rect key="frame" x="0.0" y="269.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="206" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xa1-zE-1tK" id="ERh-Wg-9DY">
-                                            <frame key="frameInset" width="414" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Health" translatesAutoresizingMaskIntoConstraints="NO" id="tp0-QX-IIi">
+                                                    <rect key="frame" x="8" y="10" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="Dte-eT-ewC"/>
                                                         <constraint firstAttribute="height" constant="30" id="m3r-dh-OWI"/>
@@ -580,13 +589,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Helseprestasjoner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQV-pk-hVJ">
-                                                    <frame key="frameInset" minX="46" minY="15" width="473" height="21"/>
+                                                    <rect key="frame" x="46" y="15" width="473" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rog-GI-6ls">
-                                                    <frame key="frameInset" minX="535" minY="10" width="51" height="31"/>
+                                                    <rect key="frame" x="535" y="10" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -644,11 +653,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Stc-oO-8YJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7Ye-Xb-Q4w">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IBK-E9-TLj">
-                                <frame key="frameInset" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.28958413004875183" green="0.31462949514389038" blue="0.32950475811958313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
@@ -677,14 +686,14 @@
                         <viewControllerLayoutGuide type="bottom" id="Prd-MK-xwf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8Du-Fh-3qd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6k1-lP-dhX">
-                                <frame key="frameInset" minX="20" minY="20" width="560" height="300"/>
+                                <rect key="frame" x="20" y="20" width="560" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Velkommen til HAP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEc-Mw-hfc">
-                                        <frame key="frameInset" minX="20" minY="132" width="520" height="36"/>
+                                        <rect key="frame" x="20" y="132" width="520" height="36"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                                         <color key="textColor" red="1" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -699,17 +708,17 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="waD-yR-FbX">
-                                <frame key="frameInset" minX="20" minY="404" width="560" height="180"/>
+                                <rect key="frame" x="20" y="404" width="560" height="180"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="swipeleft" translatesAutoresizingMaskIntoConstraints="NO" id="PP7-di-FdC" userLabel="SwipeImg">
-                                        <frame key="frameInset" minX="279" minY="22" width="50" height="50"/>
+                                        <rect key="frame" x="279" y="22" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="GQl-29-NsW"/>
                                             <constraint firstAttribute="width" secondItem="PP7-di-FdC" secondAttribute="height" multiplier="1:1" id="n1n-Gz-lbd"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Skyv for å starte &lt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxj-0U-Qt4">
-                                        <frame key="frameInset" minX="211" minY="80" width="138" height="21"/>
+                                        <rect key="frame" x="211" y="80" width="138" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -757,7 +766,7 @@
                         <viewControllerLayoutGuide type="bottom" id="U47-lR-Qea"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SMT-JZ-smO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -775,11 +784,11 @@
                         <viewControllerLayoutGuide type="bottom" id="9JS-Vi-3N6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7c1-mJ-EYx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bl6-1D-nza">
-                                <frame key="frameInset" minY="20" width="600" height="555"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="555"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Litt informasjon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5n-6s-lJ0">
                                         <rect key="frame" x="20" y="20" width="560" height="29"/>
@@ -788,14 +797,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYz-Ci-hQ7">
-                                        <rect key="frame" x="20" y="65" width="560" height="379"/>
+                                        <rect key="frame" x="20" y="65" width="560" height="360"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <string key="text">Denne appen er ment for å hjelpe deg som ønsker å ta en pause fra eller avslutte ditt cannabisbruk. Dersom du selv ikke ønsker å ta en pause/slutte med cannabis er ikke dette appen for deg.
+                                        <mutableString key="text">Denne appen er ment for å hjelpe deg som ønsker å ta en pause fra eller avslutte ditt cannabisbruk. Dersom du selv ikke ønsker å ta en pause/slutte med cannabis er ikke dette appen for deg.
 
-Appen er basert på Uteseksjonen i Oslo sine erfaringer med å drive hasjavvenning gjennom mange år, og tar utgangspunkt i hasjavvenningsprogrammet (HAP) utviklet av Thomas Lundqvist og Dan Ericsson. Innholdet i appen er for øvrig basert på oppdatert forskning om cannabis/behandling og erfaringsbasert kunnskap fra både klienter og fagfolk. Appens tidsramme strekker seg over åtte uker og er ment som et supplement til HAP. Du trenger derimot ikke være involvert i dette programmet for å ha nytte av appen.
+Appen er basert på Uteseksjonen i Oslo sine erfaringer med å gi et tilbud til de som opplever at de sliter med cannabisproblematikk og ønsker hjelp til å slutte med eller redusere bruken.  Innholdet i appen er basert på oppdatert forskning på cannabis/behandling og erfaringsbasert kunnskap fra brukere og fagfolk.  Appens tidsramme strekker seg over åtte uker og er ment som et supplement til HAP. Du trenger derimot ikke å være involvert i dette programmet for å ha nytte av appen.
 
 Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Oslo kommune, Velferdsetaten. Vi etterstreber en nøytral holdning til ulike problemstillinger rundt cannabisproblematikk. Send oss gjerne en mail dersom du har tilbakemeldinger på appen som vi kan forbedre.
-</string>
+</mutableString>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -855,20 +864,20 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                         <viewControllerLayoutGuide type="bottom" id="dTm-2W-e1P"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="02c-Bc-IGh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I5T-Cc-vcl">
-                                <frame key="frameInset" minY="20" width="600" height="240"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="240"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Velg startdato" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Vb-j7-sVS">
-                                        <frame key="frameInset" minX="20" minY="102" width="560" height="36"/>
+                                        <rect key="frame" x="20" y="102" width="560" height="36"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                                         <color key="textColor" red="1" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Velg dato for når du vil starte programmet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aG-Kb-1Xf">
-                                        <frame key="frameInset" minX="20" minY="154" width="560" height="21"/>
+                                        <rect key="frame" x="20" y="154" width="560" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -885,7 +894,7 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                 </constraints>
                             </view>
                             <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="HkW-yb-eKe">
-                                <frame key="frameInset" minX="20" minY="260" width="560" height="308"/>
+                                <rect key="frame" x="20" y="260" width="560" height="308"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="350" id="ZJz-k2-2GG"/>
                                 </constraints>
@@ -929,11 +938,11 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                         <viewControllerLayoutGuide type="bottom" id="j5Y-9r-JGV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="V9f-Ch-Ik7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXa-cx-jna">
-                                <frame key="frameInset" minY="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Jeg ønsker å bidra:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6p-BN-IBw">
                                         <rect key="frame" x="20" y="142" width="122" height="17"/>
@@ -1063,31 +1072,31 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
             <objects>
                 <tableViewController id="ZKX-pr-n9Y" customClass="HelpInfoTableController" customModule="HAP" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="18" sectionFooterHeight="18" id="EpT-5L-bwC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1317"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.92000001668930054" green="0.92000001668930054" blue="0.92000001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="vWV-Ob-eZ5" userLabel="footer">
-                            <rect key="frame" x="0.0" y="257.33333333333337" width="414" height="0.0"/>
+                            <rect key="frame" x="0.0" y="258" width="1024" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" focusStyle="custom" rowHeight="50" id="NHO-7k-s9g" customClass="HelpInfoCell" customModule="HAP" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="119.5" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="56" width="1024" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="NHO-7k-s9g" id="L23-SW-ezt">
-                                    <frame key="frameInset" width="381" height="49.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="830" height="49"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="redarrow" translatesAutoresizingMaskIntoConstraints="NO" id="hN9-lr-F3u">
-                                            <frame key="frameInset" minX="571" minY="19" width="13" height="13"/>
+                                            <rect key="frame" x="571" y="19" width="13" height="13"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="13" id="UEt-2z-LDT"/>
                                                 <constraint firstAttribute="height" constant="13" id="kkK-kc-2Tj"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAb-wY-j7Z">
-                                            <frame key="frameInset" minX="16" minY="5" width="551" height="39"/>
+                                            <rect key="frame" x="16" y="5" width="551" height="39"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="39" id="Opz-pp-P6z"/>
                                             </constraints>
@@ -1112,20 +1121,21 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="callerCell" focusStyle="custom" rowHeight="50" id="ojo-k6-TW7" userLabel="actionCell" customClass="HelpInfoActionCell" customModule="HAP" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="169.5" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="106" width="1024" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="ojo-k6-TW7" id="mUq-oK-odW">
-                                    <frame key="frameInset" width="381" height="49.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="830" height="49"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="redarrow" translatesAutoresizingMaskIntoConstraints="NO" id="t3O-GB-03m">
-                                            <frame key="frameInset" minX="571" minY="19" width="13" height="13"/>
+                                            <rect key="frame" x="571" y="19" width="13" height="13"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="13" id="TEg-RV-FCt"/>
                                                 <constraint firstAttribute="width" constant="13" id="f1w-0h-8Hb"/>
                                             </constraints>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X08-8i-aUa">
+                                            <rect key="frame" x="16" y="10" width="30" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="Lux-Wi-Q37"/>
                                                 <constraint firstAttribute="width" constant="30" id="RkE-Bd-GhG"/>
@@ -1133,7 +1143,7 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3o-qK-8CP">
-                                            <frame key="frameInset" minX="62" minY="15" width="522" height="20"/>
+                                            <rect key="frame" x="62" y="15" width="522" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1194,28 +1204,28 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="INs-DE-aSz" customClass="FormController" customModule="HAP" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="JmH-Cl-A1S">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1317"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.92000001668930054" green="0.92000001668930054" blue="0.92000001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
                             <tableViewSection id="xuf-pO-XFt">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="150" id="SAh-Up-ePf">
-                                        <rect key="frame" x="0.0" y="35" width="414" height="150"/>
+                                        <rect key="frame" x="0.0" y="35" width="1024" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SAh-Up-ePf" id="twQ-fH-Oac">
-                                            <frame key="frameInset" width="414" height="149.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="149"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wk8-bz-ghC">
-                                                    <frame key="frameInset" minX="8" minY="8" width="584" height="63"/>
+                                                    <rect key="frame" x="8" y="8" width="584" height="63"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <string key="text">Har du spørsmål om rus? Still dem her! Alle som henvender seg er anonyme. RUStelefonen vil svare på ditt spørsmål så fort som mulig. I perioder med mye pågang kan det ta opptil 7 dager før svaret publiseres. Svar på spørsmål som stilles via denne tjenesten vil legges ut på internett.</string>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98Y-dM-Sd4">
-                                                    <frame key="frameInset" minX="12" minY="71" width="147" height="30"/>
+                                                    <rect key="frame" x="12" y="71" width="147" height="30"/>
                                                     <state key="normal" title="Svarene finner du her"/>
                                                     <connections>
                                                         <action selector="navigateToQuestionForm:" destination="INs-DE-aSz" eventType="touchUpInside" id="dHr-Wu-gtV"/>
@@ -1239,19 +1249,20 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                             <tableViewSection headerTitle="Opplysninger" id="mU8-23-Itg">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="K0N-Qu-cPb">
-                                        <rect key="frame" x="0.0" y="241" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="242" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K0N-Qu-cPb" id="Qs8-xM-q1S">
-                                            <frame key="frameInset" width="414" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alder:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtz-q8-Vbz">
+                                                    <rect key="frame" x="16" y="0.0" width="46" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Velg din alder..." textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TUD-O1-eTH">
-                                                    <frame key="frameInset" minX="70" width="498" height="50"/>
+                                                    <rect key="frame" x="70" y="0.0" width="498" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -1273,19 +1284,20 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="Zca-ST-nsO">
-                                        <rect key="frame" x="0.0" y="291" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="292" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zca-ST-nsO" id="ZrV-KO-qJV">
-                                            <frame key="frameInset" width="414" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kjønn:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Co1-b9-lN5">
+                                                    <rect key="frame" x="16" y="0.0" width="48" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Velg ditt kjønn..." textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1aT-Kg-CxS">
-                                                    <frame key="frameInset" minX="72" width="496" height="50"/>
+                                                    <rect key="frame" x="72" y="0.0" width="496" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -1307,19 +1319,20 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="6AM-XV-lmW">
-                                        <rect key="frame" x="0.0" y="341" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="342" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6AM-XV-lmW" id="nLn-bc-8lk">
-                                            <frame key="frameInset" width="414" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fylke:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQi-st-wRh">
+                                                    <rect key="frame" x="16" y="0.0" width="45" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Velg ditt fylke..." textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZkY-rj-Y75">
-                                                    <frame key="frameInset" minX="69" width="499" height="50"/>
+                                                    <rect key="frame" x="69" y="0.0" width="499" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -1345,19 +1358,20 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                             <tableViewSection headerTitle="Spørsmål" id="L39-Ab-vaI">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="XYy-1w-Vgl">
-                                        <rect key="frame" x="0.0" y="447" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="449" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XYy-1w-Vgl" id="Tyl-0l-oH4">
-                                            <frame key="frameInset" width="414" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tittel:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvi-1J-Kcd">
+                                                    <rect key="frame" x="16" y="0.0" width="44" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Skriv tittel..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V0y-Eg-XOL">
-                                                    <frame key="frameInset" minX="110" width="458" height="50"/>
+                                                    <rect key="frame" x="110" y="0.0" width="458" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -1379,19 +1393,20 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="GBU-X6-c1p">
-                                        <rect key="frame" x="0.0" y="497" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="499" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GBU-X6-c1p" id="jT0-AW-aXf">
-                                            <frame key="frameInset" width="381" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="830" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spørsmål:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiI-5Z-FPH">
+                                                    <rect key="frame" x="16" y="0.0" width="77" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEf-bw-VvB">
-                                                    <frame key="frameInset" minX="109" width="483" height="50"/>
+                                                    <rect key="frame" x="109" y="0.0" width="483" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1418,14 +1433,14 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                             <tableViewSection footerTitle="Spørsmålet er helt anonymt" id="Rdz-tw-3eF">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="Twk-Q7-EDf">
-                                        <rect key="frame" x="0.0" y="583" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="585" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Twk-Q7-EDf" id="DQy-WS-ih6">
-                                            <frame key="frameInset" width="414" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mt-tt-cSh">
-                                                    <frame key="frameInset" width="600" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                                     <state key="normal" title="Send spørsmål"/>
                                                 </button>
                                             </subviews>
@@ -1467,11 +1482,11 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                         <viewControllerLayoutGuide type="bottom" id="ayJ-Tb-Nqm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="P4p-gv-8fd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1317"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="efv-26-Jjl">
-                                <frame key="frameInset" minX="20" minY="72" width="560" height="459"/>
+                                <rect key="frame" x="20" y="72" width="560" height="459"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1517,11 +1532,11 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                         <viewControllerLayoutGuide type="bottom" id="y00-Kr-rNo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ghe-u2-D9b">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1317"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kg7-h9-kHz">
-                                <frame key="frameInset" minY="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
                                     <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" sceneName="" allowsCameraControl="YES" wantsMultisampling="YES" autoenablesDefaultLighting="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nkw-sa-T8v">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="331"/>
@@ -1531,7 +1546,7 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                         <rect key="frame" x="0.0" y="341" width="600" height="115"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" misplaced="YES" text="Trykk på en hjernedel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56g-iy-x0x">
-                                                <frame key="frameInset" minX="16" minY="16" width="568" height="25"/>
+                                                <rect key="frame" x="16" y="16" width="568" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="h0z-PQ-jVn"/>
                                                 </constraints>
@@ -1540,7 +1555,7 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" editable="NO" text="Trykk på en hjernedel for å se litt informasjon om den, og hvordan THC påvirker din hjerne." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VaZ-jt-5he">
-                                                <frame key="frameInset" minX="12" minY="49" width="572" height="50"/>
+                                                <rect key="frame" x="12" y="49" width="572" height="50"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1605,24 +1620,24 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="xj2-Up-cxR" customClass="HelpInfoCategoryController" customModule="HAP" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="gcD-Iv-arn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.92000001668930054" green="0.92000001668930054" blue="0.92000001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="rIA-fL-wue">
-                            <rect key="frame" x="0.0" y="208.33333333333334" width="414" height="0.0"/>
+                            <rect key="frame" x="0.0" y="209" width="1024" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="51" id="0Wc-ot-Rxx">
-                                <rect key="frame" x="0.0" y="119.5" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="56" width="1024" height="51"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Wc-ot-Rxx" id="egW-rD-BaO">
-                                    <frame key="frameInset" width="381" height="50.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="830" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sw-ZD-JLw">
-                                            <frame key="frameInset" minX="22" minY="6" width="545" height="39"/>
+                                            <rect key="frame" x="22" y="6" width="545" height="39"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="39" id="HsM-o2-kIH"/>
                                             </constraints>
@@ -1631,7 +1646,7 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="redarrow" translatesAutoresizingMaskIntoConstraints="NO" id="9YA-xS-qm2">
-                                            <frame key="frameInset" minX="571" minY="19" width="13" height="13"/>
+                                            <rect key="frame" x="571" y="19" width="13" height="13"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="13" id="aad-m1-Mtv"/>
                                                 <constraint firstAttribute="height" constant="13" id="yTs-yI-boA"/>
@@ -1677,11 +1692,11 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                         <viewControllerLayoutGuide type="bottom" id="kW0-AQ-KS9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HON-La-8gH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wvh-oB-gvZ">
-                                <frame key="frameInset" minY="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" red="0.93999999761581421" green="0.93999999761581421" blue="0.93999999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
@@ -1707,39 +1722,40 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
             <objects>
                 <tableViewController id="vc9-GI-hez" customClass="AchievementsTableController" customModule="HAP" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="5uN-fm-ZUJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1317"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.92000001668930054" green="0.92000001668930054" blue="0.92000001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="2L1-1a-VrO">
-                            <rect key="frame" x="0.0" y="192" width="414" height="0.0"/>
+                            <rect key="frame" x="0.0" y="192" width="1024" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="Iii-Sj-xwV" customClass="AchievementCell" customModule="HAP" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="28" width="1024" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Iii-Sj-xwV" id="u3i-IR-UCI">
-                                    <frame key="frameInset" width="414" height="99.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ptu-P3-b2i">
+                                            <rect key="frame" x="13" y="14" width="71" height="71.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="71" id="YO5-GF-DF0"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="omw-BS-8RU">
-                                            <frame key="frameInset" minX="108" minY="14" width="484" height="24"/>
+                                            <rect key="frame" x="108" y="14" width="484" height="24"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                             <color key="textColor" red="1" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <progressView opaque="NO" tag="4" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3RK-LS-zbB">
-                                            <frame key="frameInset" minX="108" minY="82" width="476" height="2"/>
+                                            <rect key="frame" x="108" y="82" width="476" height="2"/>
                                             <color key="tintColor" red="1" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </progressView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrB-2i-rAv">
-                                            <frame key="frameInset" minX="108" minY="30" width="476" height="52"/>
+                                            <rect key="frame" x="108" y="30" width="476" height="52"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1851,16 +1867,17 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                         <viewControllerLayoutGuide type="bottom" id="oX9-94-6Xk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6ge-2N-foJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1322"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dH-At-wcD">
-                                <frame key="frameInset" minY="64" width="600" height="492"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UxT-Kl-cJX">
                                         <rect key="frame" x="0.0" y="8" width="600" height="245"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abstinensoversikt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJ6-QW-de3">
+                                                <rect key="frame" x="16" y="16" width="115" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="19" id="V2O-8J-qxZ"/>
                                                 </constraints>
@@ -1869,7 +1886,7 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kjy-Ls-Xyd" customClass="UIGraphView" customModule="HAP" customModuleProvider="target">
-                                                <frame key="frameInset" minX="12" minY="46" width="576" height="160"/>
+                                                <rect key="frame" x="12" y="46" width="576" height="160"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="160" id="9mb-bl-Jxw"/>
@@ -1899,19 +1916,23 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDT-A4-d2E">
-                                                <frame key="frameInset" minY="212" width="600" height="20"/>
+                                                <rect key="frame" x="0.0" y="212" width="600" height="20"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KGg-y7-zYX">
-                                                        <frame key="frameInset" minX="144" minY="-8" width="80" height="35"/>
+                                                        <rect key="frame" x="144" y="-8" width="80" height="35"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3IL-la-RsR">
+                                                                <rect key="frame" x="8" y="11" width="13" height="13"/>
                                                                 <color key="backgroundColor" red="0.56470588235294117" green="0.78823529411764703" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="13" id="0dL-dx-q0c"/>
                                                                     <constraint firstAttribute="width" constant="13" id="CKP-tQ-7eA"/>
                                                                 </constraints>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THC-nivå" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMT-O9-SlF">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMT-O9-SlF">
+                                                                <rect key="frame" x="29" y="5.5" width="51" height="24"/>
+                                                                <string key="text">THC-
+metabolitter</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -1928,9 +1949,10 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0F0-SK-5od">
-                                                        <frame key="frameInset" minX="240" minY="-8" width="120" height="35"/>
+                                                        <rect key="frame" x="240" y="-8" width="120" height="35"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoZ-AO-kuQ">
+                                                                <rect key="frame" x="8" y="11" width="13" height="13"/>
                                                                 <color key="backgroundColor" red="0.50980392156862742" green="0.77647058823529413" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="13" id="bhq-tv-VkK"/>
@@ -1938,6 +1960,7 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humørsvingninger" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrx-c2-HoO">
+                                                                <rect key="frame" x="29" y="11.5" width="91" height="12"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -1955,15 +1978,17 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JPT-GO-vdd">
-                                                        <frame key="frameInset" minX="376" minY="-8" width="105" height="35"/>
+                                                        <rect key="frame" x="376" y="-8" width="105" height="35"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="you" translatesAutoresizingMaskIntoConstraints="NO" id="sHC-fP-guG">
+                                                                <rect key="frame" x="0.0" y="9.5" width="16" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="16" id="bfD-D5-UY2"/>
                                                                     <constraint firstAttribute="height" constant="16" id="vwD-CT-0Xm"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Din posisjon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0S-uw-AH6">
+                                                                <rect key="frame" x="18" y="11.5" width="79" height="12"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -1993,10 +2018,10 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQe-rj-qDj">
-                                                <frame key="frameInset" minX="562" minY="16" width="22" height="22"/>
+                                                <rect key="frame" x="562" y="16" width="22" height="22"/>
                                                 <color key="tintColor" red="1" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
-                                                    <action selector="graphInfo:" destination="c6n-Wo-RbB" eventType="touchUpInside" id="phu-xx-nhJ"/>
+                                                    <segue destination="kZu-a1-w5f" kind="show" identifier="HelpInfoGraphDetails" id="K7r-Iz-7BS"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -2019,26 +2044,29 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                         <rect key="frame" x="0.0" y="261" width="600" height="89"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aktiviteter som hjelper mot suget" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlz-rJ-UZm">
+                                                <rect key="frame" x="16" y="16" width="214.5" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="1" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMg-4b-RnU">
-                                                <frame key="frameInset" minX="562" minY="16" width="22" height="22"/>
+                                                <rect key="frame" x="562" y="16" width="22" height="22"/>
                                                 <color key="tintColor" red="1" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
-                                                    <action selector="resistedInfo:" destination="c6n-Wo-RbB" eventType="touchUpInside" id="BIG-fl-cXI"/>
+                                                    <action selector="resistedInfo:" destination="c6n-Wo-RbB" eventType="touchUpInside" id="Gzo-wG-9d2"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LZz-HG-YPX" userLabel="No data Label">
-                                                <frame key="frameInset" minX="213" minY="49" width="174" height="24"/>
+                                                <rect key="frame" x="213" y="49" width="174" height="24"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trykk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBD-rf-2xf">
+                                                        <rect key="frame" x="0.0" y="3.5" width="35" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                         <color key="textColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lZ-YT-Wc5">
+                                                        <rect key="frame" x="39" y="4" width="16" height="16"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="16" id="9F1-eJ-jRO"/>
                                                             <constraint firstAttribute="height" constant="16" id="lnn-Zs-nxj"/>
@@ -2047,6 +2075,7 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                                         <state key="normal" image="composeGrey"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="for å legge til data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cJ-aj-B1X">
+                                                        <rect key="frame" x="59" y="3.5" width="115" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                         <color key="textColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -2065,7 +2094,7 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="26d-iN-4FD" customClass="PieChartView" customModule="Charts">
-                                                <frame key="frameInset" minX="8" minY="-113" width="584" height="186"/>
+                                                <rect key="frame" x="8" y="-113" width="584" height="186"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="186" id="E05-YP-mv1"/>
@@ -2090,26 +2119,29 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                         <rect key="frame" x="0.0" y="358" width="600" height="89"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Triggere som fører til bruk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hcf-g3-reJ">
+                                                <rect key="frame" x="16" y="16" width="168" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="1" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CnP-fH-oPc">
-                                                <frame key="frameInset" minX="562" minY="16" width="22" height="22"/>
+                                                <rect key="frame" x="562" y="16" width="22" height="22"/>
                                                 <color key="tintColor" red="1" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
-                                                    <action selector="smokedInfo:" destination="c6n-Wo-RbB" eventType="touchUpInside" id="i2J-Er-7Sr"/>
+                                                    <action selector="smokedInfo:" destination="c6n-Wo-RbB" eventType="touchUpInside" id="up2-do-51c"/>
                                                 </connections>
                                             </button>
                                             <view userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZQb-P7-A2b" userLabel="No data Label">
-                                                <frame key="frameInset" minX="213" minY="49" width="174" height="24"/>
+                                                <rect key="frame" x="213" y="49" width="174" height="24"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trykk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T57-Pd-1pN">
+                                                        <rect key="frame" x="0.0" y="3.5" width="35" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                         <color key="textColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNc-pc-Dz2">
+                                                        <rect key="frame" x="39" y="4" width="16" height="16"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="16" id="OTh-ci-633"/>
                                                             <constraint firstAttribute="width" constant="16" id="lFy-Qv-qXB"/>
@@ -2118,6 +2150,7 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                                         <state key="normal" image="composeGrey"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="for å legge til data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkZ-1K-d3c">
+                                                        <rect key="frame" x="59" y="3.5" width="115" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                         <color key="textColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -2136,7 +2169,7 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G43-sI-TzM" customClass="PieChartView" customModule="Charts">
-                                                <frame key="frameInset" minX="8" minY="-113" width="584" height="186"/>
+                                                <rect key="frame" x="8" y="-113" width="584" height="186"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="186" id="cP7-Lx-edo"/>
@@ -2225,11 +2258,11 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                         <viewControllerLayoutGuide type="bottom" id="emh-tK-Dp4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="IFw-dD-c47">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKS-vH-sPq">
-                                <frame key="frameInset" minY="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jVm-Mb-yFT">
                                         <rect key="frame" x="20" y="12" width="560" height="55"/>
@@ -2378,39 +2411,40 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="Auz-Pd-yJC" customClass="AllAchievementsTableController" customModule="HAP" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="0tk-W6-RXZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1317"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.92000001668930054" green="0.92000001668930054" blue="0.92000001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="oP4-h9-ujD">
-                            <rect key="frame" x="0.0" y="192" width="414" height="0.0"/>
+                            <rect key="frame" x="0.0" y="192" width="1024" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="wzr-rd-Ain" customClass="AchievementCell" customModule="HAP" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="28" width="1024" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wzr-rd-Ain" id="owe-j2-tsg">
-                                    <frame key="frameInset" width="414" height="99.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="H0Y-T8-ceS">
-                                            <frame key="frameInset" minX="108" minY="14" width="484" height="24"/>
+                                            <rect key="frame" x="108" y="14" width="484" height="24"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                             <color key="textColor" red="1" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <progressView opaque="NO" tag="4" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lsP-Vv-fva">
-                                            <frame key="frameInset" minX="108" minY="82" width="476" height="2"/>
+                                            <rect key="frame" x="108" y="82" width="476" height="2"/>
                                             <color key="tintColor" red="1" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </progressView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxu-Iz-TSM">
-                                            <frame key="frameInset" minX="108" minY="30" width="476" height="52"/>
+                                            <rect key="frame" x="108" y="30" width="476" height="52"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KoN-wZ-A4Q">
+                                            <rect key="frame" x="13" y="14" width="71" height="71.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="71" id="EEP-9m-qon"/>
                                             </constraints>
@@ -2478,20 +2512,21 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
             <objects>
                 <tableViewController storyboardIdentifier="Reset" hidesBottomBarWhenPushed="YES" id="Nv1-k4-9xb" customClass="ResetViewController" customModule="HAP" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="2UF-cd-d7r">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Alternativer" id="4l1-RJ-V0Y">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="50" id="vLQ-87-nTH">
-                                        <rect key="frame" x="0.0" y="119.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="56" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vLQ-87-nTH" id="ES4-MF-2vk">
-                                            <frame key="frameInset" width="381" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="830" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tilbakestill klokken" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vh7-uo-1lk">
+                                                    <rect key="frame" x="16" y="15" width="144" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2504,13 +2539,14 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="50" id="3hY-xE-FBv">
-                                        <rect key="frame" x="0.0" y="169.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="106" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3hY-xE-FBv" id="PDA-pE-aEo">
-                                            <frame key="frameInset" width="381" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="830" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tilbakestill positive triggere" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBU-rM-4aC">
+                                                    <rect key="frame" x="16" y="15" width="209.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2523,13 +2559,14 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="50" id="UV3-ZE-zq1">
-                                        <rect key="frame" x="0.0" y="219.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="156" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UV3-ZE-zq1" id="lEp-Yg-haj">
-                                            <frame key="frameInset" width="381" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="830" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tilbakestill negative triggere" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElX-gu-f6B">
+                                                    <rect key="frame" x="16" y="15" width="215" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2542,13 +2579,14 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="50" id="H9q-gi-Qrc">
-                                        <rect key="frame" x="0.0" y="269.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="206" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H9q-gi-Qrc" id="5zB-Kc-lhb">
-                                            <frame key="frameInset" width="381" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="830" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tilbakestill hele applikajonen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nU9-Cr-6EM">
+                                                    <rect key="frame" x="16" y="15" width="218" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2577,10 +2615,10 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
         </scene>
     </scenes>
     <resources>
-        <image name="1 - hjem" width="75" height="75"/>
-        <image name="2 - faser" width="75" height="75"/>
-        <image name="3 - trofeer" width="75" height="75"/>
-        <image name="4 - hjelp" width="75" height="75"/>
+        <image name="1 - hjem" width="50" height="50"/>
+        <image name="2 - faser" width="50" height="50"/>
+        <image name="3 - trofeer" width="50" height="50"/>
+        <image name="4 - hjelp" width="50" height="50"/>
         <image name="Economic" width="600" height="600"/>
         <image name="HaveSmoked" width="256" height="256"/>
         <image name="Health" width="600" height="600"/>
@@ -2595,7 +2633,7 @@ Appen er utviklet av studenter i samarbeid med RUStelefonen og Uteseksjonen i Os
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="spX-Gh-CYJ"/>
-        <segue reference="e0m-KY-6HS"/>
+        <segue reference="K7r-Iz-7BS"/>
         <segue reference="99x-6D-D46"/>
     </inferredMetricsTieBreakers>
 </document>

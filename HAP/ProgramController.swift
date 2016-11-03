@@ -117,6 +117,13 @@ class ProgramController: UIViewController, ChartViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         overlay?.despawn()
+        if (segue.identifier == "HelpInfoGraphDetails"){
+            if let dest = segue.destination as? HelpInfoDetailController{
+                let helpInfoDao = HelpInfoDao()
+                let graphDetails = helpInfoDao.fetchHelpInfoByName("THC-metabolitter")
+                dest.helpInfo = graphDetails
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -216,21 +223,36 @@ class ProgramController: UIViewController, ChartViewDelegate {
         (tabBarController as? MainTabBarController)?.displayOptionsMenu(sender)
     }
     
-    @IBAction func graphInfo(sender: UIButton) {
-        let content = "Grafen viser forholdet mellom THC-nivået i kroppen din og hva du kan forvente av emosjonell turbulens.\n\n Den røde nålen viser hvor du befinner deg i programmet."
+    /*@IBAction func graphInfo(sender: UIButton) {
+        let content = "Graf THC: Denne grafen viser tiden det kan ta for THC-metabolitter å skilles ut av kroppen om du har brukt cannabis regelmessig. Det kan ta opptil seks uker (og i noen tilfeller lengre) før THC-metabolitter er skilt ut av kroppen, dersom du har brukt cannabis over tid.\n\nGraf humørsvingninger: Denne grafen viser hva du kan forvente av humørsvingninger når du slutter med cannabis etter jevnlig bruk.  Grafen er en generell fremstilling, men det vil være individuelle forskjeller i graden av humørsvingninger man vil oppleve når man slutter.\n\nDen røde nålen viser hvor du befinner deg i programmet. Klikk på faseoverskriftene for å lese mer.\n\nGrafene er kun en visuell illustrasjon for at du lettere vil kunne få en oversikt over vanlige utfordringer og abstinenser i en sluttprosess, og for å vise at THC-metabolitter (nedbrytningsprodukter) skilles ut av kroppen over tid. Det er ikke nødvendigvis noe forhold mellom THC grafen og humørsvingninger. Modellen er basert på kliniske erfaringer og empiri. Det vil si brukeres erfaringer med å slutte med cannabis. Dette er ikke en modell som forteller hvordan slutteprosessen fungerer nevrobiologisk. Modellen er under revidering, og det kan komme endringer og justeringer i denne modellen over tid, når ytterligere kliniske erfaringer vil bli systematisert sammen med forskningen på feltet."
+        
+        //let content = "Grafen viser forholdet mellom THC-nivået i kroppen din og hva du kan forvente av emosjonell turbulens.\n\n Den røde nålen viser hvor du befinner deg i programmet."
         let alert = UIAlertController(title: "Abstinensoversikt", message: content, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
-    }
+    }*/
     
-    @IBAction func resistedInfo(sender: UIButton) {
+    /*@IBAction func graphInfo(_ sender: UIButton) {
+        let content = "Graf THC:\nDenne grafen viser tiden det kan ta for THC-metabolitter å skilles ut av kroppen om du har brukt cannabis regelmessig. Det kan ta opptil seks uker (og i noen tilfeller lengre) før THC-metabolitter er skilt ut av kroppen, dersom du har brukt cannabis over tid.\n\nGraf humørsvingninger:\nDenne grafen viser hva du kan forvente av humørsvingninger når du slutter med cannabis etter jevnlig bruk.  Grafen er en generell fremstilling, men det vil være individuelle forskjeller i graden av humørsvingninger man vil oppleve når man slutter.\n\nDen røde nålen viser hvor du befinner deg i programmet. Klikk på faseoverskriftene for å lese mer.\n\nGrafene er kun en visuell illustrasjon for at du lettere vil kunne få en oversikt over vanlige utfordringer og abstinenser i en sluttprosess, og for å vise at THC-metabolitter (nedbrytningsprodukter) skilles ut av kroppen over tid. Det er ikke nødvendigvis noe forhold mellom THC grafen og humørsvingninger.\n\nModellen er basert på kliniske erfaringer og empiri. Det vil si brukeres erfaringer med å slutte med cannabis. Dette er ikke en modell som forteller hvordan slutteprosessen fungerer nevrobiologisk.\n\nModellen er under revidering, og det kan komme endringer og justeringer i denne modellen over tid, når ytterligere kliniske erfaringer vil bli systematisert sammen med forskningen på feltet."
+        
+        //let content = "Grafen viser forholdet mellom THC-nivået i kroppen din og hva du kan forvente av emosjonell turbulens.\n\n Den røde nålen viser hvor du befinner deg i programmet."
+        let alert = UIAlertController(title: "Abstinensoversikt", message: content, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        /*let height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.40)
+        alert.view.addConstraint(height)*/
+        
+        present(alert, animated: true, completion: nil)
+    }*/
+    
+    @IBAction func resistedInfo(_ sender: UIButton) {
         let content = "Dersom du motstår å ruse deg kan du registrere det i triggerdagboken.\n\n Over tid vil dette vinduet gi deg en god oversikt over hva som hjelper best, når suget melder seg."
         let alert = UIAlertController(title: "Positive triggere", message: content, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func smokedInfo(sender: UIButton) {
+    @IBAction func smokedInfo(_ sender: UIButton) {
         let content = "Dersom du ruser deg kan du registrere det i triggerdagboken.\n\n Over tid vil dette vinduet gi deg en god oversikt over hvilke situasjoner du bør passe deg for."
         let alert = UIAlertController(title: "Negative triggere", message: content, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
