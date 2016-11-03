@@ -93,7 +93,7 @@ class UserInfoIntroController: IntroContentViewController, UIPickerViewDataSourc
     }
     
     @IBAction func startProgram(_ sender: AnyObject) {
-        let content = "For å optimalisere appen ber vi om at du oppgir alder, kjønn og fylke. Denne informasjonen er frivillig å oppgi, og vil sendes til en lukket server hos RUStelefonen. Du vil ikke kunne identifiseres. All øvrig informasjon du legger til i appen vil kun registreres på din telefon og blir kryptert. Dette gjelder alle versjoner i iOS og versjoner fra og med 5.0 (lollipop) i Android. Kildekoden til appen og datainnsendingen ligger åpen på Github under brukeren rustelefonen: https://github.com/rustelefonen."
+        let content = "For å bedre tilpasse appen til våre brukere ber vi om at du oppgir alder, kjønn og fylke. Denne informasjonen er frivillig å oppgi, og vil sendes til en lukket server hos RUStelefonen. Du vil ikke kunne identifiseres. All øvrig informasjon du legger til i appen vil kun registreres på din telefon og blir kryptert. Dette gjelder alle versjoner i iOS og versjoner fra og med 5.0 (lollipop) i Android. Kildekoden til appen og datainnsendingen ligger åpen på Github under brukeren rustelefonen: https://github.com/rustelefonen."
         let alert = UIAlertController(title: "Personvernerklæring", message: content, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Aksepterer", style: .default, handler: {
             alert in
