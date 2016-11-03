@@ -59,7 +59,7 @@ class HomeController: UIViewController {
     }
     
     fileprivate func updateCalculator(){
-        if userInfo.totalMoneySaved() > 0.0 { moneySavedLabel.updateText("\(calculatorLabel) \(getFormattedCurrencyString()) kr.") }
+        if userInfo.totalMoneySaved() > 0.0 { moneySavedLabel.updateText("\(calculatorLabel!) \(getFormattedCurrencyString()) kr.") }
         else { moneySavedLabel.updateText(startCalculator) }
     }
     
