@@ -18,7 +18,6 @@ class RootController: UIViewController{
         super.viewDidAppear(animated)
         
         let user = AppDelegate.getUserInfo()
-        print(user)
         
         if let vc = storyboard?.instantiateViewController(withIdentifier: user != nil ? MainTabBarController.storyboardId : IntroPageViewController.storyboardId){
             present(vc, animated: !firstAppearance, completion: nil)
