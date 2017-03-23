@@ -14,6 +14,7 @@ class UserInfo: NSManagedObject {
     @NSManaged var age: String?
     @NSManaged var gender: String?
     @NSManaged var geoState: String?
+    @NSManaged var userType: String?
     
     @NSManaged var moneySpentPerDayOnHash: NSNumber
     @NSManaged var startDate: Date

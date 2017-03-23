@@ -21,10 +21,11 @@ class UserInfoIntroController: IntroContentViewController, UIPickerViewDataSourc
     @IBOutlet weak var age: UITextField!
     @IBOutlet weak var gender: UITextField!
     @IBOutlet weak var state: UITextField!
+    @IBOutlet weak var userType: UITextField!
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var components = [[String](), ResourceList.genders, ResourceList.counties]
+    var components = [[String](), ResourceList.genders, ResourceList.counties, ResourceList.userTypes]
     
     //Lifecycle operations
     override func viewDidLoad() {
@@ -39,6 +40,7 @@ class UserInfoIntroController: IntroContentViewController, UIPickerViewDataSourc
         initTextField(gender)
         initTextField(age)
         initTextField(state)
+        initTextField(userType)
         scrollView.alwaysBounceVertical = true
     }
     
@@ -76,7 +78,7 @@ class UserInfoIntroController: IntroContentViewController, UIPickerViewDataSourc
     }
     
     @IBAction func animateInputFields(_ sender: AnyObject) {
-        let btnY:CGFloat = accepted.isOn ? 380 : 240
+        let btnY:CGFloat = accepted.isOn ? 440 : 240
         let btnLabel = accepted.isOn ? "Start appen nå" : "Nei takk, start appen nå"
         let fieldAlpha:CGFloat = accepted.isOn ? 1 : 0
         
@@ -87,6 +89,7 @@ class UserInfoIntroController: IntroContentViewController, UIPickerViewDataSourc
             self.gender.alpha = fieldAlpha
             self.age.alpha = fieldAlpha
             self.state.alpha = fieldAlpha
+            self.userType.alpha = fieldAlpha
             }, completion: { finished in
                 self.startAppButton.setTitle(btnLabel, for: UIControlState())
         })
@@ -100,7 +103,7 @@ class UserInfoIntroController: IntroContentViewController, UIPickerViewDataSourc
             if self.accepted.isOn {
                 let genderIndex = ResourceList.genders.index(of: self.gender.text!)
                 let genderText = genderIndex != nil ? ResourceList.genderValues[genderIndex!] : ""
-                RemoteUserInfo.postDataToServer(self.age.text, gender: genderText, county: self.state.text)
+                RemoteUserInfo.postDataToServer(self.age.text, gender: genderText, county: self.state.text, userType: self.userType.text)
             }
             (self.parent as? IntroPageViewController)?.finishIntro()
         }))
@@ -124,7 +127,8 @@ class UserInfoIntroController: IntroContentViewController, UIPickerViewDataSourc
         switch pickerView {
         case age.inputView!: age.text = components[0][row]
         case gender.inputView!: gender.text = components[1][row]
-        default: state.text = components[2][row]
+        case state.inputView!: state.text = components[2][row]
+        default: userType.text = components[3][row]
         }
     }
     
@@ -132,7 +136,8 @@ class UserInfoIntroController: IntroContentViewController, UIPickerViewDataSourc
         switch pickerView {
         case age.inputView!: return components[0]
         case gender.inputView!: return components[1]
-        default: return components[2]
+        case state.inputView!: return components[2]
+        default: return components[3]
         }
     }
     

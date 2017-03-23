@@ -11,6 +11,7 @@ struct ResourceList {
     static let genders = ["Mann", "Kvinne", "Annet"]
     static let genderValues = ["MALE", "FEMALE", "OTHER"]
     static let counties = ["Akershus", "Aust-Agder", "Buskerud", "Finnmark", "Hedmark", "Hordaland", "Møre og Romsdal", "Nord-Trøndelag", "Nordland", "Oppland", "Oslo", "Rogaland", "Sogn og Fjordane", "Sør-Trøndelag", "Telemark", "Troms", "Vest-Agder", "Vestfold", "Østfold"]
+    static let userTypes = ["Cannabisbruker", "Helsepersonell", "Pårørende"]
 
     static let triggers = [
         TriggerStruct(title: "Mett", imageName: "AfterMeal", color: 0xfac174FF),

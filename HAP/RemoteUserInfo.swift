@@ -12,7 +12,7 @@ class RemoteUserInfo {
     static let hasSent = "hasSentResearch"
     static let url = "http://app.rustelefonen.no/api/research"
     
-    class func postDataToServer(_ age:String?, gender:String?, county:String?) {
+    class func postDataToServer(_ age:String?, gender:String?, county:String?, userType:String?) {
         let request = NSMutableURLRequest(url: URL(string: url)!)
         request.httpMethod =  "POST"
         request.addValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
@@ -20,7 +20,8 @@ class RemoteUserInfo {
         var params = ""
         if age != nil && !age!.isEmpty { params += "age=\(age!)&" }
         if gender != nil && !gender!.isEmpty { params += "gender=\(gender!)&" }
-        if county != nil && !county!.isEmpty { params += "county=\(county!)" }
+        if county != nil && !county!.isEmpty { params += "county=\(county!)&" }
+        if userType != nil && !userType!.isEmpty { params += "userType=\(userType!)" }
         params = params.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
         
         request.httpBody = params.data(using: String.Encoding.utf8)

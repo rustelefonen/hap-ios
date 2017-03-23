@@ -87,6 +87,7 @@ class IntroPageViewController: UIPageViewController, UIPageViewControllerDataSou
             userInfo.age = userInfoController.age.text
             userInfo.gender = userInfoController.gender.text
             userInfo.geoState = userInfoController.state.text
+            userInfo.userType = userInfoController.userType.text
         }
         
         

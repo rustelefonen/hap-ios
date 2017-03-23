@@ -5,13 +5,12 @@
 //  Created by Simen Fonnes on 14.01.16.
 //  Copyright © 2016 Rustelefonen. All rights reserved.
 //
-
 import UIKit
 import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     var userInfo: UserInfo?
     
@@ -37,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor(red: 1, green: 0.3, blue: 0.24, alpha: 1)]
         UITabBar.appearance().tintColor = UINavigationBar.appearance().tintColor
     }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
         NotificationHandler.syncListenerBadges()
         RemoteInfoDataSource().syncDatabase()
@@ -46,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         saveContext()
     }
-
+    
     // MARK: - Core Data stack
     
     lazy var applicationDocumentsDirectory: URL = {
@@ -64,12 +63,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.initPrePopulatedDb(dbName)
         
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
+        
         let storePath = self.applicationDocumentsDirectory.appendingPathComponent("\(dbName).sqlite")
         print(storePath)
         
         let failureReason = "There was an error creating or loading the application's saved data."
         do {
-            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storePath, options: nil)
+            let options = [NSMigratePersistentStoresAutomaticallyOption: true,
+                           NSInferMappingModelAutomaticallyOption: true]
+            
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storePath, options: options)
         } catch {
             var dict = [String: AnyObject]()
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject?

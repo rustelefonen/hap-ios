@@ -191,6 +191,7 @@
 		D58DDEDC1CDCB2A200EE0D19 /* RemoteUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteUserInfo.swift; sourceTree = "<group>"; };
 		D58DDEDF1CDCBDFA00EE0D19 /* RemoteInfoDataSourceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteInfoDataSourceTest.swift; sourceTree = "<group>"; };
 		D58DDEE11CDCC8A900EE0D19 /* RemoteUserInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteUserInfoTest.swift; sourceTree = "<group>"; };
+		D594E1D51E83C5DD003FC417 /* HAP2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HAP2.xcdatamodel; sourceTree = "<group>"; };
 		D59E9D601CB86FD3005D7899 /* FormCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormCell.swift; sourceTree = "<group>"; };
 		D5D613581CB7D171002CDE82 /* QuestionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionController.swift; sourceTree = "<group>"; };
 		FE1D42731CB576C300104B9C /* SwiftEventBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftEventBus.swift; path = ../SwiftEventBus/SwiftEventBus.swift; sourceTree = "<group>"; };
@@ -1194,9 +1195,10 @@
 		FE8EC13D1CA6E908004ABB8D /* HAP.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				D594E1D51E83C5DD003FC417 /* HAP2.xcdatamodel */,
 				FE8EC13E1CA6E908004ABB8D /* HAP.xcdatamodel */,
 			);
-			currentVersion = FE8EC13E1CA6E908004ABB8D /* HAP.xcdatamodel */;
+			currentVersion = D594E1D51E83C5DD003FC417 /* HAP2.xcdatamodel */;
 			path = HAP.xcdatamodeld;
 			sourceTree = SOURCE_ROOT;
 			versionGroupType = wrapper.xcdatamodel;
