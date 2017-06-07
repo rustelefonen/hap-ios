@@ -10,6 +10,7 @@
 		D5024B151DC246AF00ED2BAB /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5024B101DC2469900ED2BAB /* Charts.framework */; };
 		D5024B161DC246AF00ED2BAB /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D5024B101DC2469900ED2BAB /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D51316261CA03C870093FFAF /* about in Resources */ = {isa = PBXBuildFile; fileRef = D51316251CA03C870093FFAF /* about */; };
+		D5220D7A1E9663CA0092E3D3 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5220D791E9663CA0092E3D3 /* PrivacyViewController.swift */; };
 		D524774F1CB3E7B40056B59F /* UIOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D524774E1CB3E7B40056B59F /* UIOverlay.swift */; };
 		D52746E91CDBE738008D4E19 /* TriggerDaoIT.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52746E81CDBE738008D4E19 /* TriggerDaoIT.swift */; };
 		D52746F51CDBED5F008D4E19 /* AppDelegateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52746F41CDBED5F008D4E19 /* AppDelegateTest.swift */; };
@@ -39,6 +40,7 @@
 		D58DDEE01CDCBDFA00EE0D19 /* RemoteInfoDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58DDEDF1CDCBDFA00EE0D19 /* RemoteInfoDataSourceTest.swift */; };
 		D58DDEE21CDCC8A900EE0D19 /* RemoteUserInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58DDEE11CDCC8A900EE0D19 /* RemoteUserInfoTest.swift */; };
 		D59E9D611CB86FD3005D7899 /* FormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59E9D601CB86FD3005D7899 /* FormCell.swift */; };
+		D5A0B4491EE82E6F00147B5B /* SurveyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A0B4481EE82E6F00147B5B /* SurveyController.swift */; };
 		D5D613591CB7D171002CDE82 /* QuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D613581CB7D171002CDE82 /* QuestionController.swift */; };
 		FE1D42741CB576C300104B9C /* SwiftEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1D42731CB576C300104B9C /* SwiftEventBus.swift */; };
 		FE1D428A1CB69C3E00104B9C /* CountyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1D42891CB69C3E00104B9C /* CountyController.swift */; };
@@ -163,6 +165,7 @@
 /* Begin PBXFileReference section */
 		D5024B091DC2469900ED2BAB /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = SOURCE_ROOT; };
 		D51316251CA03C870093FFAF /* about */ = {isa = PBXFileReference; lastKnownFileType = folder; path = about; sourceTree = "<group>"; };
+		D5220D791E9663CA0092E3D3 /* PrivacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		D524774E1CB3E7B40056B59F /* UIOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOverlay.swift; sourceTree = "<group>"; };
 		D52746E81CDBE738008D4E19 /* TriggerDaoIT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerDaoIT.swift; sourceTree = "<group>"; };
 		D52746F41CDBED5F008D4E19 /* AppDelegateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateTest.swift; sourceTree = "<group>"; };
@@ -193,6 +196,7 @@
 		D58DDEE11CDCC8A900EE0D19 /* RemoteUserInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteUserInfoTest.swift; sourceTree = "<group>"; };
 		D594E1D51E83C5DD003FC417 /* HAP2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HAP2.xcdatamodel; sourceTree = "<group>"; };
 		D59E9D601CB86FD3005D7899 /* FormCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormCell.swift; sourceTree = "<group>"; };
+		D5A0B4481EE82E6F00147B5B /* SurveyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyController.swift; sourceTree = "<group>"; };
 		D5D613581CB7D171002CDE82 /* QuestionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionController.swift; sourceTree = "<group>"; };
 		FE1D42731CB576C300104B9C /* SwiftEventBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftEventBus.swift; path = ../SwiftEventBus/SwiftEventBus.swift; sourceTree = "<group>"; };
 		FE1D42891CB69C3E00104B9C /* CountyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountyController.swift; sourceTree = "<group>"; };
@@ -368,6 +372,7 @@
 				FE74BE5E1C9B4BB2004D5C0C /* pages */,
 				FED4E72B1CA6CC0C00F2A6C7 /* IntroPageViewController.swift */,
 				FED4E7291CA6CC0200F2A6C7 /* IntroContentViewController.swift */,
+				D5220D791E9663CA0092E3D3 /* PrivacyViewController.swift */,
 			);
 			name = intro;
 			sourceTree = "<group>";
@@ -532,6 +537,7 @@
 			children = (
 				FE6C0B3F1CA6D6410040131C /* CalculatorController.swift */,
 				FE6C0B3C1CA6D62F0040131C /* HomeController.swift */,
+				D5A0B4481EE82E6F00147B5B /* SurveyController.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -830,6 +836,7 @@
 				FED4E72A1CA6CC0200F2A6C7 /* IntroContentViewController.swift in Sources */,
 				D58DDEDD1CDCB2A200EE0D19 /* RemoteUserInfo.swift in Sources */,
 				D57300E91CCEA94B00D9068D /* AllAchievementsTableController.swift in Sources */,
+				D5220D7A1E9663CA0092E3D3 /* PrivacyViewController.swift in Sources */,
 				FED4E71A1CA6CB9E00F2A6C7 /* UserInfo.swift in Sources */,
 				FED4E7321CA6CC2700F2A6C7 /* DatePickerIntroController.swift in Sources */,
 				FED4E70E1CA6CB4A00F2A6C7 /* Achievement.swift in Sources */,
@@ -863,6 +870,7 @@
 				FED4E73A1CA6CC5300F2A6C7 /* MainTabBarController.swift in Sources */,
 				FE519A2B1CDFC6610035A0E6 /* UITextExtension.swift in Sources */,
 				FED4E6F61CA6C9E300F2A6C7 /* AppDelegate.swift in Sources */,
+				D5A0B4491EE82E6F00147B5B /* SurveyController.swift in Sources */,
 				FED4E7031CA6CAC300F2A6C7 /* NotificationHandler.swift in Sources */,
 				FED4E7361CA6CC4000F2A6C7 /* AboutViewController.swift in Sources */,
 				FED4E7121CA6CB6700F2A6C7 /* Trigger.swift in Sources */,

@@ -23,6 +23,7 @@ class HomeController: UIViewController {
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var header: UILabel!
     @IBOutlet weak var moneySavedLabel: UILabel!
+    @IBOutlet weak var questionCard: UIView!
     
     let formatter = NumberFormatter()
     var updateTimer:Timer!
@@ -32,6 +33,8 @@ class HomeController: UIViewController {
         initFormatter()
         updateDailySubject()
         moneySavedLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showCalculator)))
+        
+        questionCard.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector (registerQuestion)))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,6 +83,22 @@ class HomeController: UIViewController {
         performSegue(withIdentifier: "calculatorSegue", sender: self)
     }
     
+    func registerQuestion() {
+        let alert = UIAlertController(title: "Vil du?", message: "Det er anonymt", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ja", style: UIAlertActionStyle.default, handler: { alert in
+            
+            
+            self.performSegue(withIdentifier: "surveySegue", sender: "https://no.surveymonkey.com/r/VC9RY62")
+        }))
+        alert.addAction(UIAlertAction(title: "Avbryt", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Nei, ikke vis igjen", style: UIAlertActionStyle.destructive, handler: { alert in
+            print("ikke igjen")
+        }))
+        self.present(alert, animated: true, completion: nil)
+        
+        
+    }
+    
     fileprivate func getFormattedCurrencyString() -> String{
         return formatter.string(from: NSNumber(value: userInfo.totalMoneySaved())) ?? "0"
     }
@@ -90,5 +109,10 @@ class HomeController: UIViewController {
         formatter.minimumFractionDigits = 2
         formatter.decimalSeparator = ","
         formatter.groupingSeparator = " "
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! SurveyController
+        destinationVC.url = sender as! String
     }
 }
