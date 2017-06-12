@@ -28,6 +28,7 @@ class HomeController: UIViewController {
     @IBOutlet weak var navigateToSurvey: UILabel!
     @IBOutlet weak var surveyTextView: UITextView!
     
+    @IBOutlet weak var themeSpace: NSLayoutConstraint!
     let formatter = NumberFormatter()
     var updateTimer:Timer!
     
@@ -136,6 +137,7 @@ class HomeController: UIViewController {
     func displayQuestionCard() {
         if userInfo.appRegistered == nil {
             questionCard.isHidden = true
+            themeSpace.priority = 950
             return
         }
         let firstSurveyBegin = userInfo.appRegistered!
@@ -144,8 +146,14 @@ class HomeController: UIViewController {
         
         let firstDateRegistered = userInfo.surveyRegistered
         if firstDateRegistered == nil {
-            if now >= firstSurveyBegin && now < firstSurveyEnd  {questionCard.isHidden = false}
-            else {questionCard.isHidden = true}
+            if now >= firstSurveyBegin && now < firstSurveyEnd  {
+                questionCard.isHidden = false
+                themeSpace.priority = 250
+            }
+            else {
+                questionCard.isHidden = true
+                themeSpace.priority = 950
+            }
             return
         }
         
@@ -157,10 +165,13 @@ class HomeController: UIViewController {
             
             if (now >= secondDate && now < secondDateEnd) || (now >= thirdDate && now < thirdDateEnd) {
                 questionCard.isHidden = false
+                themeSpace.priority = 250
                 return
             }
         }
         questionCard.isHidden = true
+        themeSpace.priority = 950
+        
     }
     
     func updateSurveyText() {

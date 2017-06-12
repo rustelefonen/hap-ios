@@ -467,7 +467,7 @@
                                     <constraint firstItem="T4u-Mu-StT" firstAttribute="top" secondItem="da6-Zg-1za" secondAttribute="bottom" constant="8" id="TOR-JW-R4u"/>
                                     <constraint firstAttribute="trailing" secondItem="zFb-E4-d0P" secondAttribute="trailing" id="TtL-9m-rXG"/>
                                     <constraint firstAttribute="bottom" secondItem="m0d-n5-G8G" secondAttribute="bottom" constant="16" id="Zf9-2g-cZh"/>
-                                    <constraint firstItem="m0d-n5-G8G" firstAttribute="top" secondItem="T4u-Mu-StT" secondAttribute="bottom" priority="999" constant="8" id="b3G-yM-M7c"/>
+                                    <constraint firstItem="m0d-n5-G8G" firstAttribute="top" secondItem="T4u-Mu-StT" secondAttribute="bottom" priority="900" constant="8" id="b3G-yM-M7c"/>
                                     <constraint firstItem="m0d-n5-G8G" firstAttribute="top" secondItem="da6-Zg-1za" secondAttribute="bottom" priority="250" constant="8" id="dwE-Ue-XUN"/>
                                     <constraint firstItem="T4u-Mu-StT" firstAttribute="leading" secondItem="6Wa-oo-HdV" secondAttribute="leading" id="j5G-2F-o9M"/>
                                     <constraint firstAttribute="trailing" secondItem="m0d-n5-G8G" secondAttribute="trailing" id="k5e-DY-47i"/>
@@ -519,6 +519,7 @@
                         <outlet property="navigateToSurvey" destination="Z5F-ok-W3g" id="CK7-4u-v0L"/>
                         <outlet property="questionCard" destination="T4u-Mu-StT" id="q90-Hz-108"/>
                         <outlet property="surveyTextView" destination="xIJ-OD-MWy" id="Qyj-qs-vgY"/>
+                        <outlet property="themeSpace" destination="dwE-Ue-XUN" id="LEj-qh-ARW"/>
                         <segue destination="5nB-sZ-oAG" kind="show" identifier="calculatorSegue" id="N4E-ak-7mJ"/>
                         <segue destination="6gh-xU-VXS" kind="show" identifier="surveySegue" id="qKx-g0-Rxd"/>
                     </connections>
