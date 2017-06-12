@@ -36,7 +36,6 @@ class HomeController: UIViewController {
         initFormatter()
         updateDailySubject()
         moneySavedLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showCalculator)))
-        
         navigateToSurvey.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector (registerQuestion)))
     }
     
@@ -46,8 +45,6 @@ class HomeController: UIViewController {
         updateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         RunLoop.main.add(updateTimer, forMode: RunLoopMode.commonModes)
         
-        displayQuestionCard()
-        setSurveyText()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -59,6 +56,8 @@ class HomeController: UIViewController {
         updateClockTimer()
         updateCalculator()
         updateDailySubject()
+        updateSurveyText()
+        displayQuestionCard()
     }
     
     fileprivate func updateClockTimer(){
@@ -164,7 +163,7 @@ class HomeController: UIViewController {
         questionCard.isHidden = true
     }
     
-    func setSurveyText() {
+    func updateSurveyText() {
         var content = "Har du 10 minutter til å være med på en anonym undersøkelse om app som hjelpetilbud?"
         
         if userInfo.appRegistered == nil {return}
@@ -203,24 +202,27 @@ class HomeController: UIViewController {
             surveyTextView.text = content
             return
         }
-        
     }
     
     func formatTimeRemaining(timeRemaining:Int) ->String{
-        if timeRemaining >= 86400 {
+        if timeRemaining > 86400 {
             let days = timeRemaining / 86400
             if days == 1 {return "1 dag"}
             else {return "\(days) dager"}
         }
-        else if timeRemaining < 86400 && timeRemaining >= 3600 {
+        else if timeRemaining <= 86400 && timeRemaining > 3600 {
             let hours = timeRemaining / 3600
             if hours == 1 {return "1 time"}
             else {return "\(hours) timer"}
         }
-        else if timeRemaining < 3600 {
+        else if timeRemaining <= 3600 && timeRemaining > 60 {
             let minutes = timeRemaining / 60
             if minutes == 1 {return "1 minutt"}
             else {return "\(minutes) minutter"}
+        }
+        else if timeRemaining <= 60 {
+            if timeRemaining == 1 {return "1 sekund"}
+            else {return "\(timeRemaining) sekunder"}
         }
         return ""
     }
