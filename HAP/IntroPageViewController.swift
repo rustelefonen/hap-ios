@@ -99,6 +99,8 @@ class IntroPageViewController: UIPageViewController, UIPageViewControllerDataSou
             userInfo.startDate = startDate.dateWithTimeAsOfNowOf()
         }
         
+        userInfo.appRegistered = Date()
+        
         userInfoDao.save()
         AppDelegate.initUserInfo() //reinit the newly created user
     }

@@ -96,7 +96,8 @@ class UserInfoIntroController: IntroContentViewController, UIPickerViewDataSourc
     }
     
     @IBAction func startProgram(_ sender: AnyObject) {
-        let content = "Dersom du vil bruke appen, må du akseptere vår personvernerklæring."
+        self.performSegue(withIdentifier: PrivacyViewController.storyboardId, sender: nil)
+        /*let content = "Dersom du vil bruke appen, må du akseptere vår personvernerklæring."
         let alert = UIAlertController(title: "Personvernerklæring", message: content, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Les vår erklæring", style: .default, handler: {
             alert in
@@ -113,7 +114,16 @@ class UserInfoIntroController: IntroContentViewController, UIPickerViewDataSourc
         }))
         alert.addAction(UIAlertAction(title: "Avbryt", style: .cancel, handler: nil))
         
-        present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)*/
+    }
+    
+    func startProgramFromPrivacyController() {
+        if self.accepted.isOn {
+            let genderIndex = ResourceList.genders.index(of: self.gender.text!)
+            let genderText = genderIndex != nil ? ResourceList.genderValues[genderIndex!] : ""
+            RemoteUserInfo.postDataToServer(self.age.text, gender: genderText, county: self.state.text, userType: self.userType.text)
+        }
+        (self.parent as? IntroPageViewController)?.finishIntro()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
@@ -149,6 +159,13 @@ class UserInfoIntroController: IntroContentViewController, UIPickerViewDataSourc
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if let picker = textField.inputView as? UIPickerView {
             pickerView(picker, didSelectRow: picker.selectedRow(inComponent: 0), inComponent: 0)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == PrivacyViewController.storyboardId {
+            let destinationVC = segue.destination.childViewControllers.first as? PrivacyViewController
+            destinationVC?.userInfoController = self
         }
     }
 }

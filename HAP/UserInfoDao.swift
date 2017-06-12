@@ -44,12 +44,16 @@ class UserInfoDao: CoreDataDao {
         return NSEntityDescription.insertNewObject(forEntityName: entityName, into: managedObjectContext) as! UserInfo
     }
     
-    func createNewUserInfo(_ age: String?, gender: String?, state: String?, userType: String?, moneySpentPerDayOnHash: Float, startDate: Date) -> UserInfo{
+    func createNewUserInfo(_ age: String?, gender: String?, state: String?, userType: String?, surveyRegistered: Date?, secondSurveyRegistered:Date?, thirdSurveyRegistered:Date?, appRegistered:Date?, moneySpentPerDayOnHash: Float, startDate: Date) -> UserInfo{
         let userInfo = createNewUserInfo()
         userInfo.age = age
         userInfo.gender = gender
         userInfo.geoState = state
         userInfo.userType = userType
+        userInfo.surveyRegistered = surveyRegistered
+        userInfo.secondSurveyRegistered = secondSurveyRegistered
+        userInfo.thirdSurveyRegistered = thirdSurveyRegistered
+        userInfo.appRegistered = appRegistered
         userInfo.moneySpentPerDayOnHash = NSNumber(value: moneySpentPerDayOnHash)
         userInfo.startDate = startDate
         return userInfo

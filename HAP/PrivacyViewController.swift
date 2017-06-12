@@ -11,13 +11,12 @@ import UIKit
 class PrivacyViewController: UIViewController {
     
     static let storyboardId = "privacySegue"
-    
-    
+    var userInfoController : UserInfoIntroController?
     
     @IBOutlet weak var textView: UITextView!
     
     @IBAction func accept(_ sender: UIBarButtonItem) {
-        print(parent?.parent)
+        userInfoController?.startProgramFromPrivacyController()
     }
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {

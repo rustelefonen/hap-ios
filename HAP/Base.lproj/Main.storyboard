@@ -228,7 +228,7 @@
                         <viewControllerLayoutGuide type="top" id="6H1-VN-sFs"/>
                         <viewControllerLayoutGuide type="bottom" id="0jo-Gj-4n9"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="9Ib-cT-rfT">
+                    <view key="view" contentMode="scaleToFill" id="9Ib-cT-rfT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -245,7 +245,13 @@
                             <constraint firstItem="GlP-ha-x0Q" firstAttribute="top" secondItem="9Ib-cT-rfT" secondAttribute="top" id="sRE-Y1-gKK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Spørreundersøkelse" id="ixA-ku-n0J"/>
+                    <navigationItem key="navigationItem" title="Spørreundersøkelse" id="ixA-ku-n0J">
+                        <barButtonItem key="rightBarButtonItem" title="Ferdig" id="jgZ-2X-MK7">
+                            <connections>
+                                <action selector="finishedSurvey:" destination="6gh-xU-VXS" id="W9N-Dt-fgp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="webView" destination="GlP-ha-x0Q" id="bc5-oQ-6yf"/>
                     </connections>
@@ -382,8 +388,8 @@
                                             <constraint firstItem="z1v-v7-ZSu" firstAttribute="height" secondItem="da6-Zg-1za" secondAttribute="height" id="w8q-8G-wb8"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4u-Mu-StT" userLabel="Question Card">
-                                        <rect key="frame" x="0.0" y="226" width="414" height="140"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4u-Mu-StT" userLabel="Question Card">
+                                        <rect key="frame" x="0.0" y="226" width="414" height="160"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ny undersøkelse!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUM-x7-FhP">
                                                 <rect key="frame" x="24" y="14" width="366" height="36"/>
@@ -395,26 +401,35 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Har du 10 minutter til å være med på en anonym undersøkelse om app som hjelpetilbud?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xIJ-OD-MWy">
-                                                <rect key="frame" x="20" y="50" width="350" height="82"/>
+                                                <rect key="frame" x="20" y="50" width="350" height="102"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Undersøkelse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5F-ok-W3g">
+                                                <rect key="frame" x="24" y="131" width="366" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="xIJ-OD-MWy" firstAttribute="bottom" secondItem="T4u-Mu-StT" secondAttribute="bottomMargin" id="ECS-HM-MMd"/>
+                                            <constraint firstItem="Z5F-ok-W3g" firstAttribute="top" secondItem="xIJ-OD-MWy" secondAttribute="bottom" constant="-21" id="OZm-R6-nue"/>
                                             <constraint firstAttribute="trailing" secondItem="xIJ-OD-MWy" secondAttribute="trailing" constant="44" id="WpH-M3-d5Q"/>
                                             <constraint firstItem="EUM-x7-FhP" firstAttribute="leading" secondItem="T4u-Mu-StT" secondAttribute="leading" constant="24" id="X8Q-v2-E6O"/>
+                                            <constraint firstAttribute="trailing" secondItem="Z5F-ok-W3g" secondAttribute="trailing" constant="24" id="XM8-ia-h2h"/>
+                                            <constraint firstItem="Z5F-ok-W3g" firstAttribute="leading" secondItem="T4u-Mu-StT" secondAttribute="leading" constant="24" id="aeS-91-9Ex"/>
                                             <constraint firstItem="xIJ-OD-MWy" firstAttribute="top" secondItem="EUM-x7-FhP" secondAttribute="bottom" id="hsm-Ia-WQE"/>
                                             <constraint firstItem="xIJ-OD-MWy" firstAttribute="leading" secondItem="T4u-Mu-StT" secondAttribute="leading" constant="20" id="lC5-Zu-j81"/>
-                                            <constraint firstAttribute="height" constant="140" id="tXj-dU-bbD"/>
+                                            <constraint firstAttribute="height" constant="160" id="tXj-dU-bbD"/>
                                             <constraint firstItem="EUM-x7-FhP" firstAttribute="top" secondItem="T4u-Mu-StT" secondAttribute="top" constant="14" id="vB3-Fb-6MP"/>
                                             <constraint firstAttribute="trailing" secondItem="EUM-x7-FhP" secondAttribute="trailing" constant="24" id="zQ7-mT-COs"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0d-n5-G8G" userLabel="Reflection Card">
-                                        <rect key="frame" x="0.0" y="374" width="414" height="127"/>
+                                        <rect key="frame" x="0.0" y="394" width="414" height="127"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dagens tema" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugx-w0-AAB">
                                                 <rect key="frame" x="24" y="16" width="374" height="36"/>
@@ -452,7 +467,8 @@
                                     <constraint firstItem="T4u-Mu-StT" firstAttribute="top" secondItem="da6-Zg-1za" secondAttribute="bottom" constant="8" id="TOR-JW-R4u"/>
                                     <constraint firstAttribute="trailing" secondItem="zFb-E4-d0P" secondAttribute="trailing" id="TtL-9m-rXG"/>
                                     <constraint firstAttribute="bottom" secondItem="m0d-n5-G8G" secondAttribute="bottom" constant="16" id="Zf9-2g-cZh"/>
-                                    <constraint firstItem="m0d-n5-G8G" firstAttribute="top" secondItem="T4u-Mu-StT" secondAttribute="bottom" constant="8" id="b3G-yM-M7c"/>
+                                    <constraint firstItem="m0d-n5-G8G" firstAttribute="top" secondItem="T4u-Mu-StT" secondAttribute="bottom" priority="999" constant="8" id="b3G-yM-M7c"/>
+                                    <constraint firstItem="m0d-n5-G8G" firstAttribute="top" secondItem="da6-Zg-1za" secondAttribute="bottom" priority="250" constant="8" id="dwE-Ue-XUN"/>
                                     <constraint firstItem="T4u-Mu-StT" firstAttribute="leading" secondItem="6Wa-oo-HdV" secondAttribute="leading" id="j5G-2F-o9M"/>
                                     <constraint firstAttribute="trailing" secondItem="m0d-n5-G8G" secondAttribute="trailing" id="k5e-DY-47i"/>
                                     <constraint firstItem="zFb-E4-d0P" firstAttribute="leading" secondItem="6Wa-oo-HdV" secondAttribute="leading" id="qDK-yn-MM8"/>
@@ -500,14 +516,16 @@
                         <outlet property="contentTextView" destination="c37-jl-3kr" id="RiN-Tg-OLU"/>
                         <outlet property="header" destination="1ut-QY-Mhl" id="2qk-C9-jyi"/>
                         <outlet property="moneySavedLabel" destination="z1v-v7-ZSu" id="PNn-UZ-Ukj"/>
+                        <outlet property="navigateToSurvey" destination="Z5F-ok-W3g" id="CK7-4u-v0L"/>
                         <outlet property="questionCard" destination="T4u-Mu-StT" id="q90-Hz-108"/>
+                        <outlet property="surveyTextView" destination="xIJ-OD-MWy" id="Qyj-qs-vgY"/>
                         <segue destination="5nB-sZ-oAG" kind="show" identifier="calculatorSegue" id="N4E-ak-7mJ"/>
                         <segue destination="6gh-xU-VXS" kind="show" identifier="surveySegue" id="qKx-g0-Rxd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L5Y-K3-U6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11042" y="-8717"/>
+            <point key="canvasLocation" x="-11042.028985507248" y="-8717.1195652173919"/>
         </scene>
         <!--Intro Page View Controller-->
         <scene sceneID="gNf-Gp-upT">
@@ -1343,7 +1361,7 @@ Kildekoden til appen og datainnsendingen ligger åpen på Github under brukeren 
         <scene sceneID="qbe-M2-dsd">
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="INs-DE-aSz" customClass="FormController" customModule="HAP" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="JmH-Cl-A1S">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="JmH-Cl-A1S">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.92000001668930054" green="0.92000001668930054" blue="0.92000001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2550,7 +2568,7 @@ metabolitter</string>
         <scene sceneID="0yt-5y-AwS">
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="Auz-Pd-yJC" customClass="AllAchievementsTableController" customModule="HAP" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="0tk-W6-RXZ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="0tk-W6-RXZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.92000001668930054" green="0.92000001668930054" blue="0.92000001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

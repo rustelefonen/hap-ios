@@ -15,6 +15,10 @@ class UserInfo: NSManagedObject {
     @NSManaged var gender: String?
     @NSManaged var geoState: String?
     @NSManaged var userType: String?
+    @NSManaged var surveyRegistered: Date?
+    @NSManaged var appRegistered: Date?
+    @NSManaged var secondSurveyRegistered: Date?
+    @NSManaged var thirdSurveyRegistered: Date?
     
     @NSManaged var moneySpentPerDayOnHash: NSNumber
     @NSManaged var startDate: Date

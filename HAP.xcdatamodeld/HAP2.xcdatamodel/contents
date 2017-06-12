@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="1">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16D32" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="1">
     <entity name="Achievement" representedClassName=".Achievement" syncable="YES">
         <attribute name="category" attributeType="String" defaultValueString="Milestone" syncable="YES"/>
         <attribute name="info" attributeType="String" syncable="YES"/>
@@ -27,12 +27,16 @@
     </entity>
     <entity name="UserInfo" representedClassName=".UserInfo" syncable="YES">
         <attribute name="age" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="appRegistered" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="geoState" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="moneySpentPerDayOnHash" attributeType="Float" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="secondsLastedBeforeLastReset" attributeType="Double" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="secondSurveyRegistered" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="startDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="surveyRegistered" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="thirdSurveyRegistered" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="userType" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="resistedTriggers" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="UserTrigger" inverseName="resistedUser" inverseEntity="UserTrigger" syncable="YES"/>
         <relationship name="smokedTriggers" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="UserTrigger" inverseName="smokedUser" inverseEntity="UserTrigger" syncable="YES"/>
@@ -50,7 +54,7 @@
         <element name="HelpInfo" positionX="-54" positionY="-90" width="128" height="90"/>
         <element name="HelpInfoCategory" positionX="178" positionY="-108" width="128" height="120"/>
         <element name="Trigger" positionX="-182" positionY="234" width="128" height="120"/>
-        <element name="UserInfo" positionX="-227" positionY="-90" width="128" height="195"/>
+        <element name="UserInfo" positionX="-227" positionY="-90" width="128" height="255"/>
         <element name="UserTrigger" positionX="-360" positionY="234" width="128" height="135"/>
     </elements>
 </model>

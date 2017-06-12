@@ -25,6 +25,9 @@ class HomeController: UIViewController {
     @IBOutlet weak var moneySavedLabel: UILabel!
     @IBOutlet weak var questionCard: UIView!
     
+    @IBOutlet weak var navigateToSurvey: UILabel!
+    @IBOutlet weak var surveyTextView: UITextView!
+    
     let formatter = NumberFormatter()
     var updateTimer:Timer!
     
@@ -34,7 +37,7 @@ class HomeController: UIViewController {
         updateDailySubject()
         moneySavedLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showCalculator)))
         
-        questionCard.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector (registerQuestion)))
+        navigateToSurvey.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector (registerQuestion)))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,6 +45,9 @@ class HomeController: UIViewController {
         update()
         updateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         RunLoop.main.add(updateTimer, forMode: RunLoopMode.commonModes)
+        
+        displayQuestionCard()
+        setSurveyText()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -84,19 +90,9 @@ class HomeController: UIViewController {
     }
     
     func registerQuestion() {
-        let alert = UIAlertController(title: "Vil du?", message: "Det er anonymt", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ja", style: UIAlertActionStyle.default, handler: { alert in
-            
-            
-            self.performSegue(withIdentifier: "surveySegue", sender: "https://no.surveymonkey.com/r/VC9RY62")
-        }))
-        alert.addAction(UIAlertAction(title: "Avbryt", style: UIAlertActionStyle.default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Nei, ikke vis igjen", style: UIAlertActionStyle.destructive, handler: { alert in
-            print("ikke igjen")
-        }))
-        self.present(alert, animated: true, completion: nil)
-        
-        
+        if let currentSurvey = getCurrentSurvey() {
+            self.performSegue(withIdentifier: "surveySegue", sender: currentSurvey)
+        }
     }
     
     fileprivate func getFormattedCurrencyString() -> String{
@@ -112,7 +108,146 @@ class HomeController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! SurveyController
-        destinationVC.url = sender as! String
+        if segue.identifier == SurveyController.segueId {
+            let destinationVC = segue.destination as! SurveyController
+            
+            let userInfoDao = UserInfoDao()
+            let currentSurvey = sender as! Int
+            if currentSurvey == 0 && userInfo.surveyRegistered == nil {
+                destinationVC.url = "https://no.surveymonkey.com/r/VC9RY62"
+                userInfo.surveyRegistered = Date()
+                userInfoDao.save()
+                AppDelegate.initUserInfo()
+            }
+            else if currentSurvey == 1 && userInfo.surveyRegistered != nil && userInfo.secondSurveyRegistered == nil{
+                destinationVC.url = "https://no.surveymonkey.com/r/2RZ29SM"
+                userInfo.secondSurveyRegistered = Date()
+                userInfoDao.save()
+                AppDelegate.initUserInfo()
+            }
+            else if currentSurvey == 2 && userInfo.surveyRegistered != nil && userInfo.thirdSurveyRegistered == nil{
+                destinationVC.url = "https://no.surveymonkey.com/r/SGKKT2R"
+                userInfo.thirdSurveyRegistered = Date()
+                userInfoDao.save()
+                AppDelegate.initUserInfo()
+            }
+        }
+    }
+    
+    func displayQuestionCard() {
+        if userInfo.appRegistered == nil {
+            questionCard.isHidden = true
+            return
+        }
+        let firstSurveyBegin = userInfo.appRegistered!
+        let firstSurveyEnd = Calendar.current.date(byAdding: .day, value: 7, to: firstSurveyBegin)!
+        let now = Date()
+        
+        let firstDateRegistered = userInfo.surveyRegistered
+        if firstDateRegistered == nil {
+            if now >= firstSurveyBegin && now < firstSurveyEnd  {questionCard.isHidden = false}
+            else {questionCard.isHidden = true}
+            return
+        }
+        
+        if userInfo.secondSurveyRegistered == nil || userInfo.thirdSurveyRegistered == nil {
+            let secondDate = Calendar.current.date(byAdding: .day, value: 56, to: firstDateRegistered!)!
+            let secondDateEnd = Calendar.current.date(byAdding: .day, value: 66, to: firstDateRegistered!)!
+            let thirdDate = Calendar.current.date(byAdding: .day, value: 280, to: firstDateRegistered!)!
+            let thirdDateEnd = Calendar.current.date(byAdding: .day, value: 290, to: firstDateRegistered!)!
+            
+            if (now >= secondDate && now < secondDateEnd) || (now >= thirdDate && now < thirdDateEnd) {
+                questionCard.isHidden = false
+                return
+            }
+        }
+        questionCard.isHidden = true
+    }
+    
+    func setSurveyText() {
+        var content = "Har du 10 minutter til å være med på en anonym undersøkelse om app som hjelpetilbud?"
+        
+        if userInfo.appRegistered == nil {return}
+        
+        let firstSurveyBegin = userInfo.appRegistered!
+        let firstSurveyEnd = Calendar.current.date(byAdding: .day, value: 7, to: firstSurveyBegin)!
+        let now = Date()
+        
+        let firstDateRegistered = userInfo.surveyRegistered
+        if firstDateRegistered == nil {
+            if now >= firstSurveyBegin && now < firstSurveyEnd  {
+                let timeRemaining = Calendar.current.dateComponents([.second], from: now, to: firstSurveyEnd).second ?? 0
+                content += " Undersøkelsen er åpen i \(formatTimeRemaining(timeRemaining: timeRemaining)) til."
+                surveyTextView.text = content
+                return
+            }
+            else {return}
+        }
+        
+        let secondDate = Calendar.current.date(byAdding: .day, value: 56, to: firstDateRegistered!)!
+        let secondDateEnd = Calendar.current.date(byAdding: .day, value: 66, to: firstDateRegistered!)!
+        
+        if now >= secondDate && now < secondDateEnd {
+            let timeRemaining = Calendar.current.dateComponents([.second], from: now, to: secondDateEnd).second ?? 0
+            content += " Undersøkelsen er åpen i \(formatTimeRemaining(timeRemaining: timeRemaining)) til."
+            surveyTextView.text = content
+            return
+        }
+        
+        let thirdDate = Calendar.current.date(byAdding: .day, value: 280, to: firstDateRegistered!)!
+        let thirdDateEnd = Calendar.current.date(byAdding: .day, value: 290, to: firstDateRegistered!)!
+        
+        if now >= thirdDate && now < thirdDateEnd {
+            let timeRemaining = Calendar.current.dateComponents([.second], from: now, to: thirdDateEnd).second ?? 0
+            content += " Undersøkelsen er åpen i \(formatTimeRemaining(timeRemaining: timeRemaining)) til."
+            surveyTextView.text = content
+            return
+        }
+        
+    }
+    
+    func formatTimeRemaining(timeRemaining:Int) ->String{
+        if timeRemaining >= 86400 {
+            let days = timeRemaining / 86400
+            if days == 1 {return "1 dag"}
+            else {return "\(days) dager"}
+        }
+        else if timeRemaining < 86400 && timeRemaining >= 3600 {
+            let hours = timeRemaining / 3600
+            if hours == 1 {return "1 time"}
+            else {return "\(hours) timer"}
+        }
+        else if timeRemaining < 3600 {
+            let minutes = timeRemaining / 60
+            if minutes == 1 {return "1 minutt"}
+            else {return "\(minutes) minutter"}
+        }
+        return ""
+    }
+    
+    func getCurrentSurvey() -> Int? {
+        if userInfo.appRegistered == nil {return nil}
+        
+        let firstSurveyBegin = userInfo.appRegistered!
+        let firstSurveyEnd = Calendar.current.date(byAdding: .day, value: 7, to: firstSurveyBegin)!
+        let now = Date()
+        
+        let firstDateRegistered = userInfo.surveyRegistered
+        if firstDateRegistered == nil {
+            if now >= firstSurveyBegin && now < firstSurveyEnd  {return 0}
+            else {return nil}
+        }
+        
+        let secondDate = Calendar.current.date(byAdding: .day, value: 56, to: firstDateRegistered!)!
+        let secondDateEnd = Calendar.current.date(byAdding: .day, value: 66, to: firstDateRegistered!)!
+        
+        if now >= secondDate && now < secondDateEnd {return 1}
+        
+        let thirdDate = Calendar.current.date(byAdding: .day, value: 280, to: firstDateRegistered!)!
+        let thirdDateEnd = Calendar.current.date(byAdding: .day, value: 290, to: firstDateRegistered!)!
+        
+        if now >= thirdDate && now < thirdDateEnd {return 2}
+        
+        return nil
     }
 }
