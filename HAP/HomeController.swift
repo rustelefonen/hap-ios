@@ -32,6 +32,8 @@ class HomeController: UIViewController {
     let formatter = NumberFormatter()
     var updateTimer:Timer!
     
+    static let hasRegisteredSurvey = "hasRegisteredSurvey"
+    
     override func viewDidLoad() {
         userInfo = AppDelegate.getUserInfo()
         initFormatter()
@@ -114,39 +116,36 @@ class HomeController: UIViewController {
             let userInfoDao = UserInfoDao()
             let currentSurvey = sender as! Int
             if currentSurvey == 0 && userInfo.surveyRegistered == nil {
-                createNewSurveyAchievement(title: "Første undersøkelse utført!", info: "Første undersøkelse gjennomført, takk for at du deltok!")
+                
+                if UserDefaults.standard.bool(forKey: HomeController.hasRegisteredSurvey) {return}
+                
+                createNewSurveyAchievement(title: ResourceList.surveyAchievementTitles[currentSurvey], info: ResourceList.surveyAchievmentInfos[currentSurvey])
                 scheduleSurveyNotifications()
                 destinationVC.url = ResourceList.surveys[currentSurvey]
-                
                 userInfo.surveyRegistered = Date()
                 userInfoDao.save()
                 AppDelegate.initUserInfo()
                 
-                SwiftEventBus.post(AchievementsTableController.RELOAD_ACHIEVEMENTS_EVENT)
+                UserDefaults.standard.set(true, forKey: HomeController.hasRegisteredSurvey)
             }
             else if currentSurvey == 1 && userInfo.surveyRegistered != nil && userInfo.secondSurveyRegistered == nil{
-                createNewSurveyAchievement(title: "Andre undersøkelse utført!", info: "Andre undersøkelse gjennomført, takk for at du deltok!")
+                createNewSurveyAchievement(title: ResourceList.surveyAchievementTitles[currentSurvey], info: ResourceList.surveyAchievmentInfos[currentSurvey])
                 destinationVC.url = ResourceList.surveys[currentSurvey]
                 userInfo.secondSurveyRegistered = Date()
                 userInfoDao.save()
                 AppDelegate.initUserInfo()
-                
-                SwiftEventBus.post(AchievementsTableController.RELOAD_ACHIEVEMENTS_EVENT)
             }
             else if currentSurvey == 2 && userInfo.surveyRegistered != nil && userInfo.thirdSurveyRegistered == nil{
-                createNewSurveyAchievement(title: "Tredje undersøkelse utført!", info: "Tredje undersøkelse gjennomført, takk for at du deltok!")
+                createNewSurveyAchievement(title: ResourceList.surveyAchievementTitles[currentSurvey], info: ResourceList.surveyAchievmentInfos[currentSurvey])
                 destinationVC.url = ResourceList.surveys[currentSurvey]
                 userInfo.thirdSurveyRegistered = Date()
                 userInfoDao.save()
                 AppDelegate.initUserInfo()
-                
-                SwiftEventBus.post(AchievementsTableController.RELOAD_ACHIEVEMENTS_EVENT)
             }
         }
     }
     
     func createNewSurveyAchievement(title:String, info:String) {
-        print("adding \(title)")
         let achievementDao = AchievementDao()
         let firstAchievement = achievementDao.createNewAchievement()
         firstAchievement.title = title
@@ -154,24 +153,25 @@ class HomeController: UIViewController {
         firstAchievement.pointsRequired = 1
         firstAchievement.category = Achievement.Category.Milestone.rawValue
         achievementDao.save()
+        SwiftEventBus.post(AchievementsTableController.RELOAD_ACHIEVEMENTS_EVENT)
     }
     
     func scheduleSurveyNotifications() {
+        let notificationTitle = "Ny undersøkelse!"
         let now = Date()
         let secondDate = Calendar.current.date(byAdding: .day, value: 56, to: now)!
         let thirdDate = Calendar.current.date(byAdding: .day, value: 280, to: now)!
         
         var badgeNumber = UIApplication.shared.applicationIconBadgeNumber
         badgeNumber += 1
-        NotificationHandler.scheduleNotification(secondDate, alertBody: "Ny undersøkelse!", badgeNumber: badgeNumber)
+        NotificationHandler.scheduleNotification(secondDate, alertBody: notificationTitle, badgeNumber: badgeNumber)
         badgeNumber += 1
-        NotificationHandler.scheduleNotification(thirdDate, alertBody: "Ny undersøkelse!", badgeNumber: badgeNumber)
+        NotificationHandler.scheduleNotification(thirdDate, alertBody: notificationTitle, badgeNumber: badgeNumber)
     }
     
     func displayQuestionCard() {
         if userInfo.appRegistered == nil {
-            questionCard.isHidden = true
-            themeSpace.priority = 950
+            hideSurveyCard()
             return
         }
         let firstSurveyBegin = userInfo.appRegistered!
@@ -181,13 +181,10 @@ class HomeController: UIViewController {
         let firstDateRegistered = userInfo.surveyRegistered
         if firstDateRegistered == nil {
             if now >= firstSurveyBegin && now < firstSurveyEnd  {
-                questionCard.isHidden = false
-                themeSpace.priority = 250
+                if !UserDefaults.standard.bool(forKey: HomeController.hasRegisteredSurvey) {showSurveyCard()}
+                else {hideSurveyCard()}
             }
-            else {
-                questionCard.isHidden = true
-                themeSpace.priority = 950
-            }
+            else {hideSurveyCard()}
             return
         }
         
@@ -196,8 +193,7 @@ class HomeController: UIViewController {
             let secondDateEnd = Calendar.current.date(byAdding: .day, value: 66, to: firstDateRegistered!)!
             
             if now >= secondDate && now < secondDateEnd {
-                questionCard.isHidden = false
-                themeSpace.priority = 250
+                showSurveyCard()
                 return
             }
         }
@@ -207,14 +203,21 @@ class HomeController: UIViewController {
             let thirdDateEnd = Calendar.current.date(byAdding: .day, value: 290, to: firstDateRegistered!)!
             
             if now >= thirdDate && now < thirdDateEnd {
-                questionCard.isHidden = false
-                themeSpace.priority = 250
+                showSurveyCard()
                 return
             }
         }
+        hideSurveyCard()
+    }
+    
+    func hideSurveyCard() {
         questionCard.isHidden = true
         themeSpace.priority = 950
-        
+    }
+    
+    func showSurveyCard() {
+        questionCard.isHidden = false
+        themeSpace.priority = 250
     }
     
     func updateSurveyText() {
@@ -230,7 +233,7 @@ class HomeController: UIViewController {
         if firstDateRegistered == nil {
             if now >= firstSurveyBegin && now < firstSurveyEnd  {
                 let timeRemaining = Calendar.current.dateComponents([.second], from: now, to: firstSurveyEnd).second ?? 0
-                content += " Undersøkelsen er åpen i \(formatTimeRemaining(timeRemaining: timeRemaining)) til."
+                content += " Undersøkelsen er åpen i \(formatTimeRemaining(secondsRemaining: timeRemaining)) til."
                 surveyTextView.text = content
                 return
             }
@@ -244,7 +247,7 @@ class HomeController: UIViewController {
         
         if now >= secondDate && now < secondDateEnd {
             let timeRemaining = Calendar.current.dateComponents([.second], from: now, to: secondDateEnd).second ?? 0
-            content += " Undersøkelsen er åpen i \(formatTimeRemaining(timeRemaining: timeRemaining)) til."
+            content += " Undersøkelsen er åpen i \(formatTimeRemaining(secondsRemaining: timeRemaining)) til."
             surveyTextView.text = content
             return
         }
@@ -254,31 +257,31 @@ class HomeController: UIViewController {
         
         if now >= thirdDate && now < thirdDateEnd {
             let timeRemaining = Calendar.current.dateComponents([.second], from: now, to: thirdDateEnd).second ?? 0
-            content += " Undersøkelsen er åpen i \(formatTimeRemaining(timeRemaining: timeRemaining)) til."
+            content += " Undersøkelsen er åpen i \(formatTimeRemaining(secondsRemaining: timeRemaining)) til."
             surveyTextView.text = content
             return
         }
     }
     
-    func formatTimeRemaining(timeRemaining:Int) ->String{
-        if timeRemaining > 86400 {
-            let days = timeRemaining / 86400
+    func formatTimeRemaining(secondsRemaining:Int) ->String{
+        if secondsRemaining > 86400 {
+            let days = secondsRemaining / 86400
             if days == 1 {return "1 dag"}
             else {return "\(days) dager"}
         }
-        else if timeRemaining <= 86400 && timeRemaining > 3600 {
-            let hours = timeRemaining / 3600
+        else if secondsRemaining <= 86400 && secondsRemaining > 3600 {
+            let hours = secondsRemaining / 3600
             if hours == 1 {return "1 time"}
             else {return "\(hours) timer"}
         }
-        else if timeRemaining <= 3600 && timeRemaining > 60 {
-            let minutes = timeRemaining / 60
+        else if secondsRemaining <= 3600 && secondsRemaining > 60 {
+            let minutes = secondsRemaining / 60
             if minutes == 1 {return "1 minutt"}
             else {return "\(minutes) minutter"}
         }
-        else if timeRemaining <= 60 {
-            if timeRemaining == 1 {return "1 sekund"}
-            else {return "\(timeRemaining) sekunder"}
+        else if secondsRemaining <= 60 {
+            if secondsRemaining == 1 {return "1 sekund"}
+            else {return "\(secondsRemaining) sekunder"}
         }
         return ""
     }

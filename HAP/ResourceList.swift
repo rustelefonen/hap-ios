@@ -14,6 +14,8 @@ struct ResourceList {
     static let userTypes = ["Jeg bruker cannabis", "Jeg er helsepersonell", "Jeg er pårørende"]
     
     static let surveys = ["https://no.surveymonkey.com/r/VC9RY62", "https://no.surveymonkey.com/r/2RZ29SM", "https://no.surveymonkey.com/r/SGKKT2R"]
+    static let surveyAchievementTitles = ["Første undersøkelse utført!", "Andre undersøkelse utført!", "Tredje undersøkelse utført!"]
+    static let surveyAchievmentInfos = ["Første undersøkelse gjennomført, takk for at du deltok!", "Andre undersøkelse gjennomført, takk for at du deltok!", "Tredje undersøkelse gjennomført, takk for at du deltok!"]
 
     static let triggers = [
         TriggerStruct(title: "Mett", imageName: "AfterMeal", color: 0xfac174FF),
