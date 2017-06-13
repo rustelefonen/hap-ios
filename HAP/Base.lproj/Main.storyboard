@@ -750,8 +750,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IBK-E9-TLj">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IBK-E9-TLj">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" red="0.28958413004875183" green="0.31462949514389038" blue="0.32950475811958313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
@@ -1645,8 +1645,8 @@ Kildekoden til appen og datainnsendingen ligger åpen på Github under brukeren 
                         <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="efv-26-Jjl">
-                                <rect key="frame" x="20" y="72" width="560" height="459"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="efv-26-Jjl">
+                                <rect key="frame" x="20" y="72" width="374" height="595"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1695,18 +1695,18 @@ Kildekoden til appen og datainnsendingen ligger åpen på Github under brukeren 
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kg7-h9-kHz">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kg7-h9-kHz">
+                                <rect key="frame" x="0.0" y="64" width="414" height="628"/>
                                 <subviews>
-                                    <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" sceneName="" allowsCameraControl="YES" wantsMultisampling="YES" autoenablesDefaultLighting="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nkw-sa-T8v">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="331"/>
+                                    <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" sceneName="" allowsCameraControl="YES" wantsMultisampling="YES" autoenablesDefaultLighting="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nkw-sa-T8v">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666669"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </sceneKitView>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xdM-yg-CD7">
-                                        <rect key="frame" x="0.0" y="341" width="600" height="115"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdM-yg-CD7">
+                                        <rect key="frame" x="0.0" y="451.66666666666663" width="414" height="115"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" misplaced="YES" text="Trykk på en hjernedel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56g-iy-x0x">
-                                                <rect key="frame" x="16" y="16" width="568" height="25"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Trykk på en hjernedel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56g-iy-x0x">
+                                                <rect key="frame" x="16" y="16" width="382" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="h0z-PQ-jVn"/>
                                                 </constraints>
@@ -1714,8 +1714,8 @@ Kildekoden til appen og datainnsendingen ligger åpen på Github under brukeren 
                                                 <color key="textColor" red="1" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" editable="NO" text="Trykk på en hjernedel for å se litt informasjon om den, og hvordan THC påvirker din hjerne." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VaZ-jt-5he">
-                                                <rect key="frame" x="12" y="49" width="572" height="50"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Trykk på en hjernedel for å se litt informasjon om den, og hvordan THC påvirker din hjerne." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VaZ-jt-5he">
+                                                <rect key="frame" x="12" y="49" width="386" height="49.666666666666742"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1796,8 +1796,8 @@ Kildekoden til appen og datainnsendingen ligger åpen på Github under brukeren 
                                     <rect key="frame" x="0.0" y="0.0" width="381" height="51"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sw-ZD-JLw">
-                                            <rect key="frame" x="22" y="6" width="545" height="39"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sw-ZD-JLw">
+                                            <rect key="frame" x="22" y="6" width="359" height="39"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="39" id="HsM-o2-kIH"/>
                                             </constraints>
@@ -1805,8 +1805,8 @@ Kildekoden til appen og datainnsendingen ligger åpen på Github under brukeren 
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="redarrow" translatesAutoresizingMaskIntoConstraints="NO" id="9YA-xS-qm2">
-                                            <rect key="frame" x="571" y="19" width="13" height="13"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redarrow" translatesAutoresizingMaskIntoConstraints="NO" id="9YA-xS-qm2">
+                                            <rect key="frame" x="385" y="19" width="13" height="13"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="13" id="aad-m1-Mtv"/>
                                                 <constraint firstAttribute="height" constant="13" id="yTs-yI-boA"/>
@@ -1855,8 +1855,8 @@ Kildekoden til appen og datainnsendingen ligger åpen på Github under brukeren 
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wvh-oB-gvZ">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wvh-oB-gvZ">
+                                <rect key="frame" x="0.0" y="64" width="414" height="628"/>
                                 <color key="backgroundColor" red="0.93999999761581421" green="0.93999999761581421" blue="0.93999999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
@@ -2526,7 +2526,7 @@ metabolitter</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYJ-Lg-shi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11041" y="-9459"/>
+            <point key="canvasLocation" x="-10741" y="-9459"/>
         </scene>
         <!--Prestasjoner-->
         <scene sceneID="y3U-nX-kek">

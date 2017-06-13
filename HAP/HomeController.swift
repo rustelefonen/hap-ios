@@ -91,7 +91,7 @@ class HomeController: UIViewController {
     
     func registerQuestion() {
         if let currentSurvey = getCurrentSurvey() {
-            self.performSegue(withIdentifier: "surveySegue", sender: currentSurvey)
+            self.performSegue(withIdentifier: SurveyController.segueId, sender: currentSurvey)
         }
     }
     
@@ -116,7 +116,7 @@ class HomeController: UIViewController {
             if currentSurvey == 0 && userInfo.surveyRegistered == nil {
                 createNewSurveyAchievement(title: "Første undersøkelse utført!", info: "Første undersøkelse gjennomført, takk for at du deltok!")
                 scheduleSurveyNotifications()
-                destinationVC.url = "https://no.surveymonkey.com/r/VC9RY62"
+                destinationVC.url = ResourceList.surveys[currentSurvey]
                 
                 userInfo.surveyRegistered = Date()
                 userInfoDao.save()
@@ -126,7 +126,7 @@ class HomeController: UIViewController {
             }
             else if currentSurvey == 1 && userInfo.surveyRegistered != nil && userInfo.secondSurveyRegistered == nil{
                 createNewSurveyAchievement(title: "Andre undersøkelse utført!", info: "Andre undersøkelse gjennomført, takk for at du deltok!")
-                destinationVC.url = "https://no.surveymonkey.com/r/2RZ29SM"
+                destinationVC.url = ResourceList.surveys[currentSurvey]
                 userInfo.secondSurveyRegistered = Date()
                 userInfoDao.save()
                 AppDelegate.initUserInfo()
@@ -135,7 +135,7 @@ class HomeController: UIViewController {
             }
             else if currentSurvey == 2 && userInfo.surveyRegistered != nil && userInfo.thirdSurveyRegistered == nil{
                 createNewSurveyAchievement(title: "Tredje undersøkelse utført!", info: "Tredje undersøkelse gjennomført, takk for at du deltok!")
-                destinationVC.url = "https://no.surveymonkey.com/r/SGKKT2R"
+                destinationVC.url = ResourceList.surveys[currentSurvey]
                 userInfo.thirdSurveyRegistered = Date()
                 userInfoDao.save()
                 AppDelegate.initUserInfo()
@@ -191,13 +191,22 @@ class HomeController: UIViewController {
             return
         }
         
-        if userInfo.secondSurveyRegistered == nil || userInfo.thirdSurveyRegistered == nil {
+        if userInfo.secondSurveyRegistered == nil {
             let secondDate = Calendar.current.date(byAdding: .day, value: 56, to: firstDateRegistered!)!
             let secondDateEnd = Calendar.current.date(byAdding: .day, value: 66, to: firstDateRegistered!)!
+            
+            if now >= secondDate && now < secondDateEnd {
+                questionCard.isHidden = false
+                themeSpace.priority = 250
+                return
+            }
+        }
+        
+        if userInfo.thirdSurveyRegistered == nil {
             let thirdDate = Calendar.current.date(byAdding: .day, value: 280, to: firstDateRegistered!)!
             let thirdDateEnd = Calendar.current.date(byAdding: .day, value: 290, to: firstDateRegistered!)!
             
-            if (now >= secondDate && now < secondDateEnd) || (now >= thirdDate && now < thirdDateEnd) {
+            if now >= thirdDate && now < thirdDateEnd {
                 questionCard.isHidden = false
                 themeSpace.priority = 250
                 return

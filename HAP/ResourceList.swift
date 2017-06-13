@@ -12,6 +12,8 @@ struct ResourceList {
     static let genderValues = ["MALE", "FEMALE", "OTHER"]
     static let counties = ["Akershus", "Aust-Agder", "Buskerud", "Finnmark", "Hedmark", "Hordaland", "Møre og Romsdal", "Nord-Trøndelag", "Nordland", "Oppland", "Oslo", "Rogaland", "Sogn og Fjordane", "Sør-Trøndelag", "Telemark", "Troms", "Vest-Agder", "Vestfold", "Østfold"]
     static let userTypes = ["Jeg bruker cannabis", "Jeg er helsepersonell", "Jeg er pårørende"]
+    
+    static let surveys = ["https://no.surveymonkey.com/r/VC9RY62", "https://no.surveymonkey.com/r/2RZ29SM", "https://no.surveymonkey.com/r/SGKKT2R"]
 
     static let triggers = [
         TriggerStruct(title: "Mett", imageName: "AfterMeal", color: 0xfac174FF),
