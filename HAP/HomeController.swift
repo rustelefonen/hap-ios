@@ -114,24 +114,58 @@ class HomeController: UIViewController {
             let userInfoDao = UserInfoDao()
             let currentSurvey = sender as! Int
             if currentSurvey == 0 && userInfo.surveyRegistered == nil {
+                createNewSurveyAchievement(title: "Første undersøkelse utført!", info: "Første undersøkelse gjennomført, takk for at du deltok!")
+                scheduleSurveyNotifications()
                 destinationVC.url = "https://no.surveymonkey.com/r/VC9RY62"
+                
                 userInfo.surveyRegistered = Date()
                 userInfoDao.save()
                 AppDelegate.initUserInfo()
+                
+                SwiftEventBus.post(AchievementsTableController.RELOAD_ACHIEVEMENTS_EVENT)
             }
             else if currentSurvey == 1 && userInfo.surveyRegistered != nil && userInfo.secondSurveyRegistered == nil{
+                createNewSurveyAchievement(title: "Andre undersøkelse utført!", info: "Andre undersøkelse gjennomført, takk for at du deltok!")
                 destinationVC.url = "https://no.surveymonkey.com/r/2RZ29SM"
                 userInfo.secondSurveyRegistered = Date()
                 userInfoDao.save()
                 AppDelegate.initUserInfo()
+                
+                SwiftEventBus.post(AchievementsTableController.RELOAD_ACHIEVEMENTS_EVENT)
             }
             else if currentSurvey == 2 && userInfo.surveyRegistered != nil && userInfo.thirdSurveyRegistered == nil{
+                createNewSurveyAchievement(title: "Tredje undersøkelse utført!", info: "Tredje undersøkelse gjennomført, takk for at du deltok!")
                 destinationVC.url = "https://no.surveymonkey.com/r/SGKKT2R"
                 userInfo.thirdSurveyRegistered = Date()
                 userInfoDao.save()
                 AppDelegate.initUserInfo()
+                
+                SwiftEventBus.post(AchievementsTableController.RELOAD_ACHIEVEMENTS_EVENT)
             }
         }
+    }
+    
+    func createNewSurveyAchievement(title:String, info:String) {
+        print("adding \(title)")
+        let achievementDao = AchievementDao()
+        let firstAchievement = achievementDao.createNewAchievement()
+        firstAchievement.title = title
+        firstAchievement.info = info
+        firstAchievement.pointsRequired = 1
+        firstAchievement.category = Achievement.Category.Milestone.rawValue
+        achievementDao.save()
+    }
+    
+    func scheduleSurveyNotifications() {
+        let now = Date()
+        let secondDate = Calendar.current.date(byAdding: .day, value: 56, to: now)!
+        let thirdDate = Calendar.current.date(byAdding: .day, value: 280, to: now)!
+        
+        var badgeNumber = UIApplication.shared.applicationIconBadgeNumber
+        badgeNumber += 1
+        NotificationHandler.scheduleNotification(secondDate, alertBody: "Ny undersøkelse!", badgeNumber: badgeNumber)
+        badgeNumber += 1
+        NotificationHandler.scheduleNotification(thirdDate, alertBody: "Ny undersøkelse!", badgeNumber: badgeNumber)
     }
     
     func displayQuestionCard() {
@@ -193,6 +227,8 @@ class HomeController: UIViewController {
             }
             else {return}
         }
+        
+        content = "Har du 5 minutter til å svare på en anonym oppfølgingsundersøkelse om app som hjelpetilbud?"
         
         let secondDate = Calendar.current.date(byAdding: .day, value: 56, to: firstDateRegistered!)!
         let secondDateEnd = Calendar.current.date(byAdding: .day, value: 66, to: firstDateRegistered!)!
