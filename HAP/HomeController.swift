@@ -159,7 +159,7 @@ class HomeController: UIViewController {
     func scheduleSurveyNotifications() {
         let notificationTitle = "Ny undersøkelse!"
         let now = Date()
-        let secondDate = Calendar.current.date(byAdding: .day, value: 56, to: now)!
+        let secondDate = Calendar.current.date(byAdding: .day, value: 42, to: now)!
         let thirdDate = Calendar.current.date(byAdding: .day, value: 280, to: now)!
         
         var badgeNumber = UIApplication.shared.applicationIconBadgeNumber
@@ -179,6 +179,7 @@ class HomeController: UIViewController {
         let now = Date()
         
         let firstDateRegistered = userInfo.surveyRegistered
+        
         if firstDateRegistered == nil {
             if now >= firstSurveyBegin && now < firstSurveyEnd  {
                 if !UserDefaults.standard.bool(forKey: HomeController.hasRegisteredSurvey) {showSurveyCard()}
@@ -189,8 +190,8 @@ class HomeController: UIViewController {
         }
         
         if userInfo.secondSurveyRegistered == nil {
-            let secondDate = Calendar.current.date(byAdding: .day, value: 56, to: firstDateRegistered!)!
-            let secondDateEnd = Calendar.current.date(byAdding: .day, value: 66, to: firstDateRegistered!)!
+            let secondDate = Calendar.current.date(byAdding: .day, value: 42, to: firstDateRegistered!)!
+            let secondDateEnd = Calendar.current.date(byAdding: .day, value: 70, to: firstDateRegistered!)!
             
             if now >= secondDate && now < secondDateEnd {
                 showSurveyCard()
@@ -242,8 +243,8 @@ class HomeController: UIViewController {
         
         content = "Har du 5 minutter til å svare på en anonym oppfølgingsundersøkelse om app som hjelpetilbud?"
         
-        let secondDate = Calendar.current.date(byAdding: .day, value: 56, to: firstDateRegistered!)!
-        let secondDateEnd = Calendar.current.date(byAdding: .day, value: 66, to: firstDateRegistered!)!
+        let secondDate = Calendar.current.date(byAdding: .day, value: 42, to: firstDateRegistered!)!
+        let secondDateEnd = Calendar.current.date(byAdding: .day, value: 70, to: firstDateRegistered!)!
         
         if now >= secondDate && now < secondDateEnd {
             let timeRemaining = Calendar.current.dateComponents([.second], from: now, to: secondDateEnd).second ?? 0
@@ -299,8 +300,8 @@ class HomeController: UIViewController {
             else {return nil}
         }
         
-        let secondDate = Calendar.current.date(byAdding: .day, value: 56, to: firstDateRegistered!)!
-        let secondDateEnd = Calendar.current.date(byAdding: .day, value: 66, to: firstDateRegistered!)!
+        let secondDate = Calendar.current.date(byAdding: .day, value: 42, to: firstDateRegistered!)!
+        let secondDateEnd = Calendar.current.date(byAdding: .day, value: 70, to: firstDateRegistered!)!
         
         if now >= secondDate && now < secondDateEnd {return 1}
         
